@@ -28,10 +28,6 @@ trait Val {
   public function toString() {
     $thisVars= get_object_vars($this);
     unset($thisVars['__id']);
-    if (1 === sizeof($thisVars)) {
-      return $this->getClassName().'('.Objects::stringOf($thisVars[key($thisVars)]).')';
-    } else {
-      return $this->getClassName().'@'.Objects::stringOf($thisVars);
-    }
+    return $this->getClassName().'@'.Objects::stringOf($thisVars);
   }
 }
