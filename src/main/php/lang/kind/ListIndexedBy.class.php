@@ -2,6 +2,7 @@
 
 use lang\IllegalStateException;
 use lang\ElementNotFoundException;
+use util\Objects;
 
 trait ListIndexedBy {
   private $indexed= [];
@@ -80,5 +81,15 @@ trait ListIndexedBy {
     foreach ($this->indexed as $element) {
       yield $element;
     }
+  }
+
+  /**
+   * Returns whether a given value is equal to this list
+   *
+   * @param  var $cmp
+   * @return bool
+   */
+  public function equals($cmp) {
+    return $cmp instanceof self && Objects::equal($this->indexed, $cmp->indexed);
   }
 }

@@ -65,4 +65,34 @@ class ListIndexedByTest extends \unittest\TestCase {
       iterator_to_array($this->newFixture([$this])->getIterator())
     );
   }
+
+  #[@test]
+  public function is_equal_to_itself() {
+    $fixture= $this->newFixture([$this]);
+    $this->assertEquals($fixture, $fixture);
+  }
+
+  #[@test]
+  public function is_equal_to_list_with_same_elements() {
+    $this->assertNotEquals(
+      $this->newFixture([$this]),
+      $this->newFixture([$this])
+    );
+  }
+
+  #[@test]
+  public function is_not_equal_to_list_of_different_length() {
+    $this->assertNotEquals(
+      $this->newFixture([]),
+      $this->newFixture([$this])
+    );
+  }
+
+  #[@test]
+  public function is_not_equal_to_list_with_different_elements() {
+    $this->assertNotEquals(
+      $this->newFixture([$this]),
+      $this->newFixture([newinstance('unittest.TestCase', ['test'], ['test' => function() { }])]
+    ));
+  }
 }
