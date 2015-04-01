@@ -14,24 +14,24 @@ Example
 -------
 The `Identity` trait creates a value object wrapping around exactly one member, including appropriate `equals()` and `toString()` implementations. The default method for accessing the underlying value can be aliased when using the trait, e.g. `use \lang\kind\Identity { value as name; }`.
 
-The `Val` trait ensures `equals()` and `toString()` are implemented for this value object in a generic way, using the util.Objects class to compare the objects memberwise. 
+```php
+class Name extends \lang\Object {
+  use \lang\kind\Identity;
+}
+```
 
-The `ListIndexedBy` trait creates a list of elements which can be queried by name, also creating `equals()` and `toString()` in a sensible manner.
+The `Val` trait ensures `equals()` and `toString()` are implemented for this value object in a generic way, using the util.Objects class to compare the objects memberwise. 
 
 ```php
 class Type extends \lang\Enum {
   public static $OPEN, CLOSED;
 }
 
-class Name extends \lang\Object {
-  use \lang\kind\Identity;
-}
-
 class Wall extends \lang\Object {
   use \lang\kind\Val;
   private $name, $type;
 
-  public function __construct($name, $type) {
+  public function __construct($name, Type $type) {
     $this->name= $name;
     $this->type= $type;
   }
@@ -39,13 +39,21 @@ class Wall extends \lang\Object {
   public function name() { return $this->name; }
   public function type() { return $this->type; }
 }
+```
 
+The `ListIndexedBy` trait creates a list of elements which can be queried by name, also creating `equals()` and `toString()` in a sensible manner.
+
+```php
 class Walls extends \lang\Object {
   use \lang\kind\ListIndexedBy;
 
   protected function index($wall) { return $wall->name()->value(); }
 }
+```
 
+Putting it all together, we can see the API:
+
+```php
 $walls= new Walls(
   new Wall(new Name('one'), Type::$OPEN),
   new Wall(new Name('two'), Type::$CLOSED)
@@ -54,8 +62,8 @@ $walls= new Walls(
 $walls->present();        // TRUE, list is not empty
 $walls->provides('one');  // TRUE, wall named one found
 $walls->provides('zero'); // FALSE, no such wall
-$walls->first();          // Wall("one")
-$walls->named('two');     // Wall("two")
+$walls->first();          // Wall(name => Name("one"), type => OPEN)
+$walls->named('two');     // Wall(name => Name("two"), type => CLOSED)
 $walls->named('three');   // ***ElementNotFoundException
 
 foreach ($walls as $wall) {
