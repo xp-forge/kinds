@@ -8,7 +8,7 @@ Kinds
 [![Required HHVM 3.5+](https://raw.githubusercontent.com/xp-framework/web/master/static/hhvm-3_5plus.png)](http://hhvm.com/)
 [![Latest Stable Version](https://poser.pugx.org/xp-forge/kinds/version.png)](https://packagist.org/packages/xp-forge/kinds)
 
-Traits for compile-time metaprogramming.
+Traits for common-used class kinds.
 
 ListIndexedBy
 -------------
@@ -33,6 +33,7 @@ $walls= new Walls(new Wall('one'), new Wall('two'));
 $walls->present();        // TRUE, list is not empty
 $walls->provides('one');  // TRUE, wall named one found
 $walls->provides('zero'); // FALSE, no such wall
+$walls->first();          // Wall("one")
 $walls->named('two');     // Wall("two")
 $walls->named('three');   // ***ElementNotFoundException
 

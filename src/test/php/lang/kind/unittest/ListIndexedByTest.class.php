@@ -29,6 +29,16 @@ class ListIndexedByTest extends \unittest\TestCase {
   }
 
   #[@test]
+  public function first() {
+    $this->assertEquals($this, $this->newFixture([$this])->first($this->getName()));
+  }
+
+  #[@test, @expect(ElementNotFoundException::class)]
+  public function first_raises_exception_when_empty() {
+    $this->newFixture([])->first($this->getName());
+  }
+
+  #[@test]
   public function provides_returns_true_for_existing_elements() {
     $this->assertTrue($this->newFixture([$this])->provides($this->getName()));
   }

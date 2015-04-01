@@ -59,6 +59,19 @@ trait ListIndexedBy {
   }
 
   /**
+   * Returns the first element.
+   *
+   * @return var
+   * @throws lang.ElementNotFoundException
+   */
+  public function first() {
+    if (empty($this->indexed)) {
+      throw new ElementNotFoundException('No elements');
+    }
+    return $this->indexed[key($this->indexed)];
+  }
+
+  /**
    * Overloads iteration
    *
    * @return  php.Iterator
