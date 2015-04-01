@@ -92,4 +92,13 @@ trait ListIndexedBy {
   public function equals($cmp) {
     return $cmp instanceof self && Objects::equal($this->indexed, $cmp->indexed);
   }
+
+  /**
+   * Creates a string representation
+   *
+   * @return string
+   */
+  public function toString() {
+    return $this->getClassName().'@'.Objects::stringOf($this->indexed);
+  }
 }

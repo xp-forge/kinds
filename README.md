@@ -10,12 +10,13 @@ Kinds
 
 Traits for common-used class kinds.
 
-ListIndexedBy
--------------
-This trait creates a list of elements which can be queried by name.
+Example
+-------
+The `Val` trait ensure `equals()` and `toString()` are implemented for this value object. The `ListIndexedBy` trait creates a list of elements which can be queried by name, also creating `equals()` and `toString()` in a sensible manner.
 
 ```php
 class Wall extends \lang\Object {
+  use \lang\kind\Val;
   private $name;
 
   public function __construct($name) { $this->name= $name; }
