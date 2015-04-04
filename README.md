@@ -31,15 +31,45 @@ class Type extends \lang\Enum {
 
 class Wall extends \lang\Object {
   use \lang\kind\ValueObject;
-  private $name, $type;
+  private $name, $type, $posts;
 
-  public function __construct($name, Type $type) {
+  public function __construct($name, Type $type, Posts $posts) {
     $this->name= $name;
     $this->type= $type;
+    $this->posts= $posts;
   }
 
   public function name() { return $this->name; }
   public function type() { return $this->type; }
+  public function posts() { return $this->posts; }
+}
+```
+
+The `ListOf` trait creates a list of elements which can be accessed by their offset, and offers `equals()` and `toString()` default implementations.
+
+```php
+class Posts extends \lang\Object implements \IteratorAggregate {
+  use \lang\kind\ListOf;
+}
+```
+
+The `WithCreation` trait will add a static `with()` method to your class, generating a fluent interface to create instances. This is especially useful in situation where there are a lot of constructor parameters.
+
+```php
+class Post extends \lang\Object {
+  use \lang\kind\ValueObject;
+  use \lang\kind\WithCreation;
+  private $author, $text, $date;
+
+  public function __construct($author, $text, Type $date) {
+    $this->author= $author;
+    $this->text= $text;
+    $this->date= $date;
+  }
+
+  public function author() { return $this->author; }
+  public function text() { return $this->text; }
+  public function date() { return $this->date; }
 }
 ```
 
@@ -53,14 +83,14 @@ class Walls extends \lang\Object implements \IteratorAggregate {
 }
 ```
 
-If you don't need the name-lookup, you can use the `ListOf` trait, which only allows accessing elements via their offset, but is more lightweight.
-
 Putting it all together, we can see the API:
 
 ```php
+$post= Post::with()->author('Timm')->text('Hello World!')->date(new Date('2015-04-04'))->create();
+
 $walls= new Walls(
-  new Wall(new Name('one'), Type::$OPEN),
-  new Wall(new Name('two'), Type::$CLOSED)
+  new Wall(new Name('one'), Type::$OPEN, new Posts()),
+  new Wall(new Name('two'), Type::$CLOSED, new Posts($post))
 );
 
 $walls->present();        // TRUE, list is not empty
