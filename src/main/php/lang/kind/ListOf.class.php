@@ -1,6 +1,5 @@
 <?php namespace lang\kind;
 
-use lang\IllegalStateException;
 use lang\ElementNotFoundException;
 use util\Objects;
 
@@ -11,7 +10,7 @@ use util\Objects;
  * @test  xp://lang.kind.unittest.ListOfTest
  */
 trait ListOf {
-  private $backing= [];
+  private $backing;
 
   /**
    * Constructor
