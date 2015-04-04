@@ -15,6 +15,8 @@ Example
 The `Identity` trait creates a value object wrapping around exactly one member, including appropriate `equals()` and `toString()` implementations. The default method for accessing the underlying value can be aliased when using the trait, e.g. `use \lang\kind\Identity { value as name; }`.
 
 ```php
+namespace example;
+
 class Name extends \lang\Object {
   use \lang\kind\Identity;
 
@@ -22,15 +24,17 @@ class Name extends \lang\Object {
 }
 ```
 
-The `ValueObject` trait ensures `equals()` and `toString()` are implemented for this value object in a generic way, using the util.Objects class to compare the objects memberwise. 
+The parametrized `ValueObject` trait creates accessors for all instance members and ensures `equals()` and `toString()` are implemented for this value object in a generic way, using the util.Objects class to compare the objects memberwise. 
 
 ```php
+namespace example;
+
 class Type extends \lang\Enum {
   public static $OPEN, CLOSED;
 }
 
 class Wall extends \lang\Object {
-  use \lang\kind\ValueObject;
+  use \lang\kind\ValueObject‹example\Wall›;
   private $name, $type, $posts;
 
   public function __construct(Name $name, Type $type, Posts $posts) {
@@ -38,16 +42,14 @@ class Wall extends \lang\Object {
     $this->type= $type;
     $this->posts= $posts;
   }
-
-  public function name() { return $this->name; }
-  public function type() { return $this->type; }
-  public function posts() { return $this->posts; }
 }
 ```
 
 The `ListOf` trait creates a list of elements which can be accessed by their offset, and offers `equals()` and `toString()` default implementations.
 
 ```php
+namespace example;
+
 class Posts extends \lang\Object implements \IteratorAggregate {
   use \lang\kind\ListOf;
 }
@@ -56,8 +58,10 @@ class Posts extends \lang\Object implements \IteratorAggregate {
 The `WithCreation` trait will add a static `with()` method to your class, generating a fluent interface to create instances. This is especially useful in situation where there are a lot of constructor parameters.
 
 ```php
+namespace example;
+
 class Post extends \lang\Object {
-  use \lang\kind\ValueObject;
+  use \lang\kind\ValueObject‹example\Post›;
   use \lang\kind\WithCreation;
   private $author, $text, $date;
 
@@ -66,16 +70,14 @@ class Post extends \lang\Object {
     $this->text= $text;
     $this->date= $date;
   }
-
-  public function author() { return $this->author; }
-  public function text() { return $this->text; }
-  public function date() { return $this->date; }
 }
 ```
 
 The `ListIndexedBy` trait creates a list of elements which can be queried by name, also creating `equals()` and `toString()` in a sensible manner.
 
 ```php
+namespace example;
+
 class Walls extends \lang\Object implements \IteratorAggregate {
   use \lang\kind\ListIndexedBy;
 
@@ -102,7 +104,7 @@ $walls->named('two');     // Wall(name => Name("two"), type => CLOSED)
 $walls->named('three');   // ***ElementNotFoundException
 
 foreach ($walls as $wall) {
-  Console::writeLine('- ', $wall->toString());
+  Console::writeLine('- ', $wall->name()->value(), ' (', $wall->type(), ')');
 }
 ```
 

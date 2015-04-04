@@ -1,0 +1,33 @@
+<?php namespace lang\kind;
+
+use lang\XPClass;
+use lang\ClassFormatException;
+
+module xp-forge/kinds {
+
+  /**
+   * Initializes this module, registering class loader for compile-time
+   * transformations based on the classes inside the `lang.kind.transformation`
+   * package.
+   */
+  public function initialize() {
+    spl_autoload_register(function($class) {
+      if (false === $p= strpos($class, '‹')) return false;
+
+      $base= substr($class, 0, $p);
+      $type= new XPClass(substr($class, $p + 3, -3));  // strlen("‹") & strlen("›")
+
+      $p= strrpos($base, '\\');
+      $transformation= substr($base, 0, $p).'\\transformation'.substr($base, $p);
+      if (!class_exists($transformation)) {
+        throw new ClassFormatException('No compile-time transformation named '.strtr($transformation, '\\', '.'));
+      }
+
+      $body= (new $transformation(new XPClass($base)))->transform($type);
+      $p= strrpos($class, '\\');
+      $code= 'namespace '.substr($class, 0, $p).'; trait '.substr($class, $p + 1).' { '.$body.' }';
+      eval($code);
+      return true;
+    });
+  }
+}

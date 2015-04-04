@@ -3,7 +3,9 @@
 /**
  * Used by InstanceCreationTest
  */
-class Author extends Entity {
+class Author extends \lang\Object {
+  use \lang\kind\ValueObject‹lang\kind\unittest\Author›;
+  use \lang\kind\WithCreation;
   private $name;
 
   /**
@@ -14,8 +16,4 @@ class Author extends Entity {
   public function __construct($name) {
     $this->name= $name;
   }
-
-  /** @return string */
-  public function name() { return $this->name; }
-
 }

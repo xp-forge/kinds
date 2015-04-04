@@ -5,6 +5,4 @@
  */
 abstract class Entity extends \lang\Object {
   use \lang\kind\WithCreation;
-  use \lang\kind\ValueObject;
-
 }

@@ -5,7 +5,9 @@ use util\Objects;
 /**
  * Used by InstanceCreationTest
  */
-class Book extends Entity {
+class Book extends \lang\Object {
+  use \lang\kind\ValueObject‹lang\kind\unittest\Book›;
+  use \lang\kind\WithCreation;
   private $name, $author, $isbn;
 
   /**
@@ -20,14 +22,4 @@ class Book extends Entity {
     $this->author= $author;
     $this->isbn= $isbn;
   }
-
-  /** @return string */
-  public function name() { return $this->name; }
-
-  /** @return lang.kind.unittest.Author */
-  public function author() { return $this->author; }
-
-  /** @return lang.kind.unittest.Isbn */
-  public function isbn() { return $this->isbn; }
-
 }
