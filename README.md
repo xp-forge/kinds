@@ -105,3 +105,8 @@ foreach ($walls as $wall) {
   Console::writeLine('- ', $wall->toString());
 }
 ```
+
+See also
+--------
+* http://groovy-lang.org/metaprogramming.html
+* http://projectlombok.org/
