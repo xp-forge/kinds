@@ -53,7 +53,7 @@ class ListIndexedByTest extends \unittest\TestCase {
   public function can_be_iterated() {
     $this->assertEquals(
       [$this],
-      iterator_to_array((new Tests($this))->getIterator())
+      iterator_to_array((new Tests($this)))
     );
   }
 

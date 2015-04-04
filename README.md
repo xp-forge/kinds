@@ -46,7 +46,7 @@ class Wall extends \lang\Object {
 The `ListIndexedBy` trait creates a list of elements which can be queried by name, also creating `equals()` and `toString()` in a sensible manner.
 
 ```php
-class Walls extends \lang\Object {
+class Walls extends \lang\Object implements \IteratorAggregate {
   use \lang\kind\ListIndexedBy;
 
   protected function index($wall) { return $wall->name()->value(); }

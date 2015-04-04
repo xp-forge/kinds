@@ -52,7 +52,7 @@ class ListOfTest extends \unittest\TestCase {
   public function can_be_iterated() {
     $this->assertEquals(
       [$this->wall],
-      iterator_to_array((new Walls($this->wall))->getIterator())
+      iterator_to_array((new Walls($this->wall)))
     );
   }
 
