@@ -62,7 +62,7 @@ namespace example;
 
 class Post extends \lang\Object {
   use \lang\kind\ValueObject‹example\Post›;
-  use \lang\kind\WithCreation;
+  use \lang\kind\WithCreation‹example\Post›;
   private $author, $text, $date;
 
   public function __construct($author, $text, Date $date) {

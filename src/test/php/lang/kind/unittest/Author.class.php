@@ -5,7 +5,7 @@
  */
 class Author extends \lang\Object {
   use \lang\kind\ValueObject‹lang\kind\unittest\Author›;
-  use \lang\kind\WithCreation;
+  use \lang\kind\WithCreation‹lang\kind\unittest\Author›;
   private $name;
 
   /**
