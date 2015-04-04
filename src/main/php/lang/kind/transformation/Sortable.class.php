@@ -1,12 +1,12 @@
 <?php namespace lang\kind\transformation;
 
 /**
- * Compile-time `Sortable` transformation which generates a compareTo()
+ * Compile-time `Sortable` transformation which generates a `compareTo()`
  * method.
  * 
  * ```php
  * class Example extends \lang\Object {
- *   use \lang\kind\WithCreation‹namespace\of\Example›;
+ *   use \lang\kind\Sortable‹namespace\of\Example›;
  *   private $firstName, $lastName;
  *
  *   public function __construct($firstName, $lastName) {
