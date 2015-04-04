@@ -17,6 +17,8 @@ The `Identity` trait creates a value object wrapping around exactly one member, 
 ```php
 class Name extends \lang\Object {
   use \lang\kind\Identity;
+
+  public function personal() { return '~' === $this->value{0}; }
 }
 ```
 
@@ -51,6 +53,8 @@ class Walls extends \lang\Object {
 }
 ```
 
+If you don't need the name-lookup, you can use the `ListOf` trait, which only allows accessing elements via their offset, but is more lightweight.
+
 Putting it all together, we can see the API:
 
 ```php
@@ -60,6 +64,7 @@ $walls= new Walls(
 );
 
 $walls->present();        // TRUE, list is not empty
+$walls->size();           // 2
 $walls->provides('one');  // TRUE, wall named one found
 $walls->provides('zero'); // FALSE, no such wall
 $walls->first();          // Wall(name => Name("one"), type => OPEN)
@@ -67,6 +72,6 @@ $walls->named('two');     // Wall(name => Name("two"), type => CLOSED)
 $walls->named('three');   // ***ElementNotFoundException
 
 foreach ($walls as $wall) {
-  // TBI
+  Console::writeLine('- ', $wall->toString());
 }
 ```
