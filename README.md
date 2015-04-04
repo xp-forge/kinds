@@ -33,7 +33,7 @@ class Wall extends \lang\Object {
   use \lang\kind\ValueObject;
   private $name, $type, $posts;
 
-  public function __construct($name, Type $type, Posts $posts) {
+  public function __construct(Name $name, Type $type, Posts $posts) {
     $this->name= $name;
     $this->type= $type;
     $this->posts= $posts;
