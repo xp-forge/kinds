@@ -61,7 +61,7 @@ class Post extends \lang\Object {
   use \lang\kind\WithCreation;
   private $author, $text, $date;
 
-  public function __construct($author, $text, Type $date) {
+  public function __construct($author, $text, Date $date) {
     $this->author= $author;
     $this->text= $text;
     $this->date= $date;
@@ -86,7 +86,7 @@ class Walls extends \lang\Object implements \IteratorAggregate {
 Putting it all together, we can see the API:
 
 ```php
-$post= Post::with()->author('Timm')->text('Hello World!')->date(new Date('2015-04-04'))->create();
+$post= Post::with()->author('Timm')->text('Hello World!')->date(Date::now())->create();
 
 $walls= new Walls(
   new Wall(new Name('one'), Type::$OPEN, new Posts()),
