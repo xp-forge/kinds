@@ -1,5 +1,7 @@
 <?php namespace lang\kind\unittest;
 
+use lang\FunctionType;
+
 class SortableTest extends \unittest\TestCase {
 
   #[@test, @values([
@@ -39,5 +41,14 @@ class SortableTest extends \unittest\TestCase {
   #[@test]
   public function with_same_first_and_lastNames_and_smaller_birthDate() {
     $this->assertEquals(1, (new Person('Test', 'B', 1977))->compareTo(new Person('Test', 'A', 1976)));
+  }
+
+  #[@test]
+  public function sorting() {
+    $a= new Person('A', 'Test', 1977);
+    $b= new Person('B', 'Test', 1977);
+    $list= [$b, $a];
+    usort($list, FunctionType::forName('function(var, var): int')->cast('lang.kind.unittest.Person::compareTo'));
+    $this->assertEquals([$a, $b], $list);
   }
 }
