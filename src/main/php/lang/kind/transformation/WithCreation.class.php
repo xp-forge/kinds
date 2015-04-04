@@ -16,7 +16,12 @@
  * }
  * ```
  *
- * In the above example, a `name()` and `id()` method are generated.
+ * Instances of the above class can now be generated either by invoking its
+ * constructor or by using the `with()` method:
+ *
+ * ```php
+ * $example= Example::with()->name('Test')->id(6100)->create();
+ * ```
  */
 class WithCreation extends Transformation {
 
