@@ -42,6 +42,15 @@ trait ListIndexedBy {
   }
 
   /**
+   * Returns how many elements exist
+   *
+   * @return bool
+   */
+  public function size() {
+    return sizeof($this->indexed);
+  }
+
+  /**
    * Returns whether this list provides an element for a given name
    *
    * @param  string $name

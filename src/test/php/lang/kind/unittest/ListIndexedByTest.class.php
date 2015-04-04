@@ -45,6 +45,11 @@ class ListIndexedByTest extends \unittest\TestCase {
   }
 
   #[@test]
+  public function size() {
+    $this->assertEquals(1, (new Tests($this))->size());
+  }
+
+  #[@test]
   public function can_be_iterated() {
     $this->assertEquals(
       [$this],
