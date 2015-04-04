@@ -2,6 +2,14 @@
 
 use util\Objects;
 
+/**
+ * The `Identity` trait creates a value object wrapping around exactly one member,
+ * including appropriate `equals()` and `toString()` implementations. The default
+ * method for accessing the underlying value can be aliased when using the trait,
+ * e.g. `use \lang\kind\Identity { value as name; }`.
+ *
+ * @test  xp://lang.kind.unittest.IdentityTest
+ */
 trait Identity {
   private $value;
 

@@ -4,6 +4,12 @@ use lang\IllegalStateException;
 use lang\ElementNotFoundException;
 use util\Objects;
 
+/**
+ * The `ListIndexedBy` trait creates a list of elements which can be queried by
+ * name, also creating `equals()` and `toString()` in a sensible manner.
+ *
+ * @test  xp://lang.kind.unittest.ListIndexedByTest
+ */
 trait ListIndexedBy {
   private $indexed= [];
 

@@ -20,7 +20,7 @@ class Name extends \lang\Object {
 }
 ```
 
-The `Val` trait ensures `equals()` and `toString()` are implemented for this value object in a generic way, using the util.Objects class to compare the objects memberwise. 
+The `ValueObject` trait ensures `equals()` and `toString()` are implemented for this value object in a generic way, using the util.Objects class to compare the objects memberwise. 
 
 ```php
 class Type extends \lang\Enum {
@@ -28,7 +28,7 @@ class Type extends \lang\Enum {
 }
 
 class Wall extends \lang\Object {
-  use \lang\kind\Val;
+  use \lang\kind\ValueObject;
   private $name, $type;
 
   public function __construct($name, Type $type) {
