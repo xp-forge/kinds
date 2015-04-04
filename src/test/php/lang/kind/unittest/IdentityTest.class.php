@@ -13,6 +13,16 @@ class IdentityTest extends \unittest\TestCase {
   }
 
   #[@test]
+  public function isEmpty_for_non_empty_string() {
+    $this->assertFalse((new Named('Test'))->isEmpty());
+  }
+
+  #[@test]
+  public function isEmpty_for_empty_string() {
+    $this->assertTrue((new Named(''))->isEmpty());
+  }
+
+  #[@test]
   public function is_equal_to_itself() {
     $fixture= new Named('Test');
     $this->assertEquals($fixture, $fixture);
