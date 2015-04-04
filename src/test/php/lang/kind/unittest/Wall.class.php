@@ -4,7 +4,7 @@
  * Used as fixture in the "ValueObjectTest" class
  */
 class Wall extends \lang\Object {
-  use \lang\kind\ValueObject;
+  use \lang\kind\ValueObject‹lang\kind\unittest\Wall›;
   private $name, $type;
 
   /**
@@ -17,10 +17,4 @@ class Wall extends \lang\Object {
     $this->name= $name;
     $this->type= $type;
   }
-
-  /** @return string */
-  public function name() { return $this->name; }
-
-  /** @return string */
-  public function type() { return $this->type; }
 }

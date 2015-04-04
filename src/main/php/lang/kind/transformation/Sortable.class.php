@@ -16,7 +16,8 @@
  * }
  * ```
  *
- * @see  https://wiki.php.net/rfc/comparable
+ * @see   https://wiki.php.net/rfc/comparable
+ * @test  xp://lang.kind.unittest.SortableTest
  */
 class Sortable extends Transformation {
 

@@ -23,7 +23,7 @@ module xp-forge/kinds {
         throw new ClassFormatException('No compile-time transformation named '.strtr($transformation, '\\', '.'));
       }
 
-      $body= (new $transformation(new XPClass($base)))->transform($type);
+      $body= (new $transformation())->transform($type);
       $p= strrpos($class, '\\');
       $code= 'namespace '.substr($class, 0, $p).'; trait '.substr($class, $p + 1).' { '.$body.' }';
       eval($code);

@@ -4,14 +4,6 @@
  * Compile-time transformation.
  */
 abstract class Transformation extends \lang\Object {
-  protected $base;
-
-  /**
-   * Creates new transformation instance for a given base type
-   *
-   * @param  lang.XPClass $base
-   */
-  public function __construct($base) { $this->base= $base; }
 
   /**
    * Creates trait body
@@ -28,6 +20,6 @@ abstract class Transformation extends \lang\Object {
    * @return string
    */
   public function transform($class) {
-    return 'use \\'.$this->base->literal().'; '.$this->body($class);
+    return $this->body($class);
   }
 }
