@@ -55,7 +55,7 @@ class Posts extends \lang\Object implements \IteratorAggregate {
 }
 ```
 
-The `WithCreation` trait will add a static `with()` method to your class, generating a fluent interface to create instances. This is especially useful in situation where there are a lot of constructor parameters. The sortable 
+The `WithCreation` trait will add a static `with()` method to your class, generating a fluent interface to create instances. This is especially useful in situation where there are a lot of constructor parameters.
 
 ```php
 namespace example;
