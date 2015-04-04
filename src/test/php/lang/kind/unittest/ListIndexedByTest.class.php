@@ -16,12 +16,12 @@ class ListIndexedByTest extends \unittest\TestCase {
 
   #[@test]
   public function first() {
-    $this->assertEquals($this, (new Tests($this))->first($this->getName()));
+    $this->assertEquals($this, (new Tests($this))->first());
   }
 
   #[@test, @expect(ElementNotFoundException::class)]
   public function first_raises_exception_when_empty() {
-    (new Tests())->first($this->getName());
+    (new Tests())->first();
   }
 
   #[@test]
