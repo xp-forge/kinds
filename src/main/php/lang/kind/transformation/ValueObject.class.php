@@ -22,7 +22,7 @@ class ValueObject extends Transformation {
    * @param  lang.XPClass
    * @return string
    */
-  protected function unit($class) {
+  protected function body($class) {
     $unit= '';
     foreach ($class->getFields() as $field) {
       if (!($field->getModifiers() & MODIFIER_STATIC)) {

@@ -19,7 +19,7 @@ abstract class Transformation extends \lang\Object {
    * @param  lang.XPClass
    * @return string
    */
-  protected abstract function unit($class);
+  protected abstract function body($class);
 
   /**
    * Transforms class
@@ -28,6 +28,6 @@ abstract class Transformation extends \lang\Object {
    * @return string
    */
   public function transform($class) {
-    return 'use \\'.$this->base->literal().'; '.$this->unit($class);
+    return 'use \\'.$this->base->literal().'; '.$this->body($class);
   }
 }

@@ -31,7 +31,7 @@ class WithCreation extends Transformation {
    * @param  lang.XPClass
    * @return string
    */
-  protected function unit($class) {
+  protected function body($class) {
     return 'public static function with() {
       return \lang\kind\InstanceCreation::of(new \lang\XPClass(\''.$class->literal().'\'));
     }';
