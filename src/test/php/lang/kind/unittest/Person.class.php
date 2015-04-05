@@ -6,6 +6,10 @@
 class Person extends \lang\Object {
   use \lang\kind\ValueObject‹lang\kind\unittest\Person›;
   use \lang\kind\Sortable‹lang\kind\unittest\Person›;
+  use \lang\kind\Comparators‹lang\kind\unittest\Person› {
+    byBorn as byBirthDate;
+  }
+
   private $firstName, $lastName, $born;
 
   /**

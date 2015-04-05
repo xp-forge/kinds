@@ -28,10 +28,8 @@ class ValueObject extends Transformation {
    */
   protected function body($class) {
     $unit= '';
-    foreach ($class->getFields() as $field) {
-      if (!($field->getModifiers() & MODIFIER_STATIC)) {
-        $unit.= 'public function '.$field->getName().'() { return $this->'.$field->getName().'; }';
-      }
+    foreach ($this->instanceFields($class) as $field) {
+      $unit.= 'public function '.$field->getName().'() { return $this->'.$field->getName().'; }';
     }
 
     // equals()

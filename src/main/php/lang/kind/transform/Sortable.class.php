@@ -29,7 +29,11 @@ class Sortable extends Transformation {
    */
   protected function body($class) {
     $compareTo= '';
-    foreach ($class->getFields() as $field) {
+    $fields= $class->getFields();
+    foreach ($class->getTraits() as $trait) {
+      $fields= array_merge($fields, $trait->getFields());
+    }
+    foreach ($fields as $field) {
       if (!($field->getModifiers() & MODIFIER_STATIC)) {
         $n= $field->getName();
         $compareTo.= 'if (method_exists($this->'.$n.', \'compareTo\')) {
