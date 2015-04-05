@@ -1,4 +1,4 @@
-<?php namespace lang\kind\transformation;
+<?php namespace lang\kind\transform;
 
 /**
  * Compile-time `ValueObject` transformation which generates public accessors

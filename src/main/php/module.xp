@@ -18,7 +18,7 @@ module xp-forge/kinds {
       $type= new XPClass(substr($class, $p + 3, -3));  // strlen("‹") & strlen("›")
 
       $p= strrpos($base, '\\');
-      $transformation= substr($base, 0, $p).'\\transformation'.substr($base, $p);
+      $transformation= substr($base, 0, $p).'\\transform'.substr($base, $p);
       if (!class_exists($transformation)) {
         throw new ClassFormatException('No compile-time transformation named '.strtr($transformation, '\\', '.'));
       }
