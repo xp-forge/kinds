@@ -27,7 +27,9 @@ class Comparators extends Transformation {
 
     foreach ($this->instanceFields($class) as $field) {
       $n= $field->getName();
-      $unit.= 'public static function by'.ucfirst($n).'() { return new \lang\kind\Comparator(\''.$n.'\'); }';
+      $unit.= 'public static function by'.ucfirst($n).'() {
+        return new \lang\kind\Comparison(function($a, $b) { return $a->compareUsing($b, \''.$n.'\'); });
+      }';
     }
     return $unit;
   }

@@ -32,4 +32,12 @@ class ComparatorsTest extends \unittest\TestCase {
       new Person(new Named('B'), $lastB, 1977)
     ));
   }
+
+  #[@test]
+  public function compare_using_byFirstName_then_byLastName() {
+    $this->assertEquals(-1, Person::byFirstName()->then(Person::byLastName())->compare(
+      new Person('Same', 'A', 1977),
+      new Person('Same', 'B', 1977)
+    ));
+  }
 }
