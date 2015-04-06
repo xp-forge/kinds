@@ -13,6 +13,11 @@ class ValueObjectTest extends \unittest\TestCase {
   }
 
   #[@test]
+  public function posts() {
+    $this->assertEquals([], (new Wall('Test', 'open', []))->posts());
+  }
+
+  #[@test]
   public function is_equal_to_itself() {
     $fixture= new Wall('Test', 'open', []);
     $this->assertEquals($fixture, $fixture);

@@ -57,7 +57,9 @@ class Posts extends \lang\Object implements \IteratorAggregate {
 }
 ```
 
-The `WithCreation` trait will add a static `with()` method to your class, generating a fluent interface to create instances. This is especially useful in situation where there are a lot of constructor parameters. The `Comparators` trait adds static `by[Member]` methods returning util.Comparator instances for each member. These instances can be combined using *then* (`Post::byDate()->then(Post::byAuthor())`) or reversed (`Post::byDate()->reverse()`).
+The `WithCreation` trait will add a static `with()` method to your class, generating a fluent interface to create instances. This is especially useful in situation where there are a lot of constructor parameters.
+
+The `Comparators` trait adds static `by[Member]` methods returning util.Comparator instances for each member. These instances can be combined using *then* (`Post::byDate()->then(Post::byAuthor())`) or reversed (`Post::byDate()->reverse()`).
 
 ```php
 namespace example;
@@ -76,7 +78,7 @@ class Post extends \lang\Object {
 }
 ```
 
-The `ListIndexedBy` trait creates a list of elements which can be queried by name, also overloading iteration and creating `equals()` and `toString()` in a sensible manner.
+The `ListIndexedBy` trait creates a list of elements which can be queried by name, also overloading iteration and creating `equals()` and `toString()` in a sensible manner. The class needs to implement the abstract `index` method and return a string representing the name.
 
 ```php
 namespace example;
