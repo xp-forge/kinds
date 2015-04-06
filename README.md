@@ -26,7 +26,7 @@ class Name extends \lang\Object {
 
 For situations where more logic than just "compiler-assisted copy&paste" is necessary, this library provides traits that expand dynamically based on the containing class at compile time. We use the syntax `name\of\Trait‹name\of\containing\Class›` for them, and because that resembles the generics syntax, we'll call then *parametrized*. The symbols we use are the single [guillemets](http://en.wikipedia.org/wiki/Guillemet).
 
-The parametrized `ValueObject` trait creates accessors for all instance members and ensures `equals()` and `toString()` are implemented for this value object in a generic way, using the util.Objects class to compare the objects memberwise. 
+The parametrized `ValueObject` trait creates accessors for all instance members and ensures `equals()` and `toString()` are implemented for this value object in a generic way, using the util.Objects class to compare the objects memberwise. All we need to do is to add a constructor (*this is not generated as we might want to add default values and custom verification logic*).
 
 ```php
 namespace example;
