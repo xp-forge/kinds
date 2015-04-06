@@ -57,7 +57,7 @@ class Posts extends \lang\Object implements \IteratorAggregate {
 }
 ```
 
-The `WithCreation` trait will add a static `with()` method to your class, generating a fluent interface to create instances. This is especially useful in situation where there are a lot of constructor parameters.
+The `WithCreation` trait will add a static `with()` method to your class, generating a fluent interface to create instances. This is especially useful in situation where there are a lot of constructor parameters. The `Comparators` trait adds static `by[Member]` methods returning util.Comparator instances for each member. These instances can be combined using *then* (`Post::byDate()->then(Post::byAuthor())`) or reversed (`Post::byDate()->reverse()`).
 
 ```php
 namespace example;
@@ -110,7 +110,7 @@ $walls->named('three');   // ***ElementNotFoundException
 
 foreach ($walls as $wall) {
   Console::writeLine('== ', $wall->name()->value(), ' wall (', $wall->type(), ') ==');
-  Sequence::of($wall->posts())->sorted(Wall::byDate())->each(function($post) {
+  Sequence::of($wall->posts())->sorted(Post::byDate())->each(function($post) {
     Console::writeLine('Written by ', $post->author(), ' on ', $post->date());
     Console::writeLine($post->text());
     Console::writeLine();
