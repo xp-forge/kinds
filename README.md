@@ -12,7 +12,7 @@ Traits for common-used class kinds.
 
 Example
 -------
-The `Identity` trait creates a value object wrapping around exactly one member, including appropriate `equals()` and `toString()` implementations. The default method for accessing the underlying value can be aliased when using the trait, e.g. `use \lang\kind\Identity { value as name; }`.
+The `Identity` trait creates a value object wrapping around exactly one member. It creates a one-arg constructor, and a `value()` for retrieving the value, and includes appropriate `equals()` and `toString()` implementations. 
 
 ```php
 namespace example;
@@ -23,6 +23,8 @@ class Name extends \lang\Object {
   public function personal() { return '~' === $this->value{0}; }
 }
 ```
+
+For situations where more logic than just "compiler-assisted copy&paste" is necessary, this library provides traits that expand dynamically based on the containing class at compile time. We use the syntax `name\of\Trait‹name\of\containing\Class›` for them, and because that resembles the generics syntax, we'll call then *parametrized*.
 
 The parametrized `ValueObject` trait creates accessors for all instance members and ensures `equals()` and `toString()` are implemented for this value object in a generic way, using the util.Objects class to compare the objects memberwise. 
 
