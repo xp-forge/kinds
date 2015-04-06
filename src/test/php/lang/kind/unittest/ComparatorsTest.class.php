@@ -1,5 +1,7 @@
 <?php namespace lang\kind\unittest;
 
+use util\Date;
+
 class ComparatorsTest extends \unittest\TestCase {
 
   #[@test]
@@ -39,5 +41,28 @@ class ComparatorsTest extends \unittest\TestCase {
       new Person('Same', 'A', 1977),
       new Person('Same', 'B', 1977)
     ));
+  }
+
+  #[@test]
+  public function compare_using_byLastName_reverse() {
+    $this->assertEquals(1, Person::byLastName()->reverse()->compare(
+      new Person('Same', 'A', 1977),
+      new Person('Same', 'B', 1977)
+    ));
+  }
+
+  #[@test]
+  public function usort_byDate() {
+    $wall= new Wall('name', 'open', [
+      new Post('thekid', 'Hello World', new Date('2015-04-01')),
+      new Post('thekid', 'Version 0.1.0', new Date('2015-04-04')),
+      new Post('thekid', 'Added Comparators::reverse()', new Date('2015-04-06'))
+    ]);
+    $posts= $wall->posts();
+    usort($posts, [Post::byDate(), 'compare']);
+    $this->assertEquals(
+      ['Added Comparators::reverse()', 'Version 0.1.0', 'Hello World'],
+      array_map(function($post) { return $post->text(); }, $posts)
+    );
   }
 }

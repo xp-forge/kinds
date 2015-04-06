@@ -65,6 +65,7 @@ namespace example;
 class Post extends \lang\Object {
   use \lang\kind\ValueObject‹example\Post›;
   use \lang\kind\WithCreation‹example\Post›;
+  use \lang\kind\Comparators‹example\Post›;
   private $author, $text, $date;
 
   public function __construct($author, $text, Date $date) {
@@ -90,6 +91,8 @@ class Walls extends \lang\Object implements \IteratorAggregate {
 Putting it all together, we can see the API:
 
 ```php
+use util\data\Sequence;
+
 $post= Post::with()->author('Timm')->text('Hello World!')->date(Date::now())->create();
 
 $walls= new Walls(
@@ -106,7 +109,12 @@ $walls->named('two');     // Wall(name => Name("two"), type => CLOSED)
 $walls->named('three');   // ***ElementNotFoundException
 
 foreach ($walls as $wall) {
-  Console::writeLine('- ', $wall->name()->value(), ' (', $wall->type(), ')');
+  Console::writeLine('== ', $wall->name()->value(), ' (', $wall->type(), ') ==');
+  Sequence::of($wall->posts())->sorted(Wall::byDate())->each(function($post) {
+    Console::writeLine('Written by ', $post->author(), ' on ', $post->date()->toString('d.m.Y'));
+    Console::writeLine($post->text());
+    Console::writeLine();
+  });
 }
 ```
 

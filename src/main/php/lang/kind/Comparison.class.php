@@ -27,9 +27,10 @@ class Comparison extends \lang\Object implements Comparator {
   }
 
   /**
-   * Combines this comparator with another
+   * Combines this comparison with another
    *
    * @param  util.Comparator $next
+   * @return  self
    */
   public function then(Comparator $next) {
     return new self(function($a, $b) use($next) {
@@ -38,6 +39,17 @@ class Comparison extends \lang\Object implements Comparator {
       } else {
         return $r;
       }
+    });
+  }
+
+  /**
+   * Reverses this comparison.
+   *
+   * @return  self
+   */
+  public function reverse() {
+    return new self(function($a, $b) {
+      return -1 * $this->compare($a, $b);
     });
   }
 }

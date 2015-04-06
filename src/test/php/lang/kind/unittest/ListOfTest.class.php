@@ -5,7 +5,7 @@ use lang\ElementNotFoundException;
 class ListOfTest extends \unittest\TestCase {
 
   public function setUp() {
-    $this->wall= new Wall('Test', 'open');
+    $this->wall= new Wall('Test', 'open', []);
   }
 
   #[@test]
