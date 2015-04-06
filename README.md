@@ -47,7 +47,7 @@ class Wall extends \lang\Object {
 }
 ```
 
-The `ListOf` trait creates a list of elements which can be accessed by their offset, and offers `equals()` and `toString()` default implementations.
+The `ListOf` trait creates a list of elements which can be accessed by their offset, iterated by `foreach`, and offers `equals()` and `toString()` default implementations.
 
 ```php
 namespace example;
@@ -75,7 +75,7 @@ class Post extends \lang\Object {
 }
 ```
 
-The `ListIndexedBy` trait creates a list of elements which can be queried by name, also creating `equals()` and `toString()` in a sensible manner.
+The `ListIndexedBy` trait creates a list of elements which can be queried by name, also overloading iteration and creating `equals()` and `toString()` in a sensible manner.
 
 ```php
 namespace example;
