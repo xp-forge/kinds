@@ -3,6 +3,8 @@ Kinds ChangeLog
 
 ## ?.?.? / ????-??-??
 
+## 0.2.0 / 2015-04-06
+
 * Added `lang.kind.Comparator` parametrized trait. It creates `by[Member]`
   methods for each member which return (combineable) comparators.
   (@thekid)
