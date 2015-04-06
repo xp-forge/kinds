@@ -109,9 +109,9 @@ $walls->named('two');     // Wall(name => Name("two"), type => CLOSED)
 $walls->named('three');   // ***ElementNotFoundException
 
 foreach ($walls as $wall) {
-  Console::writeLine('== ', $wall->name()->value(), ' (', $wall->type(), ') ==');
+  Console::writeLine('== ', $wall->name()->value(), ' wall (', $wall->type(), ') ==');
   Sequence::of($wall->posts())->sorted(Wall::byDate())->each(function($post) {
-    Console::writeLine('Written by ', $post->author(), ' on ', $post->date()->toString('d.m.Y'));
+    Console::writeLine('Written by ', $post->author(), ' on ', $post->date());
     Console::writeLine($post->text());
     Console::writeLine();
   });
