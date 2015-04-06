@@ -1,4 +1,4 @@
-<?php namespace lang\kind\transform;
+<?php namespace lang\kind;
 
 /**
  * Compile-time `WithCreation` transformation which generates a fluent interface
