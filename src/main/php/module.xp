@@ -12,10 +12,10 @@ module xp-forge/kinds {
    */
   public function initialize() {
     spl_autoload_register(function($class) {
-      if (false === $p= strpos($class, '‹')) return false;
+      if (false === $p= strpos($class, '»')) return false;
 
       $transformation= substr($class, 0, $p);
-      $type= new XPClass(substr($class, $p + 3, -3));  // strlen("‹") & strlen("›")
+      $type= new XPClass(substr($class, $p + 2));  // strlen("»")
       if (!class_exists($transformation)) {
         throw new ClassFormatException('No compile-time transformation named '.strtr($transformation, '\\', '.'));
       }

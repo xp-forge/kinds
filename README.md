@@ -24,7 +24,7 @@ class Name extends \lang\Object {
 }
 ```
 
-For situations where more logic than just "compiler-assisted copy&paste" is necessary, this library provides traits that expand dynamically based on the containing class at compile time. We use the syntax `name\of\Trait‹name\of\containing\Class›` for them, and because that resembles the generics syntax, we'll call then *parametrized*. The symbols we use are the single [guillemets](http://en.wikipedia.org/wiki/Guillemet).
+For situations where more logic than just "compiler-assisted copy&paste" is necessary, this library provides traits that expand dynamically based on the containing class at compile time. We use the syntax `name\of\Trait»name\of\containing\Class` for them, which we called *parametrized*. The symbol we use is the double closing [guillemet](http://en.wikipedia.org/wiki/Guillemet).
 
 The parametrized `ValueObject` trait creates accessors for all instance members and ensures `equals()` and `toString()` are implemented for this value object in a generic way, using the util.Objects class to compare the objects memberwise. All we need to do is to add a constructor (*this is not generated as we might want to add default values and custom verification logic*).
 
@@ -36,7 +36,7 @@ class Type extends \lang\Enum {
 }
 
 class Wall extends \lang\Object {
-  use \lang\kind\ValueObject‹example\Wall›;
+  use \lang\kind\ValueObject»example\Wall;
   private $name, $type, $posts;
 
   public function __construct(Name $name, Type $type, Posts $posts) {
@@ -65,9 +65,9 @@ The `Comparators` trait adds static `by[Member]` methods returning util.Comparat
 namespace example;
 
 class Post extends \lang\Object {
-  use \lang\kind\ValueObject‹example\Post›;
-  use \lang\kind\WithCreation‹example\Post›;
-  use \lang\kind\Comparators‹example\Post›;
+  use \lang\kind\ValueObject»example\Post;
+  use \lang\kind\WithCreation»example\Post;
+  use \lang\kind\Comparators»example\Post;
   private $author, $text, $date;
 
   public function __construct($author, $text, Date $date) {

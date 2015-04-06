@@ -6,8 +6,8 @@ use util\Objects;
  * Used by InstanceCreationTest
  */
 class Book extends \lang\Object {
-  use \lang\kind\ValueObject‹lang\kind\unittest\Book›;
-  use \lang\kind\WithCreation‹lang\kind\unittest\Book›;
+  use \lang\kind\ValueObject»lang\kind\unittest\Book;
+  use \lang\kind\WithCreation»lang\kind\unittest\Book;
   private $name, $author, $isbn;
 
   /**

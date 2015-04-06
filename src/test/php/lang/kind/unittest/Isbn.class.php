@@ -6,8 +6,8 @@
 class Isbn extends \lang\Object {
   const EAN13 = 13;
 
-  use \lang\kind\ValueObject‹lang\kind\unittest\Isbn›;
-  use \lang\kind\WithCreation‹lang\kind\unittest\Isbn›;
+  use \lang\kind\ValueObject»lang\kind\unittest\Isbn;
+  use \lang\kind\WithCreation»lang\kind\unittest\Isbn;
   private $number, $type;
 
   /**
