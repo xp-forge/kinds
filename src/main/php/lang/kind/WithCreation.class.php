@@ -28,12 +28,12 @@ class WithCreation extends Transformation {
   /**
    * Creates trait body
    *
-   * @param  lang.XPClass
+   * @param  lang.mirrors.TypeMirror $mirror
    * @return string
    */
-  protected function body($class) {
+  protected function body($mirror) {
     return 'public static function with() {
-      return \lang\kind\InstanceCreation::of(new \lang\XPClass(\''.$class->literal().'\'));
+      return \lang\kind\InstanceCreation::of(new \lang\XPClass(\''.strtr($mirror->name(), '.', '\\').'\'));
     }';
   }
 }

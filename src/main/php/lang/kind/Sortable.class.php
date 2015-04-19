@@ -24,25 +24,19 @@ class Sortable extends Transformation {
   /**
    * Creates trait body
    *
-   * @param  lang.XPClass
+   * @param  lang.mirrors.TypeMirror $mirror
    * @return string
    */
-  protected function body($class) {
+  protected function body($mirror) {
     $compareTo= '';
-    $fields= $class->getFields();
-    foreach ($class->getTraits() as $trait) {
-      $fields= array_merge($fields, $trait->getFields());
-    }
-    foreach ($fields as $field) {
-      if (!($field->getModifiers() & MODIFIER_STATIC)) {
-        $n= $field->getName();
-        $compareTo.= 'if (method_exists($this->'.$n.', \'compareTo\')) {
-          $r= $this->'.$n.'->compareTo($cmp->'.$n.');
-        } else {
-          $r= ($this->'.$n.' === $cmp->'.$n.') ? 0 : ($this->'.$n.' < $cmp->'.$n.' ? -1 : 1);
-        }
-        if (0 !== $r) return $r;';
+    foreach ($this->instanceFields($mirror) as $field) {
+      $n= $field->name();
+      $compareTo.= 'if (method_exists($this->'.$n.', \'compareTo\')) {
+        $r= $this->'.$n.'->compareTo($cmp->'.$n.');
+      } else {
+        $r= ($this->'.$n.' === $cmp->'.$n.') ? 0 : ($this->'.$n.' < $cmp->'.$n.' ? -1 : 1);
       }
+      if (0 !== $r) return $r;';
     }
     return 'public function compareTo($cmp) { if ($cmp instanceof self) { '.$compareTo.'} return 0; }';
   }

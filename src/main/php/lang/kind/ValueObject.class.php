@@ -23,13 +23,13 @@ class ValueObject extends Transformation {
   /**
    * Creates trait body
    *
-   * @param  lang.XPClass
+   * @param  lang.mirrors.TypeMirror $mirror
    * @return string
    */
-  protected function body($class) {
+  protected function body($mirror) {
     $unit= '';
-    foreach ($this->instanceFields($class) as $field) {
-      $unit.= 'public function '.$field->getName().'() { return $this->'.$field->getName().'; }';
+    foreach ($this->instanceFields($mirror) as $field) {
+      $unit.= 'public function '.$field->name().'() { return $this->'.$field->name().'; }';
     }
 
     // equals()

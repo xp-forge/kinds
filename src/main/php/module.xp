@@ -1,6 +1,7 @@
 <?php namespace lang\kind;
 
-use lang\XPClass;
+use lang\mirrors\TypeMirror;
+use lang\mirrors\Sources;
 use lang\ClassFormatException;
 
 module xp-forge/kinds {
@@ -15,12 +16,15 @@ module xp-forge/kinds {
       if (false === $p= strpos($class, '»')) return false;
 
       $transformation= substr($class, 0, $p);
-      $type= new XPClass(substr($class, $p + 2));  // strlen("»")
+      $type= substr($class, $p + 2);   // strlen("»")
       if (!class_exists($transformation)) {
         throw new ClassFormatException('No compile-time transformation named '.strtr($transformation, '\\', '.'));
       }
 
-      $body= (new $transformation())->transform($type);
+      // Autoloaders not invoked correctly from within autoloading
+      if (null === Sources::$DEFAULT) Sources::__static();
+
+      $body= (new $transformation())->transform(new TypeMirror($type));
       $p= strrpos($class, '\\');
       $code= 'namespace '.substr($class, 0, $p).'; trait '.substr($class, $p + 1).' { '.$body.' }';
       eval($code);
