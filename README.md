@@ -8,7 +8,7 @@ Kinds
 [![Required HHVM 3.5+](https://raw.githubusercontent.com/xp-framework/web/master/static/hhvm-3_5plus.png)](http://hhvm.com/)
 [![Latest Stable Version](https://poser.pugx.org/xp-forge/kinds/version.png)](https://packagist.org/packages/xp-forge/kinds)
 
-Compile-time meta programming to make code more concise.
+Traits for compile-time metaprogramming.
 
 Example
 -------
