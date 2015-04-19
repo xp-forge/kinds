@@ -3,6 +3,8 @@ Kinds ChangeLog
 
 ## ?.?.? / ????-??-??
 
+## 0.3.0 / 2015-04-20
+
 * Merged PR #1: Use mirrors instead of builtin reflection. This way, we get
   around the limitation that classes cannot be reflected in HHVM while they're
   being loaded - a core premise for our compile-time metaprogramming.
