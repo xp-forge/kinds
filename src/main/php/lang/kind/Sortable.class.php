@@ -6,7 +6,7 @@
  * 
  * ```php
  * class Example extends \lang\Object {
- *   use \lang\kind\Sortable‹namespace\of\Example›;
+ *   use \lang\kind\Sortable»namespace\of\Example;
  *   private $firstName, $lastName;
  *
  *   public function __construct($firstName, $lastName) {

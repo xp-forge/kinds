@@ -6,7 +6,7 @@
  * 
  * ```php
  * class Example extends \lang\Object {
- *   use \lang\kind\WithCreation‹namespace\of\Example›;
+ *   use \lang\kind\With»Creationnamespace\of\Example;
  *   private $name, $id;
  *
  *   public function __construct($name, $id) {
