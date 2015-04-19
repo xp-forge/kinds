@@ -11,10 +11,10 @@ class Comparators extends Transformation {
   /**
    * Creates trait body
    *
-   * @param  lang.XPClass
+   * @param  lang.mirrors.TypeMirror $mirror
    * @return string
    */
-  protected function body($class) {
+  protected function body($mirror) {
     $unit= 'public function compareUsing($cmp, $field) {
       $local= $this->{$field};
       $other= $cmp->{$field};
@@ -25,8 +25,8 @@ class Comparators extends Transformation {
       }
     }';
 
-    foreach ($this->instanceFields($class) as $field) {
-      $n= $field->getName();
+    foreach ($this->instanceFields($mirror) as $field) {
+      $n= $field->name();
       $unit.= 'public static function by'.ucfirst($n).'() {
         return new \lang\kind\Comparison(function($a, $b) { return $a->compareUsing($b, \''.$n.'\'); });
       }';

@@ -1,9 +1,8 @@
 <?php namespace lang\kind;
 
-use lang\XPClass;
+use lang\mirrors\TypeMirror;
 use lang\ClassLoader;
 use lang\IllegalArgumentException;
-use lang\reflect\Modifiers;
 
 abstract class InstanceCreation extends \lang\Object {
   private static $creations= [];
@@ -15,22 +14,24 @@ abstract class InstanceCreation extends \lang\Object {
    * @return lang.XPClass
    */
   public static final function typeOf($class) {
-    $type= $class instanceof XPClass ? $class : XPClass::forName($class);
-    $key= $type->literal();
+    $mirror= new TypeMirror($class);
+    $type= $mirror->name();
 
-    if (!isset(self::$creations[$key])) {
-      $setters= $args= '';
-
-      if ($type->isInterface() || $type->isEnum() || Modifiers::isAbstract($type->getModifiers())) {
-        throw new IllegalArgumentException('Class '.$type->getName().' is not instantiable');
-      } else if (!$type->hasConstructor()) {
-        throw new IllegalArgumentException('Class '.$type->getName().' does not have a constructor');
+    if (!isset(self::$creations[$type])) {
+      if (!$mirror->kind()->isClass() || $mirror->modifiers()->isAbstract()) {
+        throw new IllegalArgumentException('Class '.$type.' is not instantiable');
       }
 
-      foreach ($type->getConstructor()->getParameters() as $parameter) {
-        $name= $parameter->getName();
+      $constructor= $mirror->constructor();
+      if (!$constructor->present()) {
+        throw new IllegalArgumentException('Class '.$type.' does not have a constructor');
+      }
+
+      $setters= $args= '';
+      foreach ($constructor->parameters() as $parameter) {
+        $name= $parameter->name();
         if ($parameter->isOptional()) {
-          $setters.= 'public $'.$name.'= '.var_export($parameter->getDefaultValue(), true).';';
+          $setters.= 'public $'.$name.'= '.var_export($parameter->defaultValue(), true).';';
         } else {
           $setters.= 'public $'.$name.';';
         }
@@ -38,12 +39,12 @@ abstract class InstanceCreation extends \lang\Object {
         $args.= ', $this->'.$name;
       }
 
-      self::$creations[$key]= ClassLoader::defineClass($type->getName().'Creation', 'lang.kind.InstanceCreation', [], '{
-        public function create() { return new \\'.$type->literal().'('.substr($args, 2).'); }
+      self::$creations[$type]= ClassLoader::defineClass($type.'Creation', 'lang.kind.InstanceCreation', [], '{
+        public function create() { return new \\'.$mirror->reflect->name.'('.substr($args, 2).'); }
         '.$setters.'
       }');
     }
-    return self::$creations[$key];
+    return self::$creations[$type];
   }
 
   /**
