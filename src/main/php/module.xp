@@ -7,8 +7,8 @@ module xp-forge/kinds {
 
   /**
    * Initializes this module, registering class loader for compile-time
-   * transformations based on the classes inside the `lang.kind.transformation`
-   * package.
+   * transformations based on the classes extending the base class
+   * `lang.kind.Transformation`.
    */
   public function initialize() {
     spl_autoload_register(function($class) {
