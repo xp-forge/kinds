@@ -3,6 +3,11 @@ Kinds ChangeLog
 
 ## ?.?.? / ????-??-??
 
+* Merged PR #1: Use mirrors instead of builtin reflection. This way, we get
+  around the limitation that classes cannot be reflected in HHVM while they're
+  being loaded - a core premise for our compile-time metaprogramming.
+  (@thekid)
+
 ## 0.2.0 / 2015-04-06
 
 * Added `lang.kind.Comparator` parametrized trait. It creates `by[Member]`
