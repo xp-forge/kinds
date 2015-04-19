@@ -24,7 +24,7 @@ abstract class Transformation extends \lang\Object {
    */
   protected function instanceFields($mirror) {
     $seen= [];
-    foreach ($mirror->fields()->of(Member::$INSTANCE) as $field) {
+    foreach ($mirror->fields()->of(Member::$INSTANCE | Member::$DECLARED) as $field) {
       $seen[$field->name()]= true;
       yield $field;
     }
