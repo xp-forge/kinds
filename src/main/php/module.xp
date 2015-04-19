@@ -1,7 +1,6 @@
 <?php namespace lang\kind;
 
 use lang\mirrors\TypeMirror;
-use lang\mirrors\Sources;
 use lang\ClassFormatException;
 
 module xp-forge/kinds {
@@ -21,13 +20,16 @@ module xp-forge/kinds {
         throw new ClassFormatException('No compile-time transformation named '.strtr($transformation, '\\', '.'));
       }
 
-      // Autoloaders not invoked correctly from within autoloading
-      if (null === Sources::$DEFAULT) Sources::__static();
+      $cl= \xp::$cll;
+      \xp::$cll= 0;
 
       $body= (new $transformation())->transform(new TypeMirror($type));
       $p= strrpos($class, '\\');
       $code= 'namespace '.substr($class, 0, $p).'; trait '.substr($class, $p + 1).' { '.$body.' }';
       eval($code);
+
+      \xp::$cll= $cl;
+
       return true;
     });
   }
