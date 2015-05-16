@@ -1,12 +1,16 @@
 <?php namespace lang\kind\unittest;
 
+use \lang\kind\ValueObject;
+use \lang\kind\Sortable;
+use \lang\kind\Comparators;
+
 /**
  * Used by SortableTest
  */
 class Person extends \lang\Object {
-  use \lang\kind\ValueObject»lang\kind\unittest\Person;
-  use \lang\kind\Sortable»lang\kind\unittest\Person;
-  use \lang\kind\Comparators»lang\kind\unittest\Person {
+  use Person\including\ValueObject;
+  use Person\including\Sortable;
+  use Person\including\Comparators {
     byBorn as byBirthDate;
   }
 

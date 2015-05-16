@@ -1,13 +1,17 @@
 <?php namespace lang\kind\unittest;
 
+use lang\kind\ValueObject;
+use lang\kind\WithCreation;
+
 /**
  * Used by InstanceCreationTest
  */
 class Isbn extends \lang\Object {
   const EAN13 = 13;
 
-  use \lang\kind\ValueObject»lang\kind\unittest\Isbn;
-  use \lang\kind\WithCreation»lang\kind\unittest\Isbn;
+  use Isbn\including\ValueObject;
+  use Isbn\including\WithCreation;
+
   private $number, $type;
 
   /**

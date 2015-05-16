@@ -17,26 +17,31 @@ The `Identity` trait creates a value object wrapping around exactly one member. 
 ```php
 namespace example;
 
+use lang\kind\Identity;
+
 class Name extends \lang\Object {
-  use \lang\kind\Identity;
+  use Identity;
 
   public function personal() { return '~' === $this->value{0}; }
 }
 ```
 
-For situations where more logic than just "compiler-assisted copy&paste" is necessary, this library provides traits that expand dynamically based on the containing class at compile time. We use the syntax `name\of\Trait»name\of\containing\Class` for them, which we called *parametrized*. The symbol we use is the double closing [guillemet](http://en.wikipedia.org/wiki/Guillemet).
+For situations where more logic than just "compiler-assisted copy&paste" is necessary, this library provides traits that expand dynamically based on the containing class at compile time. We use the syntax `[Type]\including\[Transformation]` for them, which we called *parametrized*.
 
 The parametrized `ValueObject` trait creates accessors for all instance members and ensures `equals()` and `toString()` are implemented for this value object in a generic way, using the util.Objects class to compare the objects memberwise. All we need to do is to add a constructor (*this is not generated as we might want to add default values and custom verification logic*).
 
 ```php
 namespace example;
 
+use lang\kind\ValueObject;
+
 class Type extends \lang\Enum {
   public static $OPEN, $CLOSED;
 }
 
 class Wall extends \lang\Object {
-  use \lang\kind\ValueObject»example\Wall;
+  use Wall\including\ValueObject;
+
   private $name, $type, $posts;
 
   public function __construct(Name $name, Type $type, Posts $posts) {
@@ -52,8 +57,10 @@ The `ListOf` trait creates a list of elements which can be accessed by their off
 ```php
 namespace example;
 
+use lang\kind\ListOf;
+
 class Posts extends \lang\Object implements \IteratorAggregate {
-  use \lang\kind\ListOf;
+  use ListOf;
 }
 ```
 
@@ -64,10 +71,15 @@ The `Comparators` trait adds static `by[Member]` methods returning util.Comparat
 ```php
 namespace example;
 
+use lang\kind\ValueObject;
+use lang\kind\WithCreation;
+use lang\kind\Comparators;
+
 class Post extends \lang\Object {
-  use \lang\kind\ValueObject»example\Post;
-  use \lang\kind\WithCreation»example\Post;
-  use \lang\kind\Comparators»example\Post;
+  use Wall\including\ValueObject;
+  use Wall\including\WithCreation;
+  use Wall\including\Comparators;
+
   private $author, $text, $date;
 
   public function __construct($author, $text, Date $date) {
@@ -83,8 +95,10 @@ The `ListIndexedBy` trait creates a list of elements which can be queried by nam
 ```php
 namespace example;
 
+use lang\kind\ListIndexedBy;
+
 class Walls extends \lang\Object implements \IteratorAggregate {
-  use \lang\kind\ListIndexedBy;
+  use ListIndexedBy;
 
   protected function index($wall) { return $wall->name()->value(); }
 }

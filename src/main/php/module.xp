@@ -12,23 +12,20 @@ module xp-forge/kinds {
    */
   public function initialize() {
     spl_autoload_register(function($class) {
-      if (false === $p= strpos($class, '»')) return false;
-
-      $transformation= substr($class, 0, $p);
-      $type= substr($class, $p + 2);   // strlen("»")
-      if (!class_exists($transformation)) {
-        throw new ClassFormatException('No compile-time transformation named '.strtr($transformation, '\\', '.'));
-      }
+      if (false === $p= strpos($class, '\\including\\')) return false;
 
       $cl= \xp::$cll;
       \xp::$cll= 0;
+      try {
+        $mirror= new TypeMirror(substr($class, 0, $p));
+        $transform= $mirror->resolve(substr($class, $p + 11));   // strlen('\\including\\')
 
-      $body= (new $transformation())->transform(new TypeMirror($type));
-      $p= strrpos($class, '\\');
-      $code= 'namespace '.substr($class, 0, $p).'; trait '.substr($class, $p + 1).' { '.$body.' }';
-      eval($code);
-
-      \xp::$cll= $cl;
+        $body= $transform->constructor()->newInstance()->transform($mirror);
+        $code= 'namespace '.substr($class, 0, $p + 10).'; trait '.substr($class, $p + 11).' { '.$body.' }';
+        eval($code);
+      } finally {
+        \xp::$cll= $cl;
+      }
 
       return true;
     });
