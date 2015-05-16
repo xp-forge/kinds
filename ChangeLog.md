@@ -3,6 +3,9 @@ Kinds ChangeLog
 
 ## ?.?.? / ????-??-??
 
+* **Heads up**: Renamed library to `xp-forge/partial` and changed namespace
+  from `lang.kind` to `lang.partial`. See discussion in issue #2
+  (@thekid)
 * Merged PR #5: Rewrite code to use new `use [Type]\including\[Transformation]`
   form. Has the advantage that we don't need the guillement anymore.
   (@thekid)

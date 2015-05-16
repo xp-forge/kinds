@@ -1,14 +1,14 @@
-<?php namespace lang\kind;
+<?php namespace lang\partial;
 
 use lang\mirrors\TypeMirror;
 use lang\ClassFormatException;
 
-module xp-forge/kinds {
+module xp-forge/partial {
 
   /**
    * Initializes this module, registering class loader for compile-time
    * transformations based on the classes extending the base class
-   * `lang.kind.Transformation`.
+   * `lang.partial.Transformation`.
    */
   public function initialize() {
     spl_autoload_register(function($class) {

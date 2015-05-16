@@ -1,5 +1,5 @@
-Kinds
-=====
+Partial types
+=============
 
 [![Build Status on TravisCI](https://secure.travis-ci.org/xp-forge/kinds.svg)](http://travis-ci.org/xp-forge/kinds)
 [![XP Framework Module](https://raw.githubusercontent.com/xp-framework/web/master/static/xp-framework-badge.png)](https://github.com/xp-framework/core)
@@ -17,7 +17,7 @@ The `Identity` trait creates a value object wrapping around exactly one member. 
 ```php
 namespace example;
 
-use lang\kind\Identity;
+use lang\partial\Identity;
 
 class Name extends \lang\Object {
   use Identity;
@@ -33,7 +33,7 @@ The parametrized `ValueObject` trait creates accessors for all instance members 
 ```php
 namespace example;
 
-use lang\kind\ValueObject;
+use lang\partial\ValueObject;
 
 class Type extends \lang\Enum {
   public static $OPEN, $CLOSED;
@@ -57,7 +57,7 @@ The `ListOf` trait creates a list of elements which can be accessed by their off
 ```php
 namespace example;
 
-use lang\kind\ListOf;
+use lang\partial\ListOf;
 
 class Posts extends \lang\Object implements \IteratorAggregate {
   use ListOf;
@@ -71,9 +71,9 @@ The `Comparators` trait adds static `by[Member]` methods returning util.Comparat
 ```php
 namespace example;
 
-use lang\kind\ValueObject;
-use lang\kind\WithCreation;
-use lang\kind\Comparators;
+use lang\partial\ValueObject;
+use lang\partial\WithCreation;
+use lang\partial\Comparators;
 
 class Post extends \lang\Object {
   use Wall\including\ValueObject;
@@ -95,7 +95,7 @@ The `ListIndexedBy` trait creates a list of elements which can be queried by nam
 ```php
 namespace example;
 
-use lang\kind\ListIndexedBy;
+use lang\partial\ListIndexedBy;
 
 class Walls extends \lang\Object implements \IteratorAggregate {
   use ListIndexedBy;

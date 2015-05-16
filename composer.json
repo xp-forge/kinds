@@ -1,9 +1,9 @@
 {
-  "name" : "xp-forge/kinds",
+  "name" : "xp-forge/partial",
   "type" : "library",
   "homepage" : "http://xp-framework.net/",
   "license" : "BSD-3-Clause",
-  "description" : "Type kinds",
+  "description" : "Partial types",
   "keywords": ["module", "xp"],
   "require" : {
     "xp-framework/core": "^6.1",
