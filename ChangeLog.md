@@ -3,6 +3,8 @@ Kinds ChangeLog
 
 ## ?.?.? / ????-??-??
 
+## 0.4.0 / 2015-05-16
+
 * **Heads up**: Renamed library to `xp-forge/partial` and changed namespace
   from `lang.kind` to `lang.partial`. See discussion in issue #2
   (@thekid)
