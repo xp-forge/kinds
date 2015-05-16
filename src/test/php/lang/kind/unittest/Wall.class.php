@@ -1,10 +1,13 @@
 <?php namespace lang\kind\unittest;
 
+use lang\kind\ValueObject;
+
 /**
  * Used as fixture in the "ValueObjectTest" class
  */
 class Wall extends \lang\Object {
-  use \lang\kind\ValueObject»lang\kind\unittest\Wall;
+  use Wall\including\ValueObject;
+
   private $name, $type, $posts;
 
   /**
