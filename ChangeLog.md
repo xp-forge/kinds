@@ -3,6 +3,10 @@ Kinds ChangeLog
 
 ## ?.?.? / ????-??-??
 
+* Merged PR #5: Rewrite code to use new `use [Type]\including\[Transformation]`
+  form. Has the advantage that we don't need the guillement anymore.
+  (@thekid)
+
 ## 0.3.0 / 2015-04-20
 
 * Merged PR #1: Use mirrors instead of builtin reflection. This way, we get
