@@ -41,6 +41,9 @@ class Sortable extends Transformation {
       }
       if (0 !== $r) return $r;';
     }
-    return 'public function compareTo($cmp) { if ($cmp instanceof self) { '.$compareTo.'} return 0; }';
+    return
+      "/**\n * @param var \$cmp\n * @return int\n*/".
+      'public function compareTo($cmp) { if ($cmp instanceof self) { '.$compareTo.'} return 0; }'
+    ;
   }
 }
