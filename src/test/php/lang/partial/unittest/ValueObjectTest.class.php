@@ -1,5 +1,7 @@
 <?php namespace lang\partial\unittest;
 
+use util\Date;
+
 class ValueObjectTest extends \unittest\TestCase {
 
   #[@test]
@@ -44,5 +46,10 @@ class ValueObjectTest extends \unittest\TestCase {
       "lang.partial.unittest.Wall@[\n  name => \"A\"\n  type => \"open\"\n  posts => [\n  ]\n]",
       (new Wall('A', 'open', []))->toString()
     );
+  }
+
+  #[@test]
+  public function declared_accessor_not_overwritten() {
+    $this->assertEquals('Comment: Test', (new Comment('Tester', 'Test', Date::now()))->text());
   }
 }

@@ -9,7 +9,8 @@
  * 
  * ```php
  * class Example extends \lang\Object {
- *   use \lang\partial\ValueObject»namespace\of\Example;
+ *   use Example\including\lang\partial\ValueObject;
+ *
  *   private $name, $id;
  * }
  * ```
