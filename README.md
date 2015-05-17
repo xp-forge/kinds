@@ -14,6 +14,8 @@ Example
 -------
 The `Identity` trait creates a value object wrapping around exactly one member. It creates a one-arg constructor, and a `value()` for retrieving the value, and includes appropriate `equals()` and `toString()` implementations. 
 
+<table><tr><td width="50%">
+Writing this:
 ```php
 namespace example;
 
@@ -22,9 +24,34 @@ use lang\partial\Identity;
 class Name extends \lang\Object {
   use Identity;
 
-  public function personal() { return '~' === $this->value{0}; }
+  public function personal() {
+    return '~' === $this->value{0};
+  }
 }
 ```
+</td><td width="50%">
+...is equivalent to:
+
+```php
+namespace example;
+
+class Name extends \lang\Object {
+  private $value;
+
+  public function __construct($value) {
+    $this->value= $value;
+  }
+
+  public function value() {
+    return $this->value;
+  }
+
+  public function personal() {
+    return '~' === $this->value{0};
+  }
+}
+```
+</td></tr></table>
 
 For situations where more logic than just "compiler-assisted copy&paste" is necessary, this library provides traits that expand dynamically based on the containing class at compile time. We use the syntax `[Type]\including\[Transformation]` for them, which we called *parametrized*.
 
