@@ -14,7 +14,7 @@ Example
 -------
 The `Identity` trait creates a value object wrapping around exactly one member. It creates a one-arg constructor, and a `value()` for retrieving the value, and includes appropriate `equals()` and `toString()` implementations. 
 
-<table width="100%"><tr><td width="50%" valign="top">
+<table><tr><td width="360" valign="top">
 Writing this:
 <pre lang="php">
 namespace example;
@@ -29,7 +29,7 @@ class Name extends \lang\Object {
   }
 }
 </pre>
-</td><td width="50%" valign="top">
+</td><td width="360" valign="top">
 ...is equivalent to:
 <pre lang="php">
 namespace example;
@@ -56,7 +56,7 @@ For situations where more logic than just "compiler-assisted copy&paste" is nece
 
 The parametrized `ValueObject` trait creates accessors for all instance members and ensures `equals()` and `toString()` are implemented for this value object in a generic way, using the util.Objects class to compare the objects memberwise. All we need to do is to add a constructor (*this is not generated as we might want to add default values and custom verification logic*).
 
-<table width="100%"><tr><td width="50%" valign="top">
+<table><tr><td width="360" valign="top">
 Writing this:
 <pre lang="php">
 namespace example;
@@ -79,7 +79,7 @@ class Wall extends \lang\Object {
   }
 }
 </pre>
-</td><td width="50%" valign="top">
+</td><td width="360" valign="top">
 ...is equivalent to:
 <pre lang="php">
 namespace example;
