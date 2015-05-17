@@ -122,15 +122,69 @@ class Wall extends \lang\Object {
 
 The `ListOf` trait creates a list of elements which can be accessed by their offset, iterated by `foreach`, and offers `equals()` and `toString()` default implementations.
 
-```php
+<table><tr><td width="360" valign="top">
+Writing this:
+<pre lang="php">
 namespace example;
 
 use lang\partial\ListOf;
 
-class Posts extends \lang\Object implements \IteratorAggregate {
+class Posts extends \lang\Object
+  implements \IteratorAggregate {
   use ListOf;
 }
-```
+</pre>
+</td><td width="360" valign="top">
+...is equivalent to:
+<pre lang="php">
+namespace example;
+
+class Posts extends \lang\Object
+  implements \IteratorAggregate {
+  private $backing;
+
+  public function __construct(...$elements) {
+    $this->backing= $elements;
+  }
+
+  public function present() {
+    return !empty($this->backing);
+  }
+
+  public function size() {
+    return sizeof($this->backing);
+  }
+
+  public function at($offset) {
+    if (isset($this->backing[$offset])) {
+      return $this->backing[$offset];
+    }
+    throw new ElementNotFoundException(…);
+  }
+
+  public function first() {
+    if (empty($this->backing)) {
+      throw new ElementNotFoundException(…);
+    }
+    return $this->backing[0];
+  }
+
+  public function getIterator() {
+    foreach ($this->backing as $element) {
+      yield $element;
+    }
+  }
+
+  public function equals($cmp) {
+    // omitted for brevity
+  }
+
+  public function toString() {
+    // omitted for brevity
+  }
+}
+</pre>
+</td></tr></table>
 
 The `WithCreation` trait will add a static `with()` method to your class, generating a fluent interface to create instances. This is especially useful in situation where there are a lot of constructor parameters.
 
