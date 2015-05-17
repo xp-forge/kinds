@@ -14,7 +14,7 @@ Example
 -------
 The `Identity` trait creates a value object wrapping around exactly one member. It creates a one-arg constructor, and a `value()` for retrieving the value, and includes appropriate `equals()` and `toString()` implementations. 
 
-<table><tr><td width="50%" valign="top">
+<table width="100%"><tr><td width="50%" valign="top">
 Writing this:
 <pre lang="php">
 namespace example;
