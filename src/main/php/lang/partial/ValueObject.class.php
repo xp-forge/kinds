@@ -8,8 +8,10 @@
  * Include this transformation in your class as follows:
  * 
  * ```php
+ * use lang\partial\ValueObject;
+ *
  * class Example extends \lang\Object {
- *   use Example\including\lang\partial\ValueObject;
+ *   use Example\including\ValueObject;
  *
  *   private $name, $id;
  * }

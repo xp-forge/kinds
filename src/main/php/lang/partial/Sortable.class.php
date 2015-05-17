@@ -5,8 +5,11 @@
  * method.
  * 
  * ```php
+ * use lang\partial\Sortable;
+ *
  * class Example extends \lang\Object {
- *   use \lang\partial\Sortable»namespace\of\Example;
+ *   use Example\including\Sortable;
+ *
  *   private $firstName, $lastName;
  *
  *   public function __construct($firstName, $lastName) {
