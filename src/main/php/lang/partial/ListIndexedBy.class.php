@@ -18,8 +18,8 @@ trait ListIndexedBy {
    *
    * @param  var* $elements
    */
-  public function __construct(...$elements) {
-    foreach ($elements as $element) {
+  public function __construct() {
+    foreach (func_get_args() as $element) {
       $this->indexed[$this->index($element)]= $element;
     }
   }
