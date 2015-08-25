@@ -23,8 +23,11 @@ module xp-forge/partial {
         $body= $transform->constructor()->newInstance()->transform($mirror);
         $code= 'namespace '.substr($class, 0, $p + 10).'; trait '.substr($class, $p + 11).' { '.$body.' }';
         eval($code);
-      } finally {
+      } catch (\Exception $e) {   // PHP 5.x
+      } catch (\Throwable $e) {   // PHP 7.x
+      } ensure($e); {
         \xp::$cll= $cl;
+        if ($e) throw $e;
       }
 
       return true;
