@@ -93,9 +93,7 @@ trait ListIndexedBy {
    * @return  php.Iterator
    */
   public function getIterator() {
-    foreach ($this->indexed as $element) {
-      yield $element;
-    }
+    return new \ArrayIterator(array_values($this->indexed));
   }
 
   /**

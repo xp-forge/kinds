@@ -23,18 +23,20 @@ abstract class Transformation extends \lang\Object {
    * @return php.Generator
    */
   protected function instanceFields($mirror) {
+    $return= [];
     $seen= [];
     foreach ($mirror->fields()->of(Member::$INSTANCE | Member::$DECLARED) as $field) {
       $seen[$field->name()]= true;
-      yield $field;
+      $return[]= $field;
     }
     foreach ($mirror->traits() as $trait) {
       foreach ($trait->fields()->of(Member::$INSTANCE) as $field) {
         if (!isset($seen[$field->name()])) {
-          yield $field;
+          $return[]= $field;
         }
       }
     }
+    return $return;
   }
 
   /**

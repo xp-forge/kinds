@@ -72,9 +72,7 @@ trait ListOf {
    * @return  php.Iterator
    */
   public function getIterator() {
-    foreach ($this->backing as $element) {
-      yield $element;
-    }
+    return new \ArrayIterator($this->backing);
   }
 
   /**
