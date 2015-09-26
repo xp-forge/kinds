@@ -121,6 +121,38 @@ class Wall extends \lang\Object {
 </pre>
 </td></tr></table>
 
+If the constructor consists solely of assignments, you can include the `Constructor` trait and remove it. The parameters will be declared in the order the fields are declared: top to bottom, left to right in the source code.
+
+<table><tr><td width="360" valign="top">
+Writing this:
+<pre lang="php">
+namespace example;
+
+use lang\partial\Constructor;
+
+class Author extends \lang\Object {
+  use Autor\including\Constructor;
+
+  private $handle, $name;
+}
+</pre>
+</td><td width="360" valign="top">
+...is equivalent to:
+<pre lang="php">
+namespace example;
+
+class Author extends \lang\Object {
+  private $handle, $name;
+
+  public function __construct($handle, $name) {
+    $this->handle= $handle;
+    $this->name= $name;
+  }
+}
+</pre>
+</td></tr></table>
+
+
 The `ListOf` trait creates a list of elements which can be accessed by their offset, iterated by `foreach`, and offers `equals()` and `toString()` default implementations.
 
 <table><tr><td width="360" valign="top">
