@@ -1,8 +1,9 @@
 <?php namespace lang\partial\unittest;
 
+use unittest\TestCase;
 use lang\ElementNotFoundException;
 
-class ListIndexedByTest extends \unittest\TestCase {
+class ListIndexedByTest extends TestCase {
 
   #[@test]
   public function named() {
@@ -80,7 +81,7 @@ class ListIndexedByTest extends \unittest\TestCase {
   public function is_not_equal_to_list_with_different_elements() {
     $this->assertNotEquals(
       new Tests($this),
-      new Tests(newinstance('unittest.TestCase', ['test'], ['test' => function() { }])
+      new Tests(newinstance(TestCase::class, ['test'], ['test' => function() { }])
     ));
   }
 }
