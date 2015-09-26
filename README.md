@@ -121,17 +121,17 @@ class Wall extends \lang\Object {
 </pre>
 </td></tr></table>
 
-If the constructor consists solely of assignments, you can include the `WithConstructor` trait and remove it. The parameters will be declared in the order the fields are declared: top to bottom, left to right in the source code.
+If the constructor consists solely of assignments, you can include the `Constructor` trait and remove it. The parameters will be declared in the order the fields are declared: top to bottom, left to right in the source code.
 
 <table><tr><td width="360" valign="top">
 Writing this:
 <pre lang="php">
 namespace example;
 
-use lang\partial\WithConstructor;
+use lang\partial\Constructor;
 
 class Author extends \lang\Object {
-  use Autor\including\WithConstructor;
+  use Autor\including\Constructor;
 
   private $handle, $name;
 }
