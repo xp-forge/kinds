@@ -4,10 +4,10 @@
  * Compile-time transformation which generates a constructor.
  * 
  * ```php
- * use lang\partial\Sortable;
+ * use lang\partial\WithConstructor;
  *
  * class Example extends \lang\Object {
- *   use Example\including\Constructor;
+ *   use Example\including\WithConstructor;
  *
  *   private $firstName, $lastName;
  * }
@@ -27,7 +27,7 @@
  *
  * @test  xp://lang.partial.unittest.ConstructorTest
  */
-class Constructor extends Transformation {
+class WithConstructor extends Transformation {
 
   /**
    * Creates trait body
