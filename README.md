@@ -131,7 +131,7 @@ namespace example;
 use lang\partial\Constructor;
 
 class Author extends \lang\Object {
-  use Autor\including\Constructor;
+  use Author\including\Constructor;
 
   private $handle, $name;
 }
