@@ -1,8 +1,8 @@
 <?php namespace lang\partial\unittest;
 
-use \lang\partial\ValueObject;
-use \lang\partial\Sortable;
-use \lang\partial\Comparators;
+use lang\partial\ValueObject;
+use lang\partial\Sortable;
+use lang\partial\Comparators;
 
 /**
  * Used by SortableTest
