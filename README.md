@@ -16,7 +16,7 @@ Partial flavors
 The partials provided by this library's are divided in two flavors: Kinds and composeables.
 
 * **Kinds** define the general concept of a type. You can say, e.g.: This type ***is*** a list of something, or a reference to something. Or, to use more concrete examples: The `Customers` class is a list of customers (encapsulated by `Customer` instances), and `Name` is a reference to (a string) containing a name.
-* **Composeables** can be used alone or in combination to extend a base type or a kind. You can say, e.g. This type comes ***with*** a certain functionality.
+* **Composeables** can be used alone or in combination to extend a base type or a kind. You can say, e.g. This type comes ***with*** a certain functionality. Again, using a realistic use-case: The `Person` class comes with `toString()`, `compareTo()` and `hashCode()` methods.
 
 Regardless of their flavor, some partials are implemented by a regular PHP trait, others are dynamically created at runtime. However, the syntax for both is `use [Containing-Type]\[is-or-with]\[Partial-Name];`.
 
