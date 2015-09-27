@@ -22,17 +22,17 @@ Regardless of their flavor, some partials are actually implemented by a regular 
 
 Walk-through
 ------------
-The `Identity` trait creates a value object wrapping around exactly one member. It creates a one-arg constructor, and a `value()` for retrieving the value, and includes appropriate `equals()` and `toString()` implementations. 
+The `ReferenceTo` trait creates a value object wrapping around exactly one member. It creates a one-arg constructor, and a `value()` for retrieving the value, and includes appropriate `equals()` and `toString()` implementations. 
 
 <table><tr><td width="360" valign="top">
 Writing this:
 <pre lang="php">
 namespace example;
 
-use lang\partial\Identity;
+use lang\partial\ReferenceTo;
 
 class Name extends \lang\Object {
-  use Name\is\Identity;
+  use Name\is\ReferenceTo;
 
   public function personal() {
     return '~' === $this->value{0};
@@ -62,17 +62,17 @@ class Name extends \lang\Object {
 </pre>
 </td></tr></table>
 
-The parametrized `ValueObject` trait creates accessors for all instance members and ensures `equals()` and `toString()` are implemented for this value object in a generic way, using the util.Objects class to compare the objects memberwise. All we need to do is to add a constructor (*this is not generated as we might want to add default values and custom verification logic*).
+The parametrized `Accessors` trait creates accessors for all instance members. 
 
 <table><tr><td width="360" valign="top">
 Writing this:
 <pre lang="php">
 namespace example;
 
-use lang\partial\ValueObject;
+use lang\partial\Accessors;
 
 class Wall extends \lang\Object {
-  use Wall\with\ValueObject;
+  use Wall\with\Accessors;
 
   private $name, $type, $posts;
 
@@ -115,14 +115,6 @@ class Wall extends \lang\Object {
 
   public function posts() {
     return $this->posts;
-  }
-
-  public function equals($cmp) {
-    // omitted for brevity
-  }
-
-  public function toString() {
-    // omitted for brevity
   }
 }
 </pre>
@@ -225,20 +217,20 @@ class Posts extends \lang\Object
 </pre>
 </td></tr></table>
 
-The `WithCreation` trait will add a static `with()` method to your class, generating a fluent interface to create instances. This is especially useful in situation where there are a lot of constructor parameters.
+The `Builder` trait will add a static `with()` method to your class, generating a fluent interface to create instances. This is especially useful in situation where there are a lot of constructor parameters.
 
 The `Comparators` trait adds static `by[Member]` methods returning util.Comparator instances for each member. These instances can be combined using *then* (`Post::byDate()->then(Post::byAuthor())`) or reversed (`Post::byDate()->reverse()`).
 
 ```php
 namespace example;
 
-use lang\partial\ValueObject;
-use lang\partial\WithCreation;
+use lang\partial\Accessors;
+use lang\partial\Builder;
 use lang\partial\Comparators;
 
 class Post extends \lang\Object {
-  use Wall\with\ValueObject;
-  use Wall\with\WithCreation;
+  use Wall\with\Accessors;
+  use Wall\with\Builder;
   use Wall\with\Comparators;
 
   private $author, $text, $date;
