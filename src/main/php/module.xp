@@ -25,8 +25,9 @@ module xp-forge/partial {
             if ($transform->kind()->isTrait()) {
               class_alias(strtr($transform->name(), '.', '\\'), $class);
             } else {
+              $p= strrpos($class, '\\');
               $body= $transform->constructor()->newInstance()->transform($mirror);
-              $code= 'namespace '.substr($class, 0, $p + 10).'; trait '.substr($class, $p + $l).' { '.$body.' }';
+              $code= 'namespace '.substr($class, 0, $p).'; trait '.substr($class, $p + 1).' { '.$body.' }';
               eval($code);
             }
           } finally {
