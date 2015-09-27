@@ -3,6 +3,8 @@ Kinds ChangeLog
 
 ## ?.?.? / ????-??-??
 
+## 0.5.0 / 2015-09-27
+
 * Merged PR #9: Constructor transformation - @thekid
 
 ## 0.4.0 / 2015-05-16
