@@ -3,6 +3,8 @@ Kinds ChangeLog
 
 ## ?.?.? / ????-??-??
 
+* Merged PR #9: Constructor transformation - @thekid
+
 ## 0.4.0 / 2015-05-16
 
 * **Heads up**: Renamed library to `xp-forge/partial` and changed namespace
