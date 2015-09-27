@@ -23,7 +23,7 @@ namespace example;
 use lang\partial\Identity;
 
 class Name extends \lang\Object {
-  use Identity;
+  use Name\is\Identity;
 
   public function personal() {
     return '~' === $this->value{0};
@@ -53,7 +53,7 @@ class Name extends \lang\Object {
 </pre>
 </td></tr></table>
 
-For situations where more logic than just "compiler-assisted copy&paste" is necessary, this library provides traits that expand dynamically based on the containing class at compile time. We use the syntax `[Type]\including\[Transformation]` for them, which we called *parametrized*.
+For situations where more logic than just "compiler-assisted copy&paste" is necessary, this library provides traits that expand dynamically based on the containing class at compile time. We use the syntax `[Type]\with\[Transformation]` for them, which we called *parametrized*.
 
 The parametrized `ValueObject` trait creates accessors for all instance members and ensures `equals()` and `toString()` are implemented for this value object in a generic way, using the util.Objects class to compare the objects memberwise. All we need to do is to add a constructor (*this is not generated as we might want to add default values and custom verification logic*).
 
@@ -65,7 +65,7 @@ namespace example;
 use lang\partial\ValueObject;
 
 class Wall extends \lang\Object {
-  use Wall\including\ValueObject;
+  use Wall\with\ValueObject;
 
   private $name, $type, $posts;
 
@@ -131,7 +131,7 @@ namespace example;
 use lang\partial\Constructor;
 
 class Author extends \lang\Object {
-  use Author\including\Constructor;
+  use Author\with\Constructor;
 
   private $handle, $name;
 }
@@ -163,7 +163,7 @@ use lang\partial\ListOf;
 
 class Posts extends \lang\Object
   implements \IteratorAggregate {
-  use ListOf;
+  use Posts\is\ListOf;
 }
 </pre>
 </td><td width="360" valign="top">
@@ -230,9 +230,9 @@ use lang\partial\WithCreation;
 use lang\partial\Comparators;
 
 class Post extends \lang\Object {
-  use Wall\including\ValueObject;
-  use Wall\including\WithCreation;
-  use Wall\including\Comparators;
+  use Wall\with\ValueObject;
+  use Wall\with\WithCreation;
+  use Wall\with\Comparators;
 
   private $author, $text, $date;
 
@@ -252,7 +252,7 @@ namespace example;
 use lang\partial\ListIndexedBy;
 
 class Walls extends \lang\Object implements \IteratorAggregate {
-  use ListIndexedBy;
+  use Walls\is\ListIndexedBy;
 
   protected function index($wall) { return $wall->name()->value(); }
 }

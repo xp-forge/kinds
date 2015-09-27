@@ -3,6 +3,12 @@ Kinds ChangeLog
 
 ## ?.?.? / ????-??-??
 
+* Merged PR #11: Handle transformations and regular traits consistently.
+  You can now use `is` and `with` words to reference both transformations
+  as well as regular traits without the need to know which one is what
+  internally. The *including* term can still be used but is deprecated.
+  (@thekid)
+
 ## 0.5.0 / 2015-09-27
 
 * Merged PR #9: Constructor transformation - @thekid
