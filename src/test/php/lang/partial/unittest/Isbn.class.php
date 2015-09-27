@@ -1,6 +1,8 @@
 <?php namespace lang\partial\unittest;
 
-use lang\partial\ValueObject;
+use lang\partial\Accessors;
+use lang\partial\ToString;
+use lang\partial\Equals;
 use lang\partial\Builder;
 
 /**
@@ -9,7 +11,9 @@ use lang\partial\Builder;
 class Isbn extends \lang\Object {
   const EAN13 = 13;
 
-  use Isbn\including\ValueObject;
+  use Isbn\including\Accessors;
+  use Isbn\including\ToString;
+  use Isbn\including\Equals;
   use Isbn\including\Builder;
 
   private $number, $type;

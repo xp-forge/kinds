@@ -1,14 +1,18 @@
 <?php namespace lang\partial\unittest;
 
 use util\Objects;
-use lang\partial\ValueObject;
+use lang\partial\Accessors;
+use lang\partial\ToString;
+use lang\partial\Equals;
 use lang\partial\Builder;
 
 /**
  * Used by InstanceCreationTest
  */
 class Book extends \lang\Object {
-  use Book\including\ValueObject;
+  use Book\including\Accessors;
+  use Book\including\ToString;
+  use Book\including\Equals;
   use Book\including\Builder;
 
   private $name, $author, $isbn;

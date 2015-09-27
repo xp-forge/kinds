@@ -1,12 +1,16 @@
 <?php namespace lang\partial\unittest;
 
-use lang\partial\ValueObject;
+use lang\partial\Accessors;
+use lang\partial\ToString;
+use lang\partial\Equals;
 
 /**
- * Used as fixture in the "ValueObjectTest" class
+ * Used as fixture in the "AccessorsTest" class
  */
 class Wall extends \lang\Object {
-  use Wall\including\ValueObject;
+  use Wall\including\Accessors;
+  use Wall\including\ToString;
+  use Wall\including\Equals;
 
   private $name, $type, $posts;
 
