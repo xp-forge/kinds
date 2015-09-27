@@ -1,5 +1,5 @@
-Partial types
-=============
+Partials: Compile-time metaprogramming
+======================================
 
 [![Build Status on TravisCI](https://secure.travis-ci.org/xp-forge/partial.svg)](http://travis-ci.org/xp-forge/partial)
 [![XP Framework Module](https://raw.githubusercontent.com/xp-framework/web/master/static/xp-framework-badge.png)](https://github.com/xp-framework/core)
@@ -9,10 +9,19 @@ Partial types
 [![Supports HHVM 3.5+](https://raw.githubusercontent.com/xp-framework/web/master/static/hhvm-3_5plus.png)](http://hhvm.com/)
 [![Latest Stable Version](https://poser.pugx.org/xp-forge/partial/version.png)](https://packagist.org/packages/xp-forge/partial)
 
-Traits for compile-time metaprogramming.
+For situations where more logic than just "compiler-assisted copy&paste" using [PHP's traits](http://php.net/traits) is necessary, this library provides a syntax that expand dynamically based on the containing class at compile time.
 
-Example
--------
+Partial flavors
+---------------
+The partials provided by this library's are divided in two flavors: Kinds and composeables.
+
+* **Kinds** define the general concept of a type. You can say, e.g.: This type ***is*** a list of something, or a reference to something. Or, to use more concrete examples: The `Customers` class is a list of customers (encapsulated by `Customer` instances), and `Name` is a reference to (a string) containing a name.
+* **Composeables** can be used alone or in combination to extend a base type or a kind. You can say, e.g. This type comes ***with*** a certain functionality.
+
+Regardless of their flavor, some partials are implemented by a regular PHP trait, others are dynamically created at runtime. However, the syntax for both is `use [Containing-Type]\[is-or-with]\[Partial-Name];`.
+
+Walk-through
+------------
 The `Identity` trait creates a value object wrapping around exactly one member. It creates a one-arg constructor, and a `value()` for retrieving the value, and includes appropriate `equals()` and `toString()` implementations. 
 
 <table><tr><td width="360" valign="top">
@@ -52,8 +61,6 @@ class Name extends \lang\Object {
 }
 </pre>
 </td></tr></table>
-
-For situations where more logic than just "compiler-assisted copy&paste" is necessary, this library provides traits that expand dynamically based on the containing class at compile time. We use the syntax `[Type]\with\[Transformation]` for them, which we called *parametrized*.
 
 The parametrized `ValueObject` trait creates accessors for all instance members and ensures `equals()` and `toString()` are implemented for this value object in a generic way, using the util.Objects class to compare the objects memberwise. All we need to do is to add a constructor (*this is not generated as we might want to add default values and custom verification logic*).
 
