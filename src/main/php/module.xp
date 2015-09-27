@@ -4,7 +4,7 @@ use lang\mirrors\TypeMirror;
 use lang\ClassFormatException;
 
 module xp-forge/partial {
-  private static $verbs= ['\\including\\', '\\is\\'];
+  private static $verbs= ['\\with\\', '\\is\\', '\\including\\'];
 
   /**
    * Initializes this module, registering class loader for compile-time
