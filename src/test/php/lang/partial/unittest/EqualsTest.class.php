@@ -31,11 +31,16 @@ class EqualsTest extends PartialTest {
     );
   }
 
-  #[@test]
-  public function does_not_equal_instance_with_unequal_members() {
+  #[@test, @values([
+  #  [61, 'Test', ['Dev']],
+  #  [6100, 'Other', ['Dev']],
+  #  [6100, 'Test', []],
+  #  [61, 'Other', []]
+  #])]
+  public function does_not_equal_instance_with_unequal_members($id, $name, $skills) {
     $this->assertNotEquals(
       $this->fixture->newInstance(6100, 'Test', ['Dev']),
-      $this->fixture->newInstance(61, 'Other', [])
+      $this->fixture->newInstance(...[$id, $name, $skills])
     );
   }
 
