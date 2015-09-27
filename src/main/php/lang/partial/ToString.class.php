@@ -17,10 +17,17 @@ class ToString extends Transformation {
    */
   protected function body($mirror) {
     $stringOf= '';
-    foreach ($this->instanceFields($mirror) as $field) {
+    foreach ($this->instanceFields($mirror) as $i => $field) {
       $n= $field->name();
       $stringOf.= '."  '.$n.' => ".\xp::stringOf($this->'.$n.', "  ")."\n"';
     }
-    return 'public function toString() { return nameof($this)."@[\n"'.$stringOf.'."]"; }';
+
+    if ('' === $stringOf) {
+      return 'public function toString() { return nameof($this)."@(#".$this->hashCode().")"; }';
+    } else if (0 === $i) {
+      return 'public function toString() { return nameof($this)."@(".\xp::stringOf($this->'.$n.').")"; }';
+    } else {
+      return 'public function toString() { return nameof($this)."@[\n"'.$stringOf.'."]"; }';
+    }
   }
 }
