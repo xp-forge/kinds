@@ -1,23 +1,20 @@
 <?php namespace lang\partial\unittest;
 
-class ToStringTest extends PartialTest {
+class HashCodeTest extends PartialTest {
 
   #[@test]
   public function without_members() {
     $fixture= $this->declareType([], '{
-      use <T>\with\lang\partial\ToString;
+      use <T>\with\lang\partial\HashCode;
     }');
     $instance= $fixture->newInstance();
-    $this->assertEquals(
-      $fixture->getName().'@(#'.$instance->hashCode().')',
-      $instance->toString()
-    );
+    $this->assertEquals(spl_object_hash($instance), $instance->hashCode());
   }
 
   #[@test]
   public function with_one_member() {
-    $fixture= $this->declareType([], '{
-      use <T>\with\lang\partial\ToString;
+    $this->fixture= $this->declareType([], '{
+      use <T>\with\lang\partial\HashCode;
 
       private $name;
       public function __construct($name) {
@@ -25,15 +22,15 @@ class ToStringTest extends PartialTest {
       }
     }');
     $this->assertEquals(
-      $fixture->getName().'@("Test")',
-      $fixture->newInstance('Test')->toString()
+      '584a08b7760143f05f1323e14f05bf41',
+      $this->fixture->newInstance('Test')->hashCode()
     );
   }
 
   #[@test]
   public function with_multiple_members() {
-    $fixture= $this->declareType([], '{
-      use <T>\with\lang\partial\ToString;
+    $this->fixture= $this->declareType([], '{
+      use <T>\with\lang\partial\HashCode;
 
       private $id, $name, $skills;
       public function __construct($id, $name, $skills= []) {
@@ -43,7 +40,8 @@ class ToStringTest extends PartialTest {
       }
     }');
     $this->assertEquals(
-      $fixture->getName()."@[\n  id => 6100\n  name => \"Test\"\n  skills => [\"Dev\"]\n]",
-      $fixture->newInstance(6100, 'Test', ['Dev'])->toString()
+      '01f3f5d557a54b5d6122addbb06b46e1',
+      $this->fixture->newInstance(6100, 'Test', ['Dev'])->hashCode()
     );
-  }}
+  }
+}
