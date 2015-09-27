@@ -2,14 +2,14 @@
 
 use util\Objects;
 use lang\partial\ValueObject;
-use lang\partial\WithCreation;
+use lang\partial\Builder;
 
 /**
  * Used by InstanceCreationTest
  */
 class Book extends \lang\Object {
   use Book\including\ValueObject;
-  use Book\including\WithCreation;
+  use Book\including\Builder;
 
   private $name, $author, $isbn;
 

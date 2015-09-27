@@ -1,7 +1,7 @@
 <?php namespace lang\partial\unittest;
 
 use lang\partial\ValueObject;
-use lang\partial\WithCreation;
+use lang\partial\Builder;
 
 /**
  * Used by InstanceCreationTest
@@ -10,7 +10,7 @@ class Isbn extends \lang\Object {
   const EAN13 = 13;
 
   use Isbn\including\ValueObject;
-  use Isbn\including\WithCreation;
+  use Isbn\including\Builder;
 
   private $number, $type;
 
