@@ -3,6 +3,7 @@
 class EqualsTest extends PartialTest {
   private $fixture;
 
+  /** @return void */
   public function setUp() {
     $this->fixture= $this->declareType('{
       use <T>\with\lang\partial\Equals;
@@ -36,5 +37,15 @@ class EqualsTest extends PartialTest {
       $this->fixture->newInstance(6100, 'Test', ['Dev']),
       $this->fixture->newInstance(61, 'Other', [])
     );
+  }
+
+  #[@test]
+  public function does_not_equal_this() {
+    $this->assertNotEquals($this->fixture->newInstance(6100, 'Test', ['Dev']), $this);
+  }
+
+  #[@test, @values([null, true, false, '', 1, 1.5, [[]], [['key' => 'value']]])]
+  public function does_not_equal($value) {
+    $this->assertNotEquals($this->fixture->newInstance(6100, 'Test', ['Dev']), $value);
   }
 }
