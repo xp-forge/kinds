@@ -1,13 +1,13 @@
 <?php namespace lang\partial\unittest;
 
-use lang\partial\Identity;
+use lang\partial\ReferenceTo;
 use lang\partial\CompareTo;
 
 /**
- * Used as fixture in the "IdentityTest" and "CompareToTest" classes
+ * Used as fixture in the "ReferenceToTest" and "CompareToTest" classes
  */
 class Named extends \lang\Object implements \lang\Value {
-  use Named\is\Identity { value as name; }
+  use Named\is\ReferenceTo { value as name; }
   use Named\including\CompareTo;
 
   /** @return bool */

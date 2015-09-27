@@ -1,6 +1,6 @@
 <?php namespace lang\partial\unittest;
 
-class IdentityTest extends \unittest\TestCase {
+class ReferenceToTest extends \unittest\TestCase {
 
   #[@test]
   public function name() {

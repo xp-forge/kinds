@@ -3,18 +3,18 @@
 use util\Objects;
 
 /**
- * The `Identity` trait creates a value object wrapping around exactly one member,
+ * The `ReferenceTo` trait creates a value object wrapping around exactly one member,
  * including appropriate `equals()` and `toString()` implementations. The default
  * method for accessing the underlying value can be aliased when using the trait,
- * e.g. `use \lang\partial\Identity { value as name; }`.
+ * e.g. `use \lang\partial\ReferenceTo { value as name; }`.
  *
- * @test  xp://lang.partial.unittest.IdentityTest
+ * @test  xp://lang.partial.unittest.ReferenceToTest
  */
-trait Identity {
+trait ReferenceTo {
   private $value;
 
   /**
-   * Creates a new identity
+   * Creates a new reference to a given value
    *
    * @param  var $value
    */
