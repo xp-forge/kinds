@@ -7,7 +7,7 @@ use lang\partial\Sortable;
  * Used as fixture in the "IdentityTest" and "SortableTest" classes
  */
 class Named extends \lang\Object {
-  use Identity { value as name; }
+  use Named\is\Identity { value as name; }
   use Named\including\Sortable;
 
   /** @return bool */
