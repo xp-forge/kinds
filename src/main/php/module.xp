@@ -4,6 +4,7 @@ use lang\mirrors\TypeMirror;
 use lang\ClassFormatException;
 
 module xp-forge/partial {
+  private static $verbs= ['\\including\\', '\\is\\'];
 
   /**
    * Initializes this module, registering class loader for compile-time
@@ -12,22 +13,29 @@ module xp-forge/partial {
    */
   public function initialize() {
     spl_autoload_register(function($class) {
-      if (false === $p= strpos($class, '\\including\\')) return false;
+      foreach (self::$verbs as $verb) {
+        if ($p= strpos($class, $verb)) {
+          $cl= \xp::$cll;
+          $l= strlen($verb);
+          \xp::$cll= 0;
+          try {
+            $mirror= new TypeMirror(substr($class, 0, $p));
+            $transform= $mirror->resolve(substr($class, $p + $l));
 
-      $cl= \xp::$cll;
-      \xp::$cll= 0;
-      try {
-        $mirror= new TypeMirror(substr($class, 0, $p));
-        $transform= $mirror->resolve(substr($class, $p + 11));   // strlen('\\including\\')
-
-        $body= $transform->constructor()->newInstance()->transform($mirror);
-        $code= 'namespace '.substr($class, 0, $p + 10).'; trait '.substr($class, $p + 11).' { '.$body.' }';
-        eval($code);
-      } finally {
-        \xp::$cll= $cl;
+            if ($transform->kind()->isTrait()) {
+              class_alias(strtr($transform->name(), '.', '\\'), $class);
+            } else {
+              $body= $transform->constructor()->newInstance()->transform($mirror);
+              $code= 'namespace '.substr($class, 0, $p + 10).'; trait '.substr($class, $p + $l).' { '.$body.' }';
+              eval($code);
+            }
+          } finally {
+            \xp::$cll= $cl;
+          }
+          return true;
+        }
       }
-
-      return true;
+      return false;
     });
   }
 }
