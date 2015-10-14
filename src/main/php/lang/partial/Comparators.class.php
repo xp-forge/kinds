@@ -1,5 +1,8 @@
 <?php namespace lang\partial;
 
+use lang\Primitive;
+use lang\Type;
+
 /**
  * Compile-time `Comparators` transformation which generates a `by...()`
  * methods for each method that return a comparator. 
@@ -15,7 +18,7 @@ class Comparators extends Transformation {
    * @return string
    */
   protected function body($mirror) {
-    $unit= 'public function compareUsing($cmp, $field) {
+    $unit= $this->newMethod('compareUsing', ['cmp' => Type::$VAR, 'field' => Primitive::$STRING], Primitive::$INT, '
       $local= $this->{$field};
       $other= $cmp->{$field};
       if (method_exists($local, \'compareTo\')) {
@@ -23,11 +26,11 @@ class Comparators extends Transformation {
       } else {
         return $local === $other ? 0 : ($local < $other ? -1 : 1);
       }
-    }';
+    ');
 
     foreach ($this->instanceFields($mirror) as $field) {
       $n= $field->name();
-      $unit.= 'public static function by'.ucfirst($n).'() {
+      $unit.= '/** @return lang.partial.Comparison */ public static function by'.ucfirst($n).'() {
         return new \lang\partial\Comparison(function($a, $b) { return $a->compareUsing($b, \''.$n.'\'); });
       }';
     }

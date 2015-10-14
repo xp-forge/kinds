@@ -1,5 +1,8 @@
 <?php namespace lang\partial;
 
+use lang\Primitive;
+use lang\Type;
+
 /**
  * Compile-time `ValueObject` transformation which generates public accessors
  * based on fields included in your class definition as well as equals() and 
@@ -32,11 +35,11 @@ class ValueObject extends Transformation {
   protected function body($mirror) {
     $unit= '';
     foreach ($this->instanceFields($mirror) as $field) {
-      $unit.= 'public function '.$field->name().'() { return $this->'.$field->name().'; }';
+      $unit.= $this->newMethod($field->name(), [], $field->type(), 'return $this->'.$field->name().';');
     }
 
     // equals()
-    $unit.= 'public function equals($cmp) {
+    $unit.= $this->newMethod('equals', ['cmp' => Type::$VAR], Primitive::$BOOL, '
       if ($cmp instanceof self) {
         $thisVars= (array)$this;
         $cmpVars= (array)$cmp;
@@ -44,14 +47,14 @@ class ValueObject extends Transformation {
         return \util\Objects::equal($thisVars, $cmpVars);
       }
       return false;
-    }';
+    ');
 
     // toString()
-    $unit.= 'public function toString() {
+    $unit.= $this->newMethod('toString', [], Primitive::$STRING, '
       $thisVars= get_object_vars($this);
       unset($thisVars[\'__id\']);
       return $this->getClassName().\'@\'.\util\Objects::stringOf($thisVars);
-    }';
+    ');
 
     return $unit;
   }
