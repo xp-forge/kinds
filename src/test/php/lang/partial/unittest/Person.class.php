@@ -1,31 +1,24 @@
 <?php namespace lang\partial\unittest;
 
-use \lang\partial\ValueObject;
-use \lang\partial\Sortable;
-use \lang\partial\Comparators;
+use lang\partial\Accessors;
+use lang\partial\ToString;
+use lang\partial\Equals;
+use lang\partial\Constructor;
+use lang\partial\CompareTo;
+use lang\partial\Comparators;
 
 /**
- * Used by SortableTest
+ * Used by CompareToTest
  */
 class Person extends \lang\Object {
-  use Person\including\ValueObject;
-  use Person\including\Sortable;
+  use Person\including\Accessors;
+  use Person\including\ToString;
+  use Person\including\Equals;
+  use Person\including\Constructor;
+  use Person\including\CompareTo;
   use Person\including\Comparators {
     byBorn as byBirthDate;
   }
 
   private $firstName, $lastName, $born;
-
-  /**
-   * Creates a new author
-   *
-   * @param  string $firstName
-   * @param  string $lastName
-   * @param  int $born
-   */
-  public function __construct($firstName, $lastName, $born) {
-    $this->firstName= $firstName;
-    $this->lastName= $lastName;
-    $this->born= $born;
-  }
 }

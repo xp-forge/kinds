@@ -3,6 +3,23 @@ Kinds ChangeLog
 
 ## ?.?.? / ????-??-??
 
+* Merged PR #7: Backport to PHP 5.5 - @thekid
+* Merged PR #12: Refactor naming:
+  - lang.partial.Identity -> lang.partial.Box ("is")
+  - lang.partial.ValueObject -> lang.partial.Value ("is")
+  - lang.partial.Sortable -> lang.partial.CompareTo ("with")
+  - lang.partial.WithCreation -> lang.partial.Builder ("with")
+  (@thekid)
+* Merged PR #11: Handle transformations and regular traits consistently.
+  You can now use `is` and `with` words to reference both transformations
+  as well as regular traits without the need to know which one is what
+  internally. The *including* term can still be used but is deprecated.
+  (@thekid)
+
+## 0.5.0 / 2015-09-27
+
+* Merged PR #9: Constructor transformation - @thekid
+
 ## 0.4.0 / 2015-05-16
 
 * **Heads up**: Renamed library to `xp-forge/partial` and changed namespace

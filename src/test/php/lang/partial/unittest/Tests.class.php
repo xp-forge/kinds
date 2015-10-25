@@ -6,7 +6,7 @@ use lang\partial\ListIndexedBy;
  * Used as fixture in the "ListIndexedByTest" class
  */
 class Tests extends \lang\Object implements \IteratorAggregate {
-  use ListIndexedBy;
+  use Tests\is\ListIndexedBy;
 
   /**
    * Calculate index

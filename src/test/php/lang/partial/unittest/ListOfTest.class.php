@@ -1,5 +1,6 @@
 <?php namespace lang\partial\unittest;
 
+use unittest\TestCase;
 use lang\ElementNotFoundException;
 
 class ListOfTest extends \unittest\TestCase {
@@ -79,7 +80,7 @@ class ListOfTest extends \unittest\TestCase {
   public function is_not_equal_to_list_with_different_elements() {
     $this->assertNotEquals(
       new Walls($this->wall),
-      new Walls(newinstance('unittest.TestCase', ['test'], ['test' => function() { }])
+      new Walls(newinstance(TestCase::class, ['test'], ['test' => function() { }])
     ));
   }
 }

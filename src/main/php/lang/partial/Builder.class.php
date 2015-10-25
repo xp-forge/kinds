@@ -1,14 +1,14 @@
 <?php namespace lang\partial;
 
 /**
- * Compile-time `WithCreation` transformation which generates a fluent interface
- * for creating instances.
+ * Compile-time transformation which generates a fluent interface for
+ * creating instances.
  * 
  * ```php
- * use lang\partial\WithCreation;
+ * use lang\partial\Builder;
  *
  * class Example extends \lang\Object {
- *   use Example\including\WithCreation;
+ *   use Example\including\Builder;
  *   private $name, $id;
  *
  *   public function __construct($name, $id) {
@@ -25,7 +25,7 @@
  * $example= Example::with()->name('Test')->id(6100)->create();
  * ```
  */
-class WithCreation extends Transformation {
+class Builder extends Transformation {
 
   /**
    * Creates trait body

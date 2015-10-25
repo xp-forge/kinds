@@ -4,6 +4,7 @@ use lang\mirrors\TypeMirror;
 use lang\ClassFormatException;
 
 module xp-forge/partial {
+  private static $verbs= ['\\with\\', '\\is\\', '\\including\\'];
 
   /**
    * Initializes this module, registering class loader for compile-time
@@ -12,25 +13,33 @@ module xp-forge/partial {
    */
   public function initialize() {
     spl_autoload_register(function($class) {
-      if (false === $p= strpos($class, '\\including\\')) return false;
+      foreach (self::$verbs as $verb) {
+        if ($p= strpos($class, $verb)) {
+          $cl= \xp::$cll;
+          $l= strlen($verb);
+          \xp::$cll= 0;
+          try {
+            $mirror= new TypeMirror(substr($class, 0, $p));
+            $transform= $mirror->resolve(substr($class, $p + $l));
 
-      $cl= \xp::$cll;
-      \xp::$cll= 0;
-      try {
-        $mirror= new TypeMirror(substr($class, 0, $p));
-        $transform= $mirror->resolve(substr($class, $p + 11));   // strlen('\\including\\')
-
-        $body= $transform->constructor()->newInstance()->transform($mirror);
-        $code= 'namespace '.substr($class, 0, $p + 10).'; trait '.substr($class, $p + 11).' { '.$body.' }';
-        eval($code);
-      } catch (\Exception $e) {   // PHP 5.x
-      } catch (\Throwable $e) {   // PHP 7.x
-      } ensure($e); {
-        \xp::$cll= $cl;
-        if ($e) throw $e;
+            if ($transform->kind()->isTrait()) {
+              class_alias(strtr($transform->name(), '.', '\\'), $class);
+            } else {
+              $p= strrpos($class, '\\');
+              $body= $transform->constructor()->newInstance()->transform($mirror);
+              $code= 'namespace '.substr($class, 0, $p).'; trait '.substr($class, $p + 1).' { '.$body.' }';
+              eval($code);
+            }
+          } catch (\Exception $e) {   // PHP 5.x
+          } catch (\Throwable $e) {   // PHP 7.x
+          } ensure($e); {
+            \xp::$cll= $cl;
+            if ($e) throw $e;
+          }
+          return true;
+        }
       }
-
-      return true;
+      return false;
     });
   }
 }

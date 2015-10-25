@@ -1,22 +1,23 @@
 <?php namespace lang\partial\unittest;
 
+use util\Comparator;
 use util\Date;
 
 class ComparatorsTest extends \unittest\TestCase {
 
   #[@test]
   public function byFirstName() {
-    $this->assertInstanceOf('util.Comparator', Person::byFirstName());
+    $this->assertInstanceOf(Comparator::class, Person::byFirstName());
   }
 
   #[@test]
   public function byLastName() {
-    $this->assertInstanceOf('util.Comparator', Person::byLastName());
+    $this->assertInstanceOf(Comparator::class, Person::byLastName());
   }
 
   #[@test]
   public function byBirthDate() {
-    $this->assertInstanceOf('util.Comparator', Person::byBirthDate());
+    $this->assertInstanceOf(Comparator::class, Person::byBirthDate());
   }
 
   #[@test, @values([['Same', 'Same'], ['Same', 'Different'], ['Different', 'Same']])]
