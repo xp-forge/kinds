@@ -3,6 +3,12 @@ Kinds ChangeLog
 
 ## ?.?.? / ????-??-??
 
+* Merged PR #12: Refactor naming:
+  - lang.partial.Identity -> lang.partial.Box ("is")
+  - lang.partial.ValueObject -> lang.partial.Value ("is")
+  - lang.partial.Sortable -> lang.partial.CompareTo ("with")
+  - lang.partial.WithCreation -> lang.partial.Builder ("with")
+  (@thekid)
 * Merged PR #11: Handle transformations and regular traits consistently.
   You can now use `is` and `with` words to reference both transformations
   as well as regular traits without the need to know which one is what
