@@ -25,7 +25,6 @@ class HashCode extends Transformation {
     if ('' === $hashes) {
       return 'public function hashCode() { return spl_object_hash($this); }';
     } else {
-      echo $mirror->toString(), 'public function hashCode() { return md5(nameof($this)'.$hashes.'); }', PHP_EOL;
       return 'public function hashCode() { return md5(nameof($this)'.$hashes.'); }';
     }
   }
