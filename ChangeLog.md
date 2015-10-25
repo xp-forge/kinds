@@ -3,6 +3,8 @@ Kinds ChangeLog
 
 ## ?.?.? / ????-??-??
 
+## 0.7.0 / 2015-10-25
+
 * Merged PR #13: Add types to generated members - @thekid
 
 ## 0.6.0 / 2015-10-25
