@@ -1,14 +1,12 @@
 <?php namespace lang\partial\unittest;
 
-use lang\partial\Identity;
-use lang\partial\Sortable;
+use lang\partial\Box;
 
 /**
- * Used as fixture in the "IdentityTest" and "SortableTest" classes
+ * Used as fixture in the "BoxTest" and "CompareToTest" classes
  */
-class Named extends \lang\Object {
-  use Named\is\Identity { value as name; }
-  use Named\including\Sortable;
+class Named extends \lang\Object implements \lang\Value {
+  use Named\is\Box { value as name; }
 
   /** @return bool */
   public function isEmpty() { return '' === $this->value; }
