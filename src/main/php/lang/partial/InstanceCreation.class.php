@@ -35,7 +35,7 @@ abstract class InstanceCreation extends \lang\Object {
         } else {
           $setters.= 'public $'.$name.';';
         }
-        $setters.= '/** @param '.$parameter->type().' */';
+        $setters.= "/**\n * @param ".$parameter->type()."\n * @return self\n*/";
         $setters.= 'public function '.$name.'($value) { $this->'.$name.'= $value; return $this; }';
         $args.= ', $this->'.$name;
       }
