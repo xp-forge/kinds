@@ -3,6 +3,8 @@ Kinds ChangeLog
 
 ## ?.?.? / ????-??-??
 
+## 0.6.0 / 2015-10-25
+
 * Changed `ListIndexedBy` iterator to also return keys - @thekid
 * Merged PR #7: Backport to PHP 5.5 - @thekid
 * Merged PR #12: Refactor naming:
