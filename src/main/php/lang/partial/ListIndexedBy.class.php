@@ -93,7 +93,7 @@ trait ListIndexedBy {
    * @return  php.Iterator
    */
   public function getIterator() {
-    return new \ArrayIterator(array_values($this->indexed));
+    return new \ArrayIterator($this->indexed);
   }
 
   /**
