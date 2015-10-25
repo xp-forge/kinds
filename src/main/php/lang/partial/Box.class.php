@@ -8,7 +8,7 @@ use util\Objects;
  * method for accessing the underlying value can be aliased when using the trait,
  * e.g. `use Named\is\Box { value as name; }`.
  *
- * @test  xp://lang.partial.unittest.ReferenceToTest
+ * @test  xp://lang.partial.unittest.BoxTest
  */
 trait Box {
   private $value;
