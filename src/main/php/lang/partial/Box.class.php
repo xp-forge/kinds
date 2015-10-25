@@ -3,14 +3,14 @@
 use util\Objects;
 
 /**
- * The `ReferenceTo` trait creates a value object wrapping around exactly one member,
+ * The `Box` trait creates a value object wrapping around exactly one member,
  * including appropriate `equals()` and `toString()` implementations. The default
  * method for accessing the underlying value can be aliased when using the trait,
- * e.g. `use \lang\partial\ReferenceTo { value as name; }`.
+ * e.g. `use Named\is\Box { value as name; }`.
  *
  * @test  xp://lang.partial.unittest.ReferenceToTest
  */
-trait ReferenceTo {
+trait Box {
   private $value;
 
   /**

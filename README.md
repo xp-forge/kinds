@@ -29,10 +29,10 @@ Writing this:
 <pre lang="php">
 namespace example;
 
-use lang\partial\ReferenceTo;
+use lang\partial\Box;
 
 class Name extends \lang\Object {
-  use Name\is\ReferenceTo;
+  use Name\is\Box;
 
   public function personal() {
     return '~' === $this->value{0};
