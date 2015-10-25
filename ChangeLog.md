@@ -3,6 +3,7 @@ Kinds ChangeLog
 
 ## ?.?.? / ????-??-??
 
+* Merged PR #7: Backport to PHP 5.5 - @thekid
 * Merged PR #12: Refactor naming:
   - lang.partial.Identity -> lang.partial.Box ("is")
   - lang.partial.ValueObject -> lang.partial.Value ("is")
