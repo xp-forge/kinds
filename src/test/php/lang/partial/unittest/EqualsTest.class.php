@@ -38,7 +38,7 @@ class EqualsTest extends PartialTest {
   #])]
   public function does_not_equal_instance_with_unequal_members($id, $name, $skills) {
     $a= $this->fixture->newInstance(6100, 'Test', ['Dev']);
-    $b= $this->fixture->newInstance(...[$id, $name, $skills]);
+    $b= $this->fixture->getConstructor()->newInstance([$id, $name, $skills]);
     $this->assertFalse($a->equals($b));
   }
 
