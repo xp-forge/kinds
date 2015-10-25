@@ -57,7 +57,7 @@ class CompareToTest extends PartialTest {
   #])]
   public function b_is_smaller_than($id, $name, $skills) {
     $a= $this->fixture->newInstance(6100, 'Zebra', ['Dev']);
-    $b= $this->fixture->newInstance(...[$id, $name, $skills]);
+    $b= $this->fixture->getConstructor()->newInstance([$id, $name, $skills]);
     $this->assertEquals(1, $a->compareTo($b));
   }
 
@@ -69,7 +69,7 @@ class CompareToTest extends PartialTest {
   #])]
   public function b_is_larger_than($id, $name, $skills) {
     $a= $this->fixture->newInstance(6100, 'Alphabet', ['Dev']);
-    $b= $this->fixture->newInstance(...[$id, $name, $skills]);
+    $b= $this->fixture->getConstructor()->newInstance([$id, $name, $skills]);
     $this->assertEquals(-1, $a->compareTo($b));
   }
 
