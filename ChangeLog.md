@@ -3,6 +3,8 @@ Kinds ChangeLog
 
 ## ?.?.? / ????-??-??
 
+* Merged PR #13: Add types to generated members - @thekid
+
 ## 0.6.0 / 2015-10-25
 
 * Changed `ListIndexedBy` iterator to also return keys - @thekid
