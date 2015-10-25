@@ -17,8 +17,8 @@ trait ListOf {
    *
    * @param  var* $elements
    */
-  public function __construct(...$elements) {
-    $this->backing= $elements;
+  public function __construct() {
+    $this->backing= func_get_args();
   }
 
   /**
