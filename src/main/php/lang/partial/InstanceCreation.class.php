@@ -41,6 +41,7 @@ abstract class InstanceCreation extends \lang\Object {
       }
 
       self::$creations[$type]= ClassLoader::defineClass($type.'Creation', 'lang.partial.InstanceCreation', [], '{
+        /** @return '.$mirror->name().' */
         public function create() { return new \\'.$mirror->reflect->name.'('.substr($args, 2).'); }
         '.$setters.'
       }');
