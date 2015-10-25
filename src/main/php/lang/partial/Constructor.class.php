@@ -36,12 +36,13 @@ class Constructor extends Transformation {
    * @return string
    */
   protected function body($mirror) {
-    $signature= $assignments= '';
+    $signature= $assignments= $types= '';
     foreach ($this->instanceFields($mirror) as $field) {
       $n= $field->name();
+      $types.= ' * @param '.$field->type()."\n";
       $signature.= ', $'.$n;
       $assignments.= '$this->'.$n.'= $'.$n.';';
     }
-    return 'public function __construct('.substr($signature, 2).') { '.$assignments.' }';
+    return "/**\n".$types."*/\npublic function __construct(".substr($signature, 2).') { '.$assignments.' }';
   }
 }
