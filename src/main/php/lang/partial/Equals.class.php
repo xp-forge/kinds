@@ -21,6 +21,9 @@ class Equals extends Transformation {
       $n= $field->name();
       $compare.= '&& \util\Objects::equal($this->'.$n.', $cmp->'.$n.')';
     }
-    return 'public function equals($cmp) { return $cmp instanceof self '.$compare.'; }';
+    return
+      "/**\n * @param var\n * @return bool\n*/\n".
+      'public function equals($cmp) { return $cmp instanceof self '.$compare.'; }'
+    ;
   }
 }

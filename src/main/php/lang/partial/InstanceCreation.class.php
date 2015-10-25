@@ -10,11 +10,11 @@ abstract class InstanceCreation extends \lang\Object {
   /**
    * Creates a new instance creation fluent interface for a given class
    *
-   * @param  var $class Either a lang.XPClass or a string
+   * @param  lang.mirrors.TypeMirror|lang.XPClass|string $type
    * @return lang.XPClass
    */
-  public static final function typeOf($class) {
-    $mirror= new TypeMirror($class);
+  public static final function typeOf($type) {
+    $mirror= $type instanceof TypeMirror ? $type : new TypeMirror($type);
     $type= $mirror->name();
 
     if (!isset(self::$creations[$type])) {
@@ -35,11 +35,13 @@ abstract class InstanceCreation extends \lang\Object {
         } else {
           $setters.= 'public $'.$name.';';
         }
+        $setters.= "/**\n * @param ".$parameter->type()."\n * @return self\n*/";
         $setters.= 'public function '.$name.'($value) { $this->'.$name.'= $value; return $this; }';
         $args.= ', $this->'.$name;
       }
 
       self::$creations[$type]= ClassLoader::defineClass($type.'Creation', 'lang.partial.InstanceCreation', [], '{
+        /** @return '.$mirror->name().' */
         public function create() { return new \\'.$mirror->reflect->name.'('.substr($args, 2).'); }
         '.$setters.'
       }');

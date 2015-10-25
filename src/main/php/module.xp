@@ -2,6 +2,7 @@
 
 use lang\mirrors\TypeMirror;
 use lang\ClassFormatException;
+use lang\DynamicClassLoader;
 
 module xp-forge/partial {
   private static $verbs= ['\\with\\', '\\is\\', '\\including\\'];
@@ -12,7 +13,8 @@ module xp-forge/partial {
    * `lang.partial.Transformation`.
    */
   public function initialize() {
-    spl_autoload_register(function($class) {
+    $loader= DynamicClassLoader::instanceFor(__CLASS__);
+    spl_autoload_register(function($class) use($loader) {
       foreach (self::$verbs as $verb) {
         if ($p= strpos($class, $verb)) {
           $cl= \xp::$cll;
@@ -27,8 +29,9 @@ module xp-forge/partial {
             } else {
               $p= strrpos($class, '\\');
               $body= $transform->constructor()->newInstance()->transform($mirror);
-              $code= 'namespace '.substr($class, 0, $p).'; trait '.substr($class, $p + 1).' { '.$body.' }';
-              eval($code);
+              $type= strtr($class, '\\', '.');
+              $loader->setClassBytes($type, 'namespace '.substr($class, 0, $p).'; trait '.substr($class, $p + 1).' { '.$body.' }');
+              $loader->loadClass0($type);
             }
           } finally {
             \xp::$cll= $cl;

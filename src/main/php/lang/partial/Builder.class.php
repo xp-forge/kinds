@@ -34,7 +34,7 @@ class Builder extends Transformation {
    * @return string
    */
   protected function body($mirror) {
-    return 'public static function with() {
+    return '/** @return lang.partial.InstanceCreation */ public static function with() {
       return \lang\partial\InstanceCreation::of(new \lang\XPClass(\''.strtr($mirror->name(), '.', '\\').'\'));
     }';
   }

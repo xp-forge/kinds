@@ -22,6 +22,9 @@ class CompareTo extends Transformation {
       $n= $field->name();
       $compareTo.= 'if (0 !== $r= \util\Objects::compare($this->'.$n.', $cmp->'.$n.')) return $r;';
     }
-    return 'public function compareTo($cmp) { if ($cmp instanceof self) { '.$compareTo.' return 0; } return 1; }';
+    return 
+      "/**\n * @param var\n * @return int\n*/\n".
+      'public function compareTo($cmp) { if ($cmp instanceof self) { '.$compareTo.' return 0; } return 1; }'
+    ;
   }
 }
