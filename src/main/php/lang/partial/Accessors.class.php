@@ -17,6 +17,7 @@ class Accessors extends Transformation {
   protected function body($mirror) {
     $unit= '';
     foreach ($this->instanceFields($mirror) as $field) {
+      $unit.= '/** @return '.$field->type().' */';
       $unit.= 'public function '.$field->name().'() { return $this->'.$field->name().'; }';
     }
     return $unit;
