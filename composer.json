@@ -6,7 +6,7 @@
   "description" : "Partial types",
   "keywords": ["module", "xp"],
   "require" : {
-    "xp-framework/core": "^6.1",
+    "xp-framework/core": "^6.3",
     "xp-forge/mirrors": "^1.4",
     "php" : ">=5.5.0"
   },

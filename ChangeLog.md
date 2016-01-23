@@ -3,6 +3,12 @@ Kinds ChangeLog
 
 ## ?.?.? / ????-??-??
 
+## 0.8.0 / 2016-01-23
+
+* Fix code to use `nameof()` instead of the deprecated `getClassName()`
+  method from lang.Generic. See xp-framework/core#120
+  (@thekid)
+
 ## 0.7.0 / 2015-10-25
 
 * Merged PR #13: Add types to generated members - @thekid

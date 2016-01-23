@@ -68,7 +68,7 @@ abstract class InstanceCreation extends \lang\Object {
 
   /** @return string */
   public function toString() {
-    return $this->getClassName().'('.implode(', ', array_keys(get_object_vars($this))).')';
+    return nameof($this).'('.implode(', ', array_keys(get_object_vars($this))).')';
   }
 
   /**
@@ -78,6 +78,6 @@ abstract class InstanceCreation extends \lang\Object {
    * @return bool
    */
   public function equals($value) {
-    return $value instanceof self && $this->getClassName() === $value->getClassName();
+    return $value instanceof self && nameof($this) === nameof($value);
   }
 }

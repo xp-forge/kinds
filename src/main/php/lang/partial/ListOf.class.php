@@ -93,6 +93,6 @@ trait ListOf {
    * @return string
    */
   public function toString() {
-    return $this->getClassName().'@'.Objects::stringOf($this->backing);
+    return nameof($this).'@'.Objects::stringOf($this->backing);
   }
 }
