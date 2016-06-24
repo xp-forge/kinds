@@ -3,10 +3,10 @@
 /**
  * Compile-time `Accessors` transformation which generates public accessors
  * based on fields included in your class definition.
- * *
+ *
  * @test  xp://lang.partial.unittest.AccessorsTest
  */
-class Accessors extends Transformation {
+class AccessorsV7 extends Transformation {
 
   /**
    * Creates trait body
@@ -16,9 +16,12 @@ class Accessors extends Transformation {
    */
   protected function body($mirror) {
     $unit= '';
+    $get= '';
     foreach ($this->instanceFields($mirror) as $field) {
       $unit.= '/** @return '.$field->type().' */';
-      $unit.= 'public function '.$field->name().'() { return $this->'.$field->name().'; }';
+
+      $name= $field->name();
+      $unit.= 'public function '.$name.'() { return $this->'.$name.'; }';
     }
     return $unit;
   }

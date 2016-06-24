@@ -3,6 +3,12 @@ Partials ChangeLog
 
 ## ?.?.? / ????-??-??
 
+* Fixed issue #15: Respect keywords. This issue occurs before PHP 7.0
+  where keywords may not be used in method declarations (but work OK as
+  fields and in method calls) by adding a workaround via `__call()`.
+  This was addressed in https://wiki.php.net/rfc/context_sensitive_lexer
+  (@thekid)
+
 ## 1.0.0 / 2016-02-21
 
 * Added version compatibility with XP 7 - @thekid
