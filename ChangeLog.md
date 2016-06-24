@@ -3,6 +3,8 @@ Partials ChangeLog
 
 ## ?.?.? / ????-??-??
 
+## 1.1.0 / 2016-06-24
+
 * Fixed issue #15: Respect keywords. This issue occurs before PHP 7.0
   where keywords may not be used in method declarations (but work OK as
   fields and in method calls) by adding a workaround via `__call()`.
