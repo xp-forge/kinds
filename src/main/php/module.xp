@@ -13,7 +13,9 @@ module xp-forge/partial {
    * `lang.partial.Transformation`.
    */
   public function initialize() {
-    class_alias(PHP_VERSION < 7 ? AccessorsV5::class : AccessorsV7::class, Accessors::class);
+    $v5= PHP_VERSION < 7;
+    class_alias($v5 ? AccessorsV5::class : AccessorsV7::class, Accessors::class);
+    class_alias($v5 ? InstanceCreationV5::class : InstanceCreationV7::class, InstanceCreation::class);
 
     $loader= DynamicClassLoader::instanceFor(__CLASS__);
     spl_autoload_register(function($class) use($loader) {

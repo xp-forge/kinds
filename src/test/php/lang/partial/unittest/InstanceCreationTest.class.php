@@ -64,4 +64,9 @@ class InstanceCreationTest extends \unittest\TestCase {
   public function typeOf_does_not_accept($reason, $class) {
     InstanceCreation::typeOf($class);
   }
+
+  #[@test]
+  public function keywords() {
+    InstanceCreation::of(XPClass::forName('lang.partial.unittest.Event'));
+  }
 }

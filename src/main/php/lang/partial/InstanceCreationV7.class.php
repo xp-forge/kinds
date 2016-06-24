@@ -4,7 +4,7 @@ use lang\mirrors\TypeMirror;
 use lang\ClassLoader;
 use lang\IllegalArgumentException;
 
-abstract class InstanceCreation extends \lang\Object {
+abstract class InstanceCreationV7 extends \lang\Object {
   private static $creations= [];
 
   /**
