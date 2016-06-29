@@ -67,6 +67,11 @@ class InstanceCreationTest extends \unittest\TestCase {
 
   #[@test]
   public function keywords() {
-    InstanceCreation::of(XPClass::forName('lang.partial.unittest.Event'));
+    $instance= InstanceCreation::of(XPClass::forName('lang.partial.unittest.Event'))
+      ->name('Test')
+      ->class('public')
+      ->create()
+    ;
+    $this->assertEquals('public', $instance->class());
   }
 }

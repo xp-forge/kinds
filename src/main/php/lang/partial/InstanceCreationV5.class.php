@@ -37,7 +37,7 @@ abstract class InstanceCreationV5 extends \lang\Object {
         }
 
         if (isset(Keywords::$reserved[$name])) {
-          $set.= 'else if (\''.$name.'\' === $name) { $this->'.$name.'= $value; }';
+          $set.= 'else if (\''.$name.'\' === $name) { $this->'.$name.'= $args[0]; return $this; }';
         } else {
           $setters.= "/**\n * @param ".$parameter->type()."\n * @return self\n*/";
           $setters.= 'public function '.$name.'($value) { $this->'.$name.'= $value; return $this; }';

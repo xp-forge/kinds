@@ -3,6 +3,11 @@ Partials ChangeLog
 
 ## ?.?.? / ????-??-??
 
+## 1.1.1 / 2016-06-29
+
+* Fixed errors when using instance creation with keywords in PHP 5.x
+  (@thekid)
+
 ## 1.1.0 / 2016-06-24
 
 * Fixed issue #15: Respect keywords. This issue occurs before PHP 7.0
