@@ -4,17 +4,17 @@ use lang\mirrors\TypeMirror;
 use lang\ClassLoader;
 use lang\IllegalArgumentException;
 
-abstract class InstanceCreation extends \lang\Object {
+abstract class InstanceCreationV7 extends \lang\Object {
   private static $creations= [];
 
   /**
    * Creates a new instance creation fluent interface for a given class
    *
-   * @param  var $class Either a lang.XPClass or a string
+   * @param  lang.mirrors.TypeMirror|lang.XPClass|string $type
    * @return lang.XPClass
    */
-  public static final function typeOf($class) {
-    $mirror= new TypeMirror($class);
+  public static final function typeOf($type) {
+    $mirror= $type instanceof TypeMirror ? $type : new TypeMirror($type);
     $type= $mirror->name();
 
     if (!isset(self::$creations[$type])) {
@@ -35,11 +35,13 @@ abstract class InstanceCreation extends \lang\Object {
         } else {
           $setters.= 'public $'.$name.';';
         }
+        $setters.= "/**\n * @param ".$parameter->type()."\n * @return self\n*/";
         $setters.= 'public function '.$name.'($value) { $this->'.$name.'= $value; return $this; }';
         $args.= ', $this->'.$name;
       }
 
       self::$creations[$type]= ClassLoader::defineClass($type.'Creation', 'lang.partial.InstanceCreation', [], '{
+        /** @return '.$mirror->name().' */
         public function create() { return new \\'.$mirror->reflect->name.'('.substr($args, 2).'); }
         '.$setters.'
       }');
@@ -66,7 +68,7 @@ abstract class InstanceCreation extends \lang\Object {
 
   /** @return string */
   public function toString() {
-    return $this->getClassName().'('.implode(', ', array_keys(get_object_vars($this))).')';
+    return nameof($this).'('.implode(', ', array_keys(get_object_vars($this))).')';
   }
 
   /**
@@ -76,6 +78,6 @@ abstract class InstanceCreation extends \lang\Object {
    * @return bool
    */
   public function equals($value) {
-    return $value instanceof self && $this->getClassName() === $value->getClassName();
+    return $value instanceof self && nameof($this) === nameof($value);
   }
 }

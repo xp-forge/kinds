@@ -112,6 +112,6 @@ trait ListIndexedBy {
    * @return string
    */
   public function toString() {
-    return $this->getClassName().'@'.Objects::stringOf($this->indexed);
+    return nameof($this).'@'.Objects::stringOf($this->indexed);
   }
 }

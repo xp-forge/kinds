@@ -1,7 +1,36 @@
-Kinds ChangeLog
-===============
+Partials ChangeLog
+==================
 
 ## ?.?.? / ????-??-??
+
+## 1.1.1 / 2016-06-29
+
+* Fixed errors when using instance creation with keywords in PHP 5.x
+  (@thekid)
+
+## 1.1.0 / 2016-06-24
+
+* Fixed issue #15: Respect keywords. This issue occurs before PHP 7.0
+  where keywords may not be used in method declarations (but work OK as
+  fields and in method calls) by adding a workaround via `__call()`.
+  This was addressed in https://wiki.php.net/rfc/context_sensitive_lexer
+  (@thekid)
+
+## 1.0.0 / 2016-02-21
+
+* Added version compatibility with XP 7 - @thekid
+
+## 0.8.0 / 2016-01-23
+
+* Fix code to use `nameof()` instead of the deprecated `getClassName()`
+  method from lang.Generic. See xp-framework/core#120
+  (@thekid)
+
+## 0.7.0 / 2015-10-25
+
+* Merged PR #13: Add types to generated members - @thekid
+
+## 0.6.0 / 2015-10-25
 
 * Changed `ListIndexedBy` iterator to also return keys - @thekid
 * Merged PR #7: Backport to PHP 5.5 - @thekid

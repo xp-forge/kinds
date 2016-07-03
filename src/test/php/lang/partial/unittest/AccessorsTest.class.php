@@ -32,4 +32,14 @@ class AccessorsTest extends PartialTest {
     }');
     $this->assertDeclaresMethods(['public var name()', 'public var handle()', 'public var id()'], $fixture);
   }
+
+  #[@test]
+  public function keywords() {
+    $fixture= $this->declareType([], '{
+      use <T>\with\lang\partial\Accessors;
+
+      private $class= "Test";
+    }');
+    $this->assertEquals('Test', $fixture->newInstance()->class());
+  }
 }

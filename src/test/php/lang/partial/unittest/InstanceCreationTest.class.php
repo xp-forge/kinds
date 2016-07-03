@@ -1,6 +1,7 @@
 <?php namespace lang\partial\unittest;
 
 use lang\partial\InstanceCreation;
+use lang\IllegalArgumentException;
 use lang\XPClass;
 
 class InstanceCreationTest extends \unittest\TestCase {
@@ -45,7 +46,7 @@ class InstanceCreationTest extends \unittest\TestCase {
     );
   }
 
-  #[@test, @expect('lang.IllegalArgumentException'), @values([
+  #[@test, @expect(IllegalArgumentException::class), @values([
   #  ['interfaces', 'lang.Generic'],
   #  ['enums', 'lang.partial.unittest.Coin'],
   #  ['abstract classes', 'lang.partial.unittest.Entity'],
@@ -55,7 +56,7 @@ class InstanceCreationTest extends \unittest\TestCase {
     InstanceCreation::of($class);
   }
 
-  #[@test, @expect('lang.IllegalArgumentException'), @values([
+  #[@test, @expect(IllegalArgumentException::class), @values([
   #  ['interfaces', 'lang.Generic'],
   #  ['enums', 'lang.partial.unittest.Coin'],
   #  ['abstract classes', 'lang.partial.unittest.Entity'],
@@ -63,5 +64,15 @@ class InstanceCreationTest extends \unittest\TestCase {
   #])]
   public function typeOf_does_not_accept($reason, $class) {
     InstanceCreation::typeOf($class);
+  }
+
+  #[@test]
+  public function keywords() {
+    $instance= InstanceCreation::of(XPClass::forName('lang.partial.unittest.Event'))
+      ->name('Test')
+      ->class('public')
+      ->create()
+    ;
+    $this->assertEquals('public', $instance->class());
   }
 }

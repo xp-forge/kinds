@@ -12,7 +12,14 @@ class Wall extends \lang\Object {
   use Wall\including\ToString;
   use Wall\including\Equals;
 
-  private $name, $type, $posts;
+  /** @type string */
+  private $name;
+
+  /** @type string */
+  private $type;
+
+  /** @type lang.partial.unittest.Post[] */
+  private $posts;
 
   /**
    * Constructor

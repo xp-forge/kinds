@@ -23,11 +23,12 @@ class ToString extends Transformation {
     }
 
     if ('' === $stringOf) {
-      return 'public function toString() { return nameof($this)."@(#".$this->hashCode().")"; }';
+      $implementation= 'return nameof($this)."@(#".$this->hashCode().")";';
     } else if (0 === $i) {
-      return 'public function toString() { return nameof($this)."@(".\xp::stringOf($this->'.$n.').")"; }';
+      $implementation= 'return nameof($this)."@(".\xp::stringOf($this->'.$n.').")";';
     } else {
-      return 'public function toString() { return nameof($this)."@[\n"'.$stringOf.'."]"; }';
+      $implementation= 'return nameof($this)."@[\n"'.$stringOf.'."]";';
     }
+    return '/** @return string */ public function toString() { '.$implementation.' }';
   }
 }

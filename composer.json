@@ -6,9 +6,12 @@
   "description" : "Partial types",
   "keywords": ["module", "xp"],
   "require" : {
-    "xp-framework/core": "^6.1",
+    "xp-framework/core": "^7.0 | ^6.5",
     "xp-forge/mirrors": "dev-backport/php5.4",
     "php" : ">=5.4.0"
+  },
+  "require-dev" : {
+    "xp-framework/unittest": "^7.0 | ^6.5"
   },
   "autoload" : {
     "files" : ["src/main/php/autoload.php"]

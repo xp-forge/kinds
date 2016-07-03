@@ -27,7 +27,7 @@ class Comparators extends Transformation {
 
     foreach ($this->instanceFields($mirror) as $field) {
       $n= $field->name();
-      $unit.= 'public static function by'.ucfirst($n).'() {
+      $unit.= '/** @return lang.partial.Comparison */ public static function by'.ucfirst($n).'() {
         return new \lang\partial\Comparison(function($a, $b) { return $a->compareUsing($b, \''.$n.'\'); });
       }';
     }

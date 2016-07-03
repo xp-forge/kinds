@@ -23,9 +23,10 @@ class HashCode extends Transformation {
     }
 
     if ('' === $hashes) {
-      return 'public function hashCode() { return spl_object_hash($this); }';
+      $implementation= 'return spl_object_hash($this);';
     } else {
-      return 'public function hashCode() { return md5(nameof($this)'.$hashes.'); }';
+      $implementation= 'return md5(nameof($this)'.$hashes.');';
     }
+    return '/** @return string */ public function hashCode() { '.$implementation.' }';
   }
 }

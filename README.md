@@ -22,7 +22,7 @@ Regardless of their flavor, some partials are actually implemented by a regular 
 
 Walk-through
 ------------
-The `ReferenceTo` trait creates a value object wrapping around exactly one member. It creates a one-arg constructor, and a `value()` for retrieving the value, and includes appropriate `equals()` and `toString()` implementations. 
+The `Box` trait creates a value object wrapping around exactly one member. It creates a one-arg constructor, and a `value()` for retrieving the value, and includes appropriate `hashCode()`, `compareTo()` and `toString()` implementations. 
 
 <table><tr><td width="360" valign="top">
 Writing this:
@@ -58,6 +58,12 @@ class Name extends \lang\Object {
   public function personal() {
     return '~' === $this->value{0};
   }
+
+  public function hashCode() { /* ... */ }
+
+  public function compareTo($value) { /* ... */ }
+
+  public function toString() { /* ... */ }
 }
 </pre>
 </td></tr></table>
@@ -150,6 +156,8 @@ class Author extends \lang\Object {
 }
 </pre>
 </td></tr></table>
+
+To combine all these, you can use the `Value` trait, which a) creates a constructor with all members as parameters, b) accessors for reading these, and c) implements the `hashCode()`, `compareTo()` and `toString()` methods.
 
 The `ListOf` trait creates a list of elements which can be accessed by their offset, iterated by `foreach`, and offers `equals()` and `toString()` default implementations.
 
