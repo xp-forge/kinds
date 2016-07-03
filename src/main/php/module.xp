@@ -14,8 +14,8 @@ module xp-forge/partial {
    */
   public function initialize() {
     $v5= PHP_VERSION < 7;
-    class_alias($v5 ? AccessorsV5::class : AccessorsV7::class, Accessors::class);
-    class_alias($v5 ? InstanceCreationV5::class : InstanceCreationV7::class, InstanceCreation::class);
+    class_alias($v5 ? 'lang\partial\AccessorsV5' : 'lang\partial\AccessorsV7', 'lang\partial\Accessors');
+    class_alias($v5 ? 'lang\partial\InstanceCreationV5' : 'lang\partial\InstanceCreationV7', 'lang\partial\InstanceCreation');
 
     $loader= DynamicClassLoader::instanceFor(__CLASS__);
     spl_autoload_register(function($class) use($loader) {
