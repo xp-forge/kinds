@@ -37,11 +37,13 @@ module xp-forge/partial {
               $loader->setClassBytes($type, 'namespace '.substr($class, 0, $p).'; trait '.substr($class, $p + 1).' { '.$body.' }');
               $loader->loadClass0($type);
             }
-          } catch (\Exception $e) {   // PHP 5.x
-          } catch (\Throwable $e) {   // PHP 7.x
-          } ensure($e); {
             \xp::$cll= $cl;
-            if ($e) throw $e;
+          } catch (\Exception $e) {   // PHP 5.x
+            \xp::$cll= $cl;
+            throw $e;
+          } catch (\Throwable $e) {   // PHP 7.x
+            \xp::$cll= $cl;
+            throw $e;
           }
           return true;
         }
