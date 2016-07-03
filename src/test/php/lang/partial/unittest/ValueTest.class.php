@@ -8,7 +8,7 @@ class ValueTest extends PartialTest {
 
   /** @return void */
   public function setUp() {
-    $this->fixture= $this->declareType([Value::class], '{
+    $this->fixture= $this->declareType(['lang.Value'], '{
       use <T>\is\lang\partial\Value;
 
       private $id, $name, $skills;

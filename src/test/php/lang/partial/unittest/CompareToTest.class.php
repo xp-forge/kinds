@@ -7,7 +7,7 @@ class CompareToTest extends PartialTest {
 
   /** @return void */
   public function setUp() {
-    $this->fixture= $this->declareType([Value::class], '{
+    $this->fixture= $this->declareType(['lang.Value'], '{
       use <T>\with\lang\partial\CompareTo;
 
       private $id, $name, $skills;

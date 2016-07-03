@@ -81,7 +81,7 @@ class ListIndexedByTest extends TestCase {
   public function is_not_equal_to_list_with_different_elements() {
     $this->assertNotEquals(
       new Tests($this),
-      new Tests(newinstance(TestCase::class, ['test'], ['test' => function() { }])
+      new Tests(newinstance('unittest.TestCase', ['test'], ['test' => function() { }])
     ));
   }
 }

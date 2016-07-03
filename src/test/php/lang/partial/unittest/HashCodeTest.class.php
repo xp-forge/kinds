@@ -32,16 +32,15 @@ class HashCodeTest extends PartialTest {
     $this->fixture= $this->declareType([], '{
       use <T>\with\lang\partial\HashCode;
 
-      private $id, $name, $skills;
-      public function __construct($id, $name, $skills= []) {
+      private $id, $name;
+      public function __construct($id, $name) {
         $this->id= $id;
         $this->name= $name;
-        $this->skills= $skills;
       }
     }');
     $this->assertEquals(
-      '01f3f5d557a54b5d6122addbb06b46e1',
-      $this->fixture->newInstance(6100, 'Test', ['Dev'])->hashCode()
+      '4f5ae804f7b67d31270c2dc86582aac4',
+      $this->fixture->newInstance(6100, 'Test')->hashCode()
     );
   }
 }

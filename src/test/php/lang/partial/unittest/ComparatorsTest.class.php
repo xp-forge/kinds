@@ -7,17 +7,17 @@ class ComparatorsTest extends \unittest\TestCase {
 
   #[@test]
   public function byFirstName() {
-    $this->assertInstanceOf(Comparator::class, Person::byFirstName());
+    $this->assertInstanceOf('util.Comparator', Person::byFirstName());
   }
 
   #[@test]
   public function byLastName() {
-    $this->assertInstanceOf(Comparator::class, Person::byLastName());
+    $this->assertInstanceOf('util.Comparator', Person::byLastName());
   }
 
   #[@test]
   public function byBirthDate() {
-    $this->assertInstanceOf(Comparator::class, Person::byBirthDate());
+    $this->assertInstanceOf('util.Comparator', Person::byBirthDate());
   }
 
   #[@test, @values([['Same', 'Same'], ['Same', 'Different'], ['Different', 'Same']])]

@@ -80,7 +80,7 @@ class ListOfTest extends \unittest\TestCase {
   public function is_not_equal_to_list_with_different_elements() {
     $this->assertNotEquals(
       new Walls($this->wall),
-      new Walls(newinstance(TestCase::class, ['test'], ['test' => function() { }])
+      new Walls(newinstance('unittest.TestCase', ['test'], ['test' => function() { }])
     ));
   }
 }
