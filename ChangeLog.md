@@ -3,6 +3,10 @@ Partials ChangeLog
 
 ## ?.?.? / ????-??-??
 
+## 1.1.2 / 2016-07-24
+
+* Made compatible with `xp-forge/mirrors` 4.0-SERIES - @thekid
+
 ## 1.1.1 / 2016-06-29
 
 * Fixed errors when using instance creation with keywords in PHP 5.x

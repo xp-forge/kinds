@@ -7,7 +7,7 @@
   "keywords": ["module", "xp"],
   "require" : {
     "xp-framework/core": "^7.0 | ^6.5",
-    "xp-forge/mirrors": "^3.0",
+    "xp-forge/mirrors": "^4.0 | ^3.0",
     "php" : ">=5.5.0"
   },
   "require-dev" : {
