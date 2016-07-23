@@ -15,10 +15,10 @@ trait ListOf {
   /**
    * Constructor
    *
-   * @param  var* $elements
+   * @param  var... $elements
    */
-  public function __construct() {
-    $this->backing= func_get_args();
+  public function __construct(... $elements) {
+    $this->backing= $elements;
   }
 
   /**
