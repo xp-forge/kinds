@@ -3,6 +3,12 @@ Partials ChangeLog
 
 ## ?.?.? / ????-??-??
 
+## 2.0.0 / 2016-07-24
+
+* **Heads up: Dropped PHP 5.5 support!** Minimum PHP version required
+  is now PHP 5.6. See PR #17
+  (@thekid)
+
 ## 1.1.2 / 2016-07-24
 
 * Made compatible with `xp-forge/mirrors` 4.0-SERIES - @thekid
