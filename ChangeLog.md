@@ -3,6 +3,10 @@ Partials ChangeLog
 
 ## ?.?.? / ????-??-??
 
+## 2.1.0 / 2016-08-28
+
+* Added forward compatibility with XP 8.0.0 - @thekid
+
 ## 2.0.0 / 2016-07-24
 
 * **Heads up: Dropped PHP 5.5 support!** Minimum PHP version required
