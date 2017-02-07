@@ -30,12 +30,14 @@ module xp-forge/partial {
 
             if ($transform->kind()->isTrait()) {
               class_alias(strtr($transform->name(), '.', '\\'), $class);
-            } else {
+            } else if ($mirror->present()) {
               $p= strrpos($class, '\\');
               $body= $transform->constructor()->newInstance()->transform($mirror);
               $type= strtr($class, '\\', '.');
               $loader->setClassBytes($type, 'namespace '.substr($class, 0, $p).'; trait '.substr($class, $p + 1).' { '.$body.' }');
               $loader->loadClass0($type);
+            } else {
+              throw new ClassFormatException('Prefix "'.$mirror->name().'" does not refer to enclosing class');
             }
           } finally {
             \xp::$cll= $cl;
