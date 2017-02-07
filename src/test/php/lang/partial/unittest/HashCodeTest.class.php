@@ -22,7 +22,7 @@ class HashCodeTest extends PartialTest {
       }
     }');
     $this->assertEquals(
-      '584a08b7760143f05f1323e14f05bf41',
+      '13ad597c2d2166d7300c775014a6c15a',
       $this->fixture->newInstance('Test')->hashCode()
     );
   }
@@ -40,7 +40,7 @@ class HashCodeTest extends PartialTest {
       }
     }');
     $this->assertEquals(
-      '01f3f5d557a54b5d6122addbb06b46e1',
+      'b07c14abc96e863a7ba4d0be785cb583',
       $this->fixture->newInstance(6100, 'Test', ['Dev'])->hashCode()
     );
   }

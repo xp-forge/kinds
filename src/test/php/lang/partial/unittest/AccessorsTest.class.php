@@ -33,6 +33,26 @@ class AccessorsTest extends PartialTest {
     $this->assertDeclaresMethods(['public var name()', 'public var handle()', 'public var id()'], $fixture);
   }
 
+  #[@test, @ignore, @values([
+  #  ['null', null],
+  #  ['false', false],
+  #  ['true', true],
+  #  ['1', 1],
+  #  ['0', 0],
+  #  ['-1', -1],
+  #  ['"Test"', 'Test'],
+  #  ['[]', []],
+  #  ['[1, 2, 3]', [1, 2, 3]],
+  #])]
+  public function initial_value($literal, $result) {
+    $fixture= $this->declareType([], sprintf('{
+      use <T>\with\lang\partial\Accessors;
+
+      private $value= %s;
+    }', $literal));
+    $this->assertEquals($result, $fixture->newInstance()->value());
+  }
+
   #[@test]
   public function keywords() {
     $fixture= $this->declareType([], '{

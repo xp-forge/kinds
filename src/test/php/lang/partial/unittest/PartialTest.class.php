@@ -3,6 +3,7 @@
 use lang\ClassLoader;
 
 abstract class PartialTest extends \unittest\TestCase {
+  private static $unique= 0;
 
   /**
    * Creates a type from a given type body
@@ -13,7 +14,7 @@ abstract class PartialTest extends \unittest\TestCase {
    */
   protected function declareType($interfaces, $body) {
     $declaration= ['kind' => 'class', 'extends' => ['\\lang\\Object'], 'implements' => $interfaces, 'use' => []];
-    $unique= typeof($this)->getSimpleName().'_'.$this->name;
+    $unique= typeof($this)->getSimpleName().'_'.(self::$unique++);
     return ClassLoader::defineType($unique, $declaration, strtr($body, ['<T>' => $unique]));
   }
 
