@@ -3,6 +3,8 @@ Partials ChangeLog
 
 ## ?.?.? / ????-??-??
 
+## 2.1.1 / 2017-02-07
+
 * Fixed issue #14: Weird fatals - @thekid
 
 ## 2.1.0 / 2016-08-28
