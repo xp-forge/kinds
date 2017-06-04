@@ -24,9 +24,8 @@ Walk-through
 ------------
 The `Box` trait creates a value object wrapping around exactly one member. It creates a one-arg constructor, and a `value()` for retrieving the value, and includes appropriate `hashCode()`, `compareTo()` and `toString()` implementations. 
 
-<table><tr><td width="360" valign="top">
 Writing this:
-<pre lang="php"><code>
+```php
 namespace example;
 
 use lang\partial\Box;
@@ -38,10 +37,9 @@ class Name implements \lang\Value {
     return '~' === $this->value{0};
   }
 }
-</code></pre>
-</td><td width="360" valign="top">
+```
 ...is equivalent to:
-<pre lang="php"><code>
+```php
 namespace example;
 
 class Name implements \lang\Value {
@@ -65,14 +63,13 @@ class Name implements \lang\Value {
 
   public function toString() { /* ... */ }
 }
-</code></pre>
-</td></tr></table>
-
+```
 The parametrized `Accessors` trait creates accessors for all instance members. 
 
-<table><tr><td width="360" valign="top">
+* * * 
+
 Writing this:
-<pre lang="php"><code>
+```php
 namespace example;
 
 use lang\partial\Accessors;
@@ -92,10 +89,9 @@ class Wall {
     $this->posts= $posts;
   }
 }
-</code></pre>
-</td><td width="360" valign="top">
+```
 ...is equivalent to:
-<pre lang="php"><code>
+```php
 namespace example;
 
 class Wall {
@@ -123,14 +119,14 @@ class Wall {
     return $this->posts;
   }
 }
-</code></pre>
-</td></tr></table>
+```
 
 If the constructor consists solely of assignments, you can include the `Constructor` trait and remove it. The parameters will be declared in the order the fields are declared: top to bottom, left to right in the source code.
 
-<table><tr><td width="360" valign="top">
+* * * 
+
 Writing this:
-<pre lang="php"><code>
+```php
 namespace example;
 
 use lang\partial\Constructor;
@@ -140,10 +136,9 @@ class Author {
 
   private $handle, $name;
 }
-</code></pre>
-</td><td width="360" valign="top">
+```
 ...is equivalent to:
-<pre lang="php"><code>
+```php
 namespace example;
 
 class Author {
@@ -154,16 +149,16 @@ class Author {
     $this->name= $name;
   }
 }
-</code></pre>
-</td></tr></table>
+```
 
 To combine all these, you can use the `Value` trait, which a) creates a constructor with all members as parameters, b) accessors for reading these, and c) implements the `hashCode()`, `compareTo()` and `toString()` methods.
 
 The `ListOf` trait creates a list of elements which can be accessed by their offset, iterated by `foreach`, and offers `equals()` and `toString()` default implementations.
 
-<table><tr><td width="360" valign="top">
+* * * 
+
 Writing this:
-<pre lang="php"><code>
+```php
 namespace example;
 
 use lang\partial\ListOf;
@@ -171,10 +166,9 @@ use lang\partial\ListOf;
 class Posts implements \lang\Value, \IteratorAggregate {
   use Posts\is\ListOf;
 }
-</code></pre>
-</td><td width="360" valign="top">
+```
 ...is equivalent to:
-<pre lang="php"><code>
+```php
 namespace example;
 
 class Posts implements \lang\Value, \IteratorAggregate {
@@ -220,8 +214,7 @@ class Posts implements \lang\Value, \IteratorAggregate {
     // omitted for brevity
   }
 }
-</code></pre>
-</td></tr></table>
+```
 
 The `Builder` trait will add a static `with()` method to your class, generating a fluent interface to create instances. This is especially useful in situation where there are a lot of constructor parameters.
 
