@@ -87,12 +87,13 @@ trait ListOf {
     return $value instanceof self ? Objects::compare($this->backing, $value->backing) : 1;
   }
 
-  /**
-   * Creates a string representation
-   *
-   * @return string
-   */
+  /** @return string */
   public function toString() {
     return nameof($this).'@'.Objects::stringOf($this->backing);
+  }
+
+  /** @return string */
+  public function hashCode() {
+    return '['.Objects::hashOf($this->backing);
   }
 }

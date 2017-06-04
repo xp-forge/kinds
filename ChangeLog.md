@@ -3,6 +3,12 @@ Partials ChangeLog
 
 ## ?.?.? / ????-??-??
 
+## 3.0.1 / 2017-06-04
+
+* Fixed `lang.partial.ListOf` to also declare `hashCode()` so that
+  classes using this trait will be able to implement `lang.Value` 
+  (@thekid)
+
 ## 3.0.0 / 2017-06-04
 
 * Added forward compatibility with XP 9.0.0 - @thekid

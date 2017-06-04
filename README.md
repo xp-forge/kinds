@@ -213,6 +213,10 @@ class Posts implements \lang\Value, \IteratorAggregate {
   public function toString() {
     // omitted for brevity
   }
+
+  public function hashCode() {
+    // omitted for brevity
+  }
 }
 ```
 
