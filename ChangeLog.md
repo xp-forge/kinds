@@ -3,6 +3,10 @@ Partials ChangeLog
 
 ## ?.?.? / ????-??-??
 
+## 3.0.0 / 2017-06-04
+
+* Added forward compatibility with XP 9.0.0 - @thekid
+
 ## 2.1.1 / 2017-02-07
 
 * Fixed issue #14: Weird fatals - @thekid
