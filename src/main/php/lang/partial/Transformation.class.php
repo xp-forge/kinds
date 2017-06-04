@@ -5,7 +5,7 @@ use lang\mirrors\Member;
 /**
  * Compile-time transformation.
  */
-abstract class Transformation extends \lang\Object {
+abstract class Transformation {
 
   /**
    * Creates trait body

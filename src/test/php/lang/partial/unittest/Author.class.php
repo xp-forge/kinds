@@ -1,17 +1,13 @@
 <?php namespace lang\partial\unittest;
 
 use lang\partial\Accessors;
-use lang\partial\ToString;
-use lang\partial\Equals;
 use lang\partial\Builder;
 
 /**
  * Used by InstanceCreationTest
  */
-class Author extends \lang\Object {
+class Author {
   use Author\including\Accessors;
-  use Author\including\ToString;
-  use Author\including\Equals;
   use Author\including\Builder;
 
   private $name;

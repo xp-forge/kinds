@@ -1,13 +1,12 @@
 <?php namespace lang\partial\unittest;
 
-use util\Objects;
 use lang\partial\Accessors;
 use lang\partial\Builder;
 
 /**
  * Used by InstanceCreationTest
  */
-class Event extends \lang\Object {
+class Event {
   use Event\including\Accessors;
   use Event\including\Builder;
 

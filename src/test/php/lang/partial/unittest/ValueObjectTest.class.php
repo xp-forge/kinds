@@ -42,9 +42,10 @@ class ValueObjectTest extends \unittest\TestCase {
 
   #[@test]
   public function string_of() {
+    $date= Date::now();
     $this->assertEquals(
-      "lang.partial.unittest.Wall@[\n  name => \"A\"\n  type => \"open\"\n  posts => [\n  ]\n]",
-      (new Wall('A', 'open', []))->toString()
+      "lang.partial.unittest.Comment@[\n  author => \"Tester\"\n  text => \"Test\"\n  date => ".$date->toString()."\n]",
+      (new Comment('Tester', 'Test', $date))->toString()
     );
   }
 

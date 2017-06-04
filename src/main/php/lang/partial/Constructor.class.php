@@ -6,7 +6,7 @@
  * ```php
  * use lang\partial\Constructor;
  *
- * class Example extends \lang\Object {
+ * class Example implements \lang\Value{
  *   use Example\including\Constructor;
  *
  *   private $firstName, $lastName;

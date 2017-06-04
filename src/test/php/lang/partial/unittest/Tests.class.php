@@ -5,7 +5,7 @@ use lang\partial\ListIndexedBy;
 /**
  * Used as fixture in the "ListIndexedByTest" class
  */
-class Tests extends \lang\Object implements \IteratorAggregate {
+class Tests implements \IteratorAggregate {
   use Tests\is\ListIndexedBy;
 
   /**

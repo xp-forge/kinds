@@ -7,7 +7,7 @@
  * ```php
  * use lang\partial\Builder;
  *
- * class Example extends \lang\Object {
+ * class Example {
  *   use Example\including\Builder;
  *   private $name, $id;
  *
