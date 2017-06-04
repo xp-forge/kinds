@@ -2,12 +2,14 @@
 
 use util\Date;
 use lang\partial\Accessors;
+use lang\partial\ToString;
 
 /**
  * Used as fixture in the "ValueObjectTest" class
  */
 class Comment {
   use Comment\including\Accessors;
+  use Comment\including\ToString;
 
   private $author, $text, $date;
 
