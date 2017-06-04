@@ -31,7 +31,7 @@ namespace example;
 
 use lang\partial\Box;
 
-class Name extends \lang\Object {
+class Name implements \lang\Value {
   use Name\is\Box;
 
   public function personal() {
@@ -44,7 +44,7 @@ class Name extends \lang\Object {
 <pre lang="php">
 namespace example;
 
-class Name extends \lang\Object {
+class Name implements \lang\Value {
   private $value;
 
   public function __construct($value) {
@@ -77,7 +77,7 @@ namespace example;
 
 use lang\partial\Accessors;
 
-class Wall extends \lang\Object {
+class Wall {
   use Wall\with\Accessors;
 
   private $name, $type, $posts;
@@ -98,7 +98,7 @@ class Wall extends \lang\Object {
 <pre lang="php">
 namespace example;
 
-class Wall extends \lang\Object {
+class Wall {
   private $name, $type, $posts;
 
   public function __construct(
@@ -135,7 +135,7 @@ namespace example;
 
 use lang\partial\Constructor;
 
-class Author extends \lang\Object {
+class Author {
   use Author\with\Constructor;
 
   private $handle, $name;
@@ -146,7 +146,7 @@ class Author extends \lang\Object {
 <pre lang="php">
 namespace example;
 
-class Author extends \lang\Object {
+class Author {
   private $handle, $name;
 
   public function __construct($handle, $name) {
@@ -168,8 +168,7 @@ namespace example;
 
 use lang\partial\ListOf;
 
-class Posts extends \lang\Object
-  implements \IteratorAggregate {
+class Posts   implements \IteratorAggregate {
   use Posts\is\ListOf;
 }
 </pre>
@@ -178,8 +177,7 @@ class Posts extends \lang\Object
 <pre lang="php">
 namespace example;
 
-class Posts extends \lang\Object
-  implements \IteratorAggregate {
+class Posts implements \IteratorAggregate {
   private $backing;
 
   public function __construct(...$elements) {
@@ -236,7 +234,7 @@ use lang\partial\Accessors;
 use lang\partial\Builder;
 use lang\partial\Comparators;
 
-class Post extends \lang\Object {
+class Post {
   use Wall\with\Accessors;
   use Wall\with\Builder;
   use Wall\with\Comparators;
@@ -258,7 +256,7 @@ namespace example;
 
 use lang\partial\ListIndexedBy;
 
-class Walls extends \lang\Object implements \IteratorAggregate {
+class Walls implements \IteratorAggregate {
   use Walls\is\ListIndexedBy;
 
   protected function index($wall) { return $wall->name()->value(); }
