@@ -5,7 +5,7 @@ use lang\partial\Box;
 /**
  * Used as fixture in the "BoxTest" and "CompareToTest" classes
  */
-class Named extends \lang\Object implements \lang\Value {
+class Named implements \lang\Value {
   use Named\is\Box { value as name; }
 
   /** @return bool */

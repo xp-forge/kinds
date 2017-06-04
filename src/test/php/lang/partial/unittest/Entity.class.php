@@ -3,5 +3,5 @@
 /**
  * Used by InstanceCreationTest
  */
-abstract class Entity extends \lang\Object {
+abstract class Entity implements \lang\Value {
 }

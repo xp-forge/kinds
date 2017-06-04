@@ -1,19 +1,18 @@
 <?php namespace lang\partial\unittest;
 
+use util\Objects;
 use lang\partial\Accessors;
-use lang\partial\ToString;
-use lang\partial\Equals;
+use lang\partial\Value;
 use lang\partial\Builder;
 
 /**
  * Used by InstanceCreationTest
  */
-class Isbn extends \lang\Object {
+class Isbn implements \lang\Value {
   const EAN13 = 13;
 
+  use Isbn\is\Value;
   use Isbn\including\Accessors;
-  use Isbn\including\ToString;
-  use Isbn\including\Equals;
   use Isbn\including\Builder;
 
   private $number, $type;
@@ -36,12 +35,15 @@ class Isbn extends \lang\Object {
   public function type() { return $this->type; }
 
   /**
-   * Returns whether a given value equals this instance
+   * Overwritten comparison method
    *
    * @param  var $value
-   * @return bool
+   * @return int
    */
-  public function equals($value) {
-    return $value instanceof self && $this->number === $value->number && $this->type === $value->type;
+  public function compareTo($value) {
+    return $value instanceof self
+      ? Objects::compare([$this->number, $this->type], [$value->number, $value->type])
+      : 1
+    ;
   }
 }

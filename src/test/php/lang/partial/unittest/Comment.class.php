@@ -2,16 +2,12 @@
 
 use util\Date;
 use lang\partial\Accessors;
-use lang\partial\ToString;
-use lang\partial\Equals;
 
 /**
  * Used as fixture in the "ValueObjectTest" class
  */
-class Comment extends \lang\Object {
+class Comment {
   use Comment\including\Accessors;
-  use Comment\including\ToString;
-  use Comment\including\Equals;
 
   private $author, $text, $date;
 

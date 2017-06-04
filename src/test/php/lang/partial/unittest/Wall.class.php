@@ -2,15 +2,13 @@
 
 use lang\partial\Accessors;
 use lang\partial\ToString;
-use lang\partial\Equals;
 
 /**
  * Used as fixture in the "AccessorsTest" class
  */
-class Wall extends \lang\Object {
-  use Wall\including\Accessors;
+class Wall {
   use Wall\including\ToString;
-  use Wall\including\Equals;
+  use Wall\including\Accessors;
 
   /** @type string */
   private $name;

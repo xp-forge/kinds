@@ -2,7 +2,7 @@
 
 use util\Comparator;
 
-class Comparison extends \lang\Object implements Comparator {
+class Comparison implements Comparator {
   private $function;
 
   /**

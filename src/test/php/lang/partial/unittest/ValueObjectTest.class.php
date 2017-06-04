@@ -43,7 +43,7 @@ class ValueObjectTest extends \unittest\TestCase {
   #[@test]
   public function string_of() {
     $this->assertEquals(
-      "lang.partial.unittest.Wall@[\n  name => \"A\"\n  type => \"open\"\n  posts => [\n  ]\n]",
+      "lang.partial.unittest.Wall@[\n  name => \"A\"\n  type => \"open\"\n  posts => []\n]",
       (new Wall('A', 'open', []))->toString()
     );
   }
