@@ -78,13 +78,13 @@ trait ListOf {
   }
 
   /**
-   * Returns whether a given value is equal to this list
+   * Compares this list to a given value
    *
-   * @param  var $cmp
-   * @return bool
+   * @param  var $value
+   * @return int
    */
-  public function equals($cmp) {
-    return $cmp instanceof self && Objects::equal($this->backing, $cmp->backing);
+  public function compareTo($value) {
+    return $value instanceof self ? Objects::compare($this->backing, $value->backing) : 1;
   }
 
   /**

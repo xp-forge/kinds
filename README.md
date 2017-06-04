@@ -168,7 +168,7 @@ namespace example;
 
 use lang\partial\ListOf;
 
-class Posts   implements \IteratorAggregate {
+class Posts implements \lang\Value, \IteratorAggregate {
   use Posts\is\ListOf;
 }
 </pre>
@@ -177,7 +177,7 @@ class Posts   implements \IteratorAggregate {
 <pre lang="php">
 namespace example;
 
-class Posts implements \IteratorAggregate {
+class Posts implements \lang\Value, \IteratorAggregate {
   private $backing;
 
   public function __construct(...$elements) {
@@ -212,7 +212,7 @@ class Posts implements \IteratorAggregate {
     }
   }
 
-  public function equals($cmp) {
+  public function compareTo($value) {
     // omitted for brevity
   }
 
