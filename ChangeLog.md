@@ -3,6 +3,10 @@ Partials ChangeLog
 
 ## ?.?.? / ????-??-??
 
+## 3.1.0 / 2018-03-31
+
+* Ensured PHP 7.2 compatibility - @thekid
+
 ## 3.0.1 / 2017-06-04
 
 * Fixed `lang.partial.ListOf` to also declare `hashCode()` so that

@@ -15,7 +15,7 @@ use util\Objects;
  * @test  xp://lang.partial.unittest.BoxTest
  */
 trait Box {
-  private $value;
+  protected $value;
 
   /**
    * Creates a new reference to a given value

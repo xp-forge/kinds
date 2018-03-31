@@ -42,4 +42,13 @@ class BoxTest extends \unittest\TestCase {
   public function string_of() {
     $this->assertEquals('lang.partial.unittest.Named("A")', (new Named('A'))->toString());
   }
+
+  #[@test]
+  public function value_can_be_accessed() {
+    $named= newinstance(Named::class, ['A'], [
+      'rename' => function($value) { $this->value= $value; }
+    ]);
+    $named->rename('B');
+    $this->assertEquals('B', $named->value());
+  }
 }

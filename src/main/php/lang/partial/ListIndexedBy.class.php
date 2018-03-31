@@ -11,7 +11,7 @@ use util\Objects;
  * @test  xp://lang.partial.unittest.ListIndexedByTest
  */
 trait ListIndexedBy {
-  private $indexed= [];
+  protected $indexed= [];
 
   /**
    * Constructor

@@ -4,7 +4,9 @@ use unittest\TestCase;
 use lang\ElementNotFoundException;
 
 class ListOfTest extends \unittest\TestCase {
+  private $wall;
 
+  /** @return void */
   public function setUp() {
     $this->wall= new Wall('Test', 'open', []);
   }
@@ -82,5 +84,13 @@ class ListOfTest extends \unittest\TestCase {
       new Walls($this->wall),
       new Walls(newinstance(TestCase::class, ['test'], ['test' => function() { }])
     ));
+  }
+
+  #[@test]
+  public function backing_can_be_accessed() {
+    $walls= newinstance(Walls::class, [[$this->wall]], [
+      '__construct' => function($backing) { $this->backing= $backing; }
+    ]);
+    $this->assertEquals($this->wall, $walls->first());
   }
 }

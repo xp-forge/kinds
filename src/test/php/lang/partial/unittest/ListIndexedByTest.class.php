@@ -84,4 +84,12 @@ class ListIndexedByTest extends TestCase {
       new Tests(newinstance(TestCase::class, ['test'], ['test' => function() { }])
     ));
   }
+
+  #[@test]
+  public function indexed_can_be_accessed() {
+    $tests= newinstance(Tests::class, [['this' => $this]], [
+      '__construct' => function($indexed) { $this->indexed= $indexed; }
+    ]);
+    $this->assertEquals($this, $tests->named('this'));
+  }
 }

@@ -10,7 +10,7 @@ use util\Objects;
  * @test  xp://lang.partial.unittest.ListOfTest
  */
 trait ListOf {
-  private $backing;
+  protected $backing;
 
   /**
    * Constructor
