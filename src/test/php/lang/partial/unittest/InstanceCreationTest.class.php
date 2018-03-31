@@ -50,7 +50,7 @@ class InstanceCreationTest extends \unittest\TestCase {
   #  ['interfaces', 'lang.Generic'],
   #  ['enums', 'lang.partial.unittest.Coin'],
   #  ['abstract classes', 'lang.partial.unittest.Entity'],
-  #  ['without constructor', 'lang.Object']
+  #  ['without constructor', 'lang.partial.unittest.WithoutConstructor']
   #])]
   public function of_does_not_accept($reason, $class) {
     InstanceCreation::of($class);
@@ -60,7 +60,7 @@ class InstanceCreationTest extends \unittest\TestCase {
   #  ['interfaces', 'lang.Generic'],
   #  ['enums', 'lang.partial.unittest.Coin'],
   #  ['abstract classes', 'lang.partial.unittest.Entity'],
-  #  ['without constructor', 'lang.Object']
+  #  ['without constructor', 'lang.partial.unittest.WithoutConstructor']
   #])]
   public function typeOf_does_not_accept($reason, $class) {
     InstanceCreation::typeOf($class);

@@ -13,7 +13,7 @@ abstract class PartialTest extends \unittest\TestCase {
    * @return lang.XPClass
    */
   protected function declareType($interfaces, $body) {
-    $declaration= ['kind' => 'class', 'extends' => ['\\lang\\Object'], 'implements' => $interfaces, 'use' => []];
+    $declaration= ['kind' => 'class', 'extends' => [], 'implements' => $interfaces, 'use' => []];
     $unique= typeof($this)->getSimpleName().'_'.(self::$unique++);
     return ClassLoader::defineType($unique, $declaration, strtr($body, ['<T>' => $unique]));
   }

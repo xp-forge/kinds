@@ -6,6 +6,8 @@ class ToStringTest extends PartialTest {
   public function without_members() {
     $fixture= $this->declareType([], '{
       use <T>\with\lang\partial\ToString;
+
+      public function hashCode() { return "Test"; }
     }');
     $instance= $fixture->newInstance();
     $this->assertEquals(
