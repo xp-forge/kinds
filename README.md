@@ -29,33 +29,28 @@ Writing this:
 namespace example;
 
 use lang\partial\Box;
+use lang\Value;
 
-class Name implements \lang\Value {
+class Name implements Value {
   use Name\is\Box;
 
-  public function personal() {
-    return '~' === $this->value{0};
-  }
+  public function personal() { return '~' === $this->value{0}; }
 }
 ```
 ...is equivalent to:
 ```php
 namespace example;
 
-class Name implements \lang\Value {
-  private $value;
+use lang\Value;
 
-  public function __construct($value) {
-    $this->value= $value;
-  }
+class Name implements Value {
+  protected $value;
 
-  public function value() {
-    return $this->value;
-  }
+  public function __construct($value) { $this->value= $value; }
 
-  public function personal() {
-    return '~' === $this->value{0};
-  }
+  public function value() { return $this->value; }
+
+  public function personal() { return '~' === $this->value{0}; }
 
   public function hashCode() { /* ... */ }
 
@@ -107,17 +102,11 @@ class Wall {
     $this->posts= $posts;
   }
 
-  public function name() {
-    return $this->name;
-  }
+  public function name() { return $this->name; }
 
-  public function type() {
-    return $this->type;
-  }
+  public function type() { return $this->type; }
 
-  public function posts() {
-    return $this->posts;
-  }
+  public function posts() { return $this->posts; }
 }
 ```
 
@@ -178,13 +167,9 @@ class Posts implements \lang\Value, \IteratorAggregate {
     $this->backing= $elements;
   }
 
-  public function present() {
-    return !empty($this->backing);
-  }
+  public function present() { return !empty($this->backing); }
 
-  public function size() {
-    return sizeof($this->backing);
-  }
+  public function size() { return sizeof($this->backing); }
 
   public function at($offset) {
     if (isset($this->backing[$offset])) {
@@ -206,17 +191,11 @@ class Posts implements \lang\Value, \IteratorAggregate {
     }
   }
 
-  public function compareTo($value) {
-    // omitted for brevity
-  }
+  public function compareTo($value) { /* ... */ }
 
-  public function toString() {
-    // omitted for brevity
-  }
+  public function toString() { /* ... */ }
 
-  public function hashCode() {
-    // omitted for brevity
-  }
+  public function hashCode() { /* ... */ }
 }
 ```
 
