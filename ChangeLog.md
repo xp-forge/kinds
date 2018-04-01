@@ -5,6 +5,9 @@ Partials ChangeLog
 
 ## 3.1.0 / 2018-03-31
 
+* Made `Box::$value`, `ListOf::$backing` and `ListIndexedBy::$indexed`
+  members accessible from subclasses by declaring them protected
+  (@thekid)
 * Ensured PHP 7.2 compatibility - @thekid
 
 ## 3.0.1 / 2017-06-04
