@@ -1,5 +1,7 @@
 <?php namespace lang\partial\unittest;
 
+use util\Objects;
+
 class HashCodeTest extends PartialTest {
 
   #[@test]
@@ -13,7 +15,7 @@ class HashCodeTest extends PartialTest {
 
   #[@test]
   public function with_one_member() {
-    $this->fixture= $this->declareType([], '{
+    $fixture= $this->declareType([], '{
       use <T>\with\lang\partial\HashCode;
 
       private $name;
@@ -22,14 +24,14 @@ class HashCodeTest extends PartialTest {
       }
     }');
     $this->assertEquals(
-      '13ad597c2d2166d7300c775014a6c15a',
-      $this->fixture->newInstance('Test')->hashCode()
+      md5($fixture->getName().Objects::hashOf('Test')),
+      $fixture->newInstance('Test')->hashCode()
     );
   }
 
   #[@test]
   public function with_multiple_members() {
-    $this->fixture= $this->declareType([], '{
+    $fixture= $this->declareType([], '{
       use <T>\with\lang\partial\HashCode;
 
       private $id, $name, $skills;
@@ -40,8 +42,8 @@ class HashCodeTest extends PartialTest {
       }
     }');
     $this->assertEquals(
-      'b07c14abc96e863a7ba4d0be785cb583',
-      $this->fixture->newInstance(6100, 'Test', ['Dev'])->hashCode()
+      md5($fixture->getName().Objects::hashOf(6100).Objects::hashOf('Test').Objects::hashOf(['Dev'])),
+      $fixture->newInstance(6100, 'Test', ['Dev'])->hashCode()
     );
   }
 }
