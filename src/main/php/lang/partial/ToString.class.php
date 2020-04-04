@@ -2,7 +2,7 @@
 
 /**
  * The compile-time `ToString` transformation generates a toString()
- * method based on the members using `xp::stringOf()`.
+ * method based on the members using `util.Objects::stringOf()`.
  *
  * @see   xp://util.Objects
  * @test  xp://lang.partial.unittest.ToStringTest
@@ -19,13 +19,13 @@ class ToString extends Transformation {
     $stringOf= '';
     foreach ($this->instanceFields($mirror) as $i => $field) {
       $n= $field->name();
-      $stringOf.= '."  '.$n.' => ".\xp::stringOf($this->'.$n.', "  ")."\n"';
+      $stringOf.= '."  '.$n.' => ".\util\Objects::stringOf($this->'.$n.', "  ")."\n"';
     }
 
     if ('' === $stringOf) {
       $implementation= 'return nameof($this)."@(#".$this->hashCode().")";';
     } else if (0 === $i) {
-      $implementation= 'return nameof($this)."@(".\xp::stringOf($this->'.$n.').")";';
+      $implementation= 'return nameof($this)."@(".\util\Objects::stringOf($this->'.$n.').")";';
     } else {
       $implementation= 'return nameof($this)."@[\n"'.$stringOf.'."]";';
     }

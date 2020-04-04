@@ -3,6 +3,10 @@ Partials ChangeLog
 
 ## ?.?.? / ????-??-??
 
+## 
+
+* Added compatibility with XP 10.0.0 - @thekid
+
 ## 3.1.0 / 2018-04-01
 
 * Made `Box::$value`, `ListOf::$backing` and `ListIndexedBy::$indexed`
