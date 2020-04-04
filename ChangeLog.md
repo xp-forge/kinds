@@ -3,7 +3,7 @@ Partials ChangeLog
 
 ## ?.?.? / ????-??-??
 
-## 
+## 3.1.1 / 2020-04-04
 
 * Added compatibility with XP 10.0.0 - @thekid
 
