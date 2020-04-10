@@ -1,11 +1,6 @@
 <?php namespace lang\partial\unittest;
 
-use lang\partial\Accessors;
-use lang\partial\ToString;
-use lang\partial\HashCode;
-use lang\partial\Constructor;
-use lang\partial\CompareTo;
-use lang\partial\Comparators;
+use lang\partial\{Accessors, Comparators, CompareTo, Constructor, HashCode, ToString};
 
 /**
  * Used by CompareToTest

@@ -1,7 +1,6 @@
 <?php namespace lang\partial\unittest;
 
-use util\Comparator;
-use util\Date;
+use util\{Comparator, Date};
 
 class ComparatorsTest extends \unittest\TestCase {
 

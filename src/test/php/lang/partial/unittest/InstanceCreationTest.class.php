@@ -1,8 +1,7 @@
 <?php namespace lang\partial\unittest;
 
+use lang\{IllegalArgumentException, XPClass};
 use lang\partial\InstanceCreation;
-use lang\IllegalArgumentException;
-use lang\XPClass;
 
 class InstanceCreationTest extends \unittest\TestCase {
 

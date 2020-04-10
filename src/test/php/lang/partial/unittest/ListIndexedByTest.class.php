@@ -1,7 +1,7 @@
 <?php namespace lang\partial\unittest;
 
-use unittest\TestCase;
 use lang\ElementNotFoundException;
+use unittest\TestCase;
 
 class ListIndexedByTest extends TestCase {
 

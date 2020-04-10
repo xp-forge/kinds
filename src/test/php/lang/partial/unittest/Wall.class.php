@@ -1,7 +1,6 @@
 <?php namespace lang\partial\unittest;
 
-use lang\partial\Accessors;
-use lang\partial\ToString;
+use lang\partial\{Accessors, ToString};
 
 /**
  * Used as fixture in the "AccessorsTest" class

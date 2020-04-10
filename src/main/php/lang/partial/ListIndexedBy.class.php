@@ -1,7 +1,6 @@
 <?php namespace lang\partial;
 
-use lang\IllegalStateException;
-use lang\ElementNotFoundException;
+use lang\{ElementNotFoundException, IllegalStateException};
 use util\Objects;
 
 /**

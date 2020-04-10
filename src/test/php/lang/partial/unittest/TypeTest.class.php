@@ -1,12 +1,8 @@
 <?php namespace lang\partial\unittest;
 
+use lang\{ArrayType, Primitive, Type, Value, XPClass};
 use lang\mirrors\TypeMirror;
 use lang\partial\InstanceCreation;
-use lang\Value;
-use lang\Primitive;
-use lang\XPClass;
-use lang\Type;
-use lang\ArrayType;
 
 class TypeTest extends PartialTest {
   private $fixture;

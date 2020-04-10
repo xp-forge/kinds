@@ -1,7 +1,7 @@
 <?php namespace lang\partial\unittest;
 
-use lang\mirrors\TypeMirror;
 use lang\Value;
+use lang\mirrors\TypeMirror;
 
 class ValueTest extends PartialTest {
   private $fixture;

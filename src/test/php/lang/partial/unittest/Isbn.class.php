@@ -1,9 +1,7 @@
 <?php namespace lang\partial\unittest;
 
+use lang\partial\{Accessors, Builder, Value};
 use util\Objects;
-use lang\partial\Accessors;
-use lang\partial\Value;
-use lang\partial\Builder;
 
 /**
  * Used by InstanceCreationTest

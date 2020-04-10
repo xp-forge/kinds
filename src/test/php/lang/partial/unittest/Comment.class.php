@@ -1,8 +1,7 @@
 <?php namespace lang\partial\unittest;
 
+use lang\partial\{Accessors, ToString};
 use util\Date;
-use lang\partial\Accessors;
-use lang\partial\ToString;
 
 /**
  * Used as fixture in the "ValueObjectTest" class
