@@ -81,15 +81,17 @@ class ListIndexedByTest extends TestCase {
   public function is_not_equal_to_list_with_different_elements() {
     $this->assertNotEquals(
       new Tests($this),
-      new Tests(newinstance(TestCase::class, ['test'], ['test' => function() { }])
-    ));
+      new Tests(new class('test') extends TestCase {
+        public function test() { }
+      })
+    );
   }
 
   #[@test]
   public function indexed_can_be_accessed() {
-    $tests= newinstance(Tests::class, [['this' => $this]], [
-      '__construct' => function($indexed) { $this->indexed= $indexed; }
-    ]);
+    $tests= new class(['this' => $this]) extends Tests {
+      public function __construct($indexed) { $this->indexed= $indexed; }
+    };
     $this->assertEquals($this, $tests->named('this'));
   }
 }

@@ -72,25 +72,21 @@ class ListOfTest extends \unittest\TestCase {
 
   #[@test]
   public function is_not_equal_to_list_of_different_length() {
-    $this->assertNotEquals(
-      new Walls(),
-      new Walls($this->wall)
-    );
+    $this->assertNotEquals(new Walls(), new Walls($this->wall));
   }
 
   #[@test]
   public function is_not_equal_to_list_with_different_elements() {
-    $this->assertNotEquals(
-      new Walls($this->wall),
-      new Walls(newinstance(TestCase::class, ['test'], ['test' => function() { }])
-    ));
+    $this->assertNotEquals(new Walls($this->wall), new Walls(new Wall('Other', 'open', [])));
   }
 
   #[@test]
   public function backing_can_be_accessed() {
-    $walls= newinstance(Walls::class, [[$this->wall]], [
-      '__construct' => function($backing) { $this->backing= $backing; }
-    ]);
+    $walls= new class([$this->wall]) extends Walls {
+      public function __construct($backing) {
+        $this->backing= $backing;
+      }
+    };
     $this->assertEquals($this->wall, $walls->first());
   }
 }

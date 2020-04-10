@@ -45,9 +45,9 @@ class BoxTest extends \unittest\TestCase {
 
   #[@test]
   public function value_can_be_accessed() {
-    $named= newinstance(Named::class, ['A'], [
-      'rename' => function($value) { $this->value= $value; }
-    ]);
+    $named= new class('A') extends Named {
+      public function rename($value) { $this->value= $value; }
+    };
     $named->rename('B');
     $this->assertEquals('B', $named->value());
   }
