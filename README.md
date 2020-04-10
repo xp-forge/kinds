@@ -4,8 +4,7 @@ Partials: Compile-time metaprogramming
 [![Build Status on TravisCI](https://secure.travis-ci.org/xp-forge/partial.svg)](http://travis-ci.org/xp-forge/partial)
 [![XP Framework Module](https://raw.githubusercontent.com/xp-framework/web/master/static/xp-framework-badge.png)](https://github.com/xp-framework/core)
 [![BSD Licence](https://raw.githubusercontent.com/xp-framework/web/master/static/licence-bsd.png)](https://github.com/xp-framework/core/blob/master/LICENCE.md)
-[![Required PHP 5.6+](https://raw.githubusercontent.com/xp-framework/web/master/static/php-5_6plus.png)](http://php.net/)
-[![Supports PHP 7.0+](https://raw.githubusercontent.com/xp-framework/web/master/static/php-7_0plus.png)](http://php.net/)
+[![Requires PHP 7.0+](https://raw.githubusercontent.com/xp-framework/web/master/static/php-7_0plus.png)](http://php.net/)
 [![Latest Stable Version](https://poser.pugx.org/xp-forge/partial/version.png)](https://packagist.org/packages/xp-forge/partial)
 
 For situations where more logic than just "compiler-assisted copy&paste" using [PHP's traits](http://php.net/traits) is necessary, this library provides a syntax that expand dynamically based on the containing class at compile time.
