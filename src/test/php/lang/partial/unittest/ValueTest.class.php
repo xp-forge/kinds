@@ -2,6 +2,7 @@
 
 use lang\Value;
 use lang\mirrors\TypeMirror;
+use unittest\{Test, Values};
 
 class ValueTest extends PartialTest {
   private $fixture;
@@ -15,12 +16,12 @@ class ValueTest extends PartialTest {
     }');
   }
 
-  #[@test]
+  #[Test]
   public function declares_constructor() {
     $this->assertTrue((new TypeMirror($this->fixture))->constructor()->present());
   }
 
-  #[@test]
+  #[Test]
   public function constructor_parameter_order_equals_order_of_member_declaration() {
     $parameters= array_map(
       function($p) { return $p->name(); },
@@ -29,22 +30,22 @@ class ValueTest extends PartialTest {
     $this->assertEquals(['id', 'name', 'skills'], $parameters);
   }
 
-  #[@test, @values(['id', 'name', 'skills'])]
+  #[Test, Values(['id', 'name', 'skills'])]
   public function declares_accessors($named) {
     $this->assertTrue((new TypeMirror($this->fixture))->methods()->provides($named));
   }
 
-  #[@test]
+  #[Test]
   public function declares_toString() {
     $this->assertTrue((new TypeMirror($this->fixture))->methods()->provides('toString'));
   }
 
-  #[@test]
+  #[Test]
   public function declares_hashCode() {
     $this->assertTrue((new TypeMirror($this->fixture))->methods()->provides('hashCode'));
   }
 
-  #[@test]
+  #[Test]
   public function declares_compareTo() {
     $this->assertTrue((new TypeMirror($this->fixture))->methods()->provides('compareTo'));
   }

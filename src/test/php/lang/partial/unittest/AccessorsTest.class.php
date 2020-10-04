@@ -1,8 +1,10 @@
 <?php namespace lang\partial\unittest;
 
+use unittest\{Ignore, Test, Values};
+
 class AccessorsTest extends PartialTest {
 
-  #[@test, @values(['private', 'protected', 'public'])]
+  #[Test, Values(['private', 'protected', 'public'])]
   public function generates_accessor_method_for_instance_field($modifier) {
     $fixture= $this->declareType([], sprintf('{
       use <T>\with\lang\partial\Accessors;
@@ -12,7 +14,7 @@ class AccessorsTest extends PartialTest {
     $this->assertDeclaresMethods(['public var name()'], $fixture);
   }
 
-  #[@test]
+  #[Test]
   public function does_not_generate_accessors_for_static_fields() {
     $fixture= $this->declareType([], '{
       use <T>\with\lang\partial\Accessors;
@@ -22,7 +24,7 @@ class AccessorsTest extends PartialTest {
     $this->assertDeclaresMethods([], $fixture);
   }
 
-  #[@test]
+  #[Test]
   public function generates_accessor_methods_in_order_fields_are_declared() {
     $fixture= $this->declareType([], '{
       use <T>\with\lang\partial\Accessors;
@@ -33,17 +35,7 @@ class AccessorsTest extends PartialTest {
     $this->assertDeclaresMethods(['public var name()', 'public var handle()', 'public var id()'], $fixture);
   }
 
-  #[@test, @ignore, @values([
-  #  ['null', null],
-  #  ['false', false],
-  #  ['true', true],
-  #  ['1', 1],
-  #  ['0', 0],
-  #  ['-1', -1],
-  #  ['"Test"', 'Test'],
-  #  ['[]', []],
-  #  ['[1, 2, 3]', [1, 2, 3]],
-  #])]
+  #[Test, Ignore, Values([['null', null], ['false', false], ['true', true], ['1', 1], ['0', 0], ['-1', -1], ['"Test"', 'Test'], ['[]', []], ['[1, 2, 3]', [1, 2, 3]],])]
   public function initial_value($literal, $result) {
     $fixture= $this->declareType([], sprintf('{
       use <T>\with\lang\partial\Accessors;
@@ -53,7 +45,7 @@ class AccessorsTest extends PartialTest {
     $this->assertEquals($result, $fixture->newInstance()->value());
   }
 
-  #[@test]
+  #[Test]
   public function keywords() {
     $fixture= $this->declareType([], '{
       use <T>\with\lang\partial\Accessors;

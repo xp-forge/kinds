@@ -1,7 +1,7 @@
 <?php namespace lang\partial\unittest;
 
 use lang\ElementNotFoundException;
-use unittest\TestCase;
+use unittest\{Expect, Test, TestCase};
 
 class ListOfTest extends \unittest\TestCase {
   private $wall;
@@ -11,47 +11,47 @@ class ListOfTest extends \unittest\TestCase {
     $this->wall= new Wall('Test', 'open', []);
   }
 
-  #[@test]
+  #[Test]
   public function at() {
     $this->assertEquals($this->wall, (new Walls($this->wall))->at(0));
   }
 
-  #[@test, @expect(ElementNotFoundException::class)]
+  #[Test, Expect(ElementNotFoundException::class)]
   public function at_raises_exception_when_empty() {
     (new Walls())->at(0);
   }
 
-  #[@test, @expect(ElementNotFoundException::class)]
+  #[Test, Expect(ElementNotFoundException::class)]
   public function at_raises_exception_when_non_existant() {
     (new Walls($this->wall))->at(1);
   }
 
-  #[@test]
+  #[Test]
   public function first() {
     $this->assertEquals($this->wall, (new Walls($this->wall))->first());
   }
 
-  #[@test, @expect(ElementNotFoundException::class)]
+  #[Test, Expect(ElementNotFoundException::class)]
   public function first_raises_exception_when_empty() {
     (new Walls())->first();
   }
 
-  #[@test]
+  #[Test]
   public function present_if_not_empty() {
     $this->assertTrue((new Walls($this->wall))->present());
   }
 
-  #[@test]
+  #[Test]
   public function present_when_empty() {
     $this->assertFalse((new Walls())->present());
   }
 
-  #[@test]
+  #[Test]
   public function size() {
     $this->assertEquals(1, (new Walls($this->wall))->size());
   }
 
-  #[@test]
+  #[Test]
   public function can_be_iterated() {
     $this->assertEquals(
       [$this->wall],
@@ -59,28 +59,28 @@ class ListOfTest extends \unittest\TestCase {
     );
   }
 
-  #[@test]
+  #[Test]
   public function is_equal_to_itself() {
     $fixture= new Walls($this->wall);
     $this->assertEquals($fixture, $fixture);
   }
 
-  #[@test]
+  #[Test]
   public function is_equal_to_list_with_same_elements() {
     $this->assertEquals(new Walls($this->wall), new Walls($this->wall));
   }
 
-  #[@test]
+  #[Test]
   public function is_not_equal_to_list_of_different_length() {
     $this->assertNotEquals(new Walls(), new Walls($this->wall));
   }
 
-  #[@test]
+  #[Test]
   public function is_not_equal_to_list_with_different_elements() {
     $this->assertNotEquals(new Walls($this->wall), new Walls(new Wall('Other', 'open', [])));
   }
 
-  #[@test]
+  #[Test]
   public function backing_can_be_accessed() {
     $walls= new class([$this->wall]) extends Walls {
       public function __construct($backing) {

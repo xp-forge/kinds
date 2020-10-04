@@ -1,8 +1,9 @@
 <?php namespace lang\partial\unittest;
 
-use lang\{ArrayType, Primitive, Type, Value, XPClass};
 use lang\mirrors\TypeMirror;
 use lang\partial\InstanceCreation;
+use lang\{ArrayType, Primitive, Type, Value, XPClass};
+use unittest\Test;
 
 class TypeTest extends PartialTest {
   private $fixture;
@@ -25,67 +26,67 @@ class TypeTest extends PartialTest {
     }'));
   }
 
-  #[@test]
+  #[Test]
   public function primitive_accessor() {
     $this->assertEquals(Primitive::$INT, $this->fixture->methods()->named('id')->returns());
   }
 
-  #[@test]
+  #[Test]
   public function primitive_parameter() {
     $this->assertEquals(Primitive::$INT, $this->fixture->constructor()->parameters()->named('id')->type());
   }
 
-  #[@test]
+  #[Test]
   public function primitive_builder() {
     $this->assertEquals(Primitive::$INT, (new TypeMirror(InstanceCreation::typeOf($this->fixture)))->methods()->named('id')->parameters()->first()->type());
   }
 
-  #[@test]
+  #[Test]
   public function object_accessor() {
     $this->assertEquals(new XPClass(Named::class), $this->fixture->methods()->named('name')->returns());
   }
 
-  #[@test]
+  #[Test]
   public function object_parameter() {
     $this->assertEquals(new XPClass(Named::class), $this->fixture->constructor()->parameters()->named('name')->type());
   }
 
-  #[@test]
+  #[Test]
   public function object_builder() {
     $this->assertEquals(new XPClass(Named::class), (new TypeMirror(InstanceCreation::typeOf($this->fixture)))->methods()->named('name')->parameters()->first()->type());
   }
 
-  #[@test]
+  #[Test]
   public function array_accessor() {
     $this->assertEquals(new ArrayType(Primitive::$STRING), $this->fixture->methods()->named('skills')->returns());
   }
 
-  #[@test]
+  #[Test]
   public function array_parameter() {
     $this->assertEquals(new ArrayType(Primitive::$STRING), $this->fixture->constructor()->parameters()->named('skills')->type());
   }
 
-  #[@test]
+  #[Test]
   public function array_builder() {
     $this->assertEquals(new ArrayType(Primitive::$STRING), (new TypeMirror(InstanceCreation::typeOf($this->fixture)))->methods()->named('skills')->parameters()->first()->type());
   }
 
-  #[@test]
+  #[Test]
   public function builder() {
     $this->assertEquals(XPClass::forName($this->fixture->name()), (new TypeMirror(InstanceCreation::typeOf($this->fixture)))->methods()->named('create')->returns());
   }
 
-  #[@test]
+  #[Test]
   public function hashCode_type() {
     $this->assertEquals(Primitive::$STRING, $this->fixture->methods()->named('hashCode')->returns());
   }
 
-  #[@test]
+  #[Test]
   public function toString_type() {
     $this->assertEquals(Primitive::$STRING, $this->fixture->methods()->named('hashCode')->returns());
   }
 
-  #[@test]
+  #[Test]
   public function compareTo_types() {
     $compareTo= $this->fixture->methods()->named('compareTo');
     $this->assertEquals(
@@ -94,7 +95,7 @@ class TypeTest extends PartialTest {
     );
   }
 
-  #[@test]
+  #[Test]
   public function equals_types() {
     $compareTo= $this->fixture->methods()->named('equals');
     $this->assertEquals(

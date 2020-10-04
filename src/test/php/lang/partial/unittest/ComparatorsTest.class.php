@@ -1,25 +1,26 @@
 <?php namespace lang\partial\unittest;
 
+use unittest\{Test, Values};
 use util\{Comparator, Date};
 
 class ComparatorsTest extends \unittest\TestCase {
 
-  #[@test]
+  #[Test]
   public function byFirstName() {
     $this->assertInstanceOf(Comparator::class, Person::byFirstName());
   }
 
-  #[@test]
+  #[Test]
   public function byLastName() {
     $this->assertInstanceOf(Comparator::class, Person::byLastName());
   }
 
-  #[@test]
+  #[Test]
   public function byBirthDate() {
     $this->assertInstanceOf(Comparator::class, Person::byBirthDate());
   }
 
-  #[@test, @values([['Same', 'Same'], ['Same', 'Different'], ['Different', 'Same']])]
+  #[Test, Values([['Same', 'Same'], ['Same', 'Different'], ['Different', 'Same']])]
   public function compare_using_byFirstName($lastA, $lastB) {
     $this->assertEquals(-1, Person::byFirstName()->compare(
       new Person('A', $lastA, 1977),
@@ -27,7 +28,7 @@ class ComparatorsTest extends \unittest\TestCase {
     ));
   }
 
-  #[@test, @values([['Same', 'Same'], ['Same', 'Different'], ['Different', 'Same']])]
+  #[Test, Values([['Same', 'Same'], ['Same', 'Different'], ['Different', 'Same']])]
   public function compare_using_byFirstName_object($lastA, $lastB) {
     $this->assertEquals(-1, Person::byFirstName()->compare(
       new Person(new Named('A'), $lastA, 1977),
@@ -35,7 +36,7 @@ class ComparatorsTest extends \unittest\TestCase {
     ));
   }
 
-  #[@test]
+  #[Test]
   public function compare_using_byFirstName_then_byLastName() {
     $this->assertEquals(-1, Person::byFirstName()->then(Person::byLastName())->compare(
       new Person('Same', 'A', 1977),
@@ -43,7 +44,7 @@ class ComparatorsTest extends \unittest\TestCase {
     ));
   }
 
-  #[@test]
+  #[Test]
   public function compare_using_byLastName_reverse() {
     $this->assertEquals(1, Person::byLastName()->reverse()->compare(
       new Person('Same', 'A', 1977),
@@ -51,7 +52,7 @@ class ComparatorsTest extends \unittest\TestCase {
     ));
   }
 
-  #[@test]
+  #[Test]
   public function usort_byDate() {
     $wall= new Wall('name', 'open', [
       new Post('thekid', 'Hello World', new Date('2015-04-01')),

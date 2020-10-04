@@ -1,49 +1,51 @@
 <?php namespace lang\partial\unittest;
 
-class BoxTest extends \unittest\TestCase {
+use unittest\{Test, TestCase};
 
-  #[@test]
+class BoxTest extends TestCase {
+
+  #[Test]
   public function name() {
     $this->assertEquals('Test', (new Named('Test'))->name());
   }
 
-  #[@test]
+  #[Test]
   public function value() {
     $this->assertEquals('Test', (new Named('Test'))->value());
   }
 
-  #[@test]
+  #[Test]
   public function isEmpty_for_non_empty_string() {
     $this->assertFalse((new Named('Test'))->isEmpty());
   }
 
-  #[@test]
+  #[Test]
   public function isEmpty_for_empty_string() {
     $this->assertTrue((new Named(''))->isEmpty());
   }
 
-  #[@test]
+  #[Test]
   public function is_equal_to_itself() {
     $fixture= new Named('Test');
     $this->assertEquals($fixture, $fixture);
   }
 
-  #[@test]
+  #[Test]
   public function is_equal_to_another_instance_with_same_name() {
     $this->assertEquals(new Named('A'), new Named('A'));
   }
 
-  #[@test]
+  #[Test]
   public function is_not_equal_to_another_instance_with_different_name() {
     $this->assertNotEquals(new Named('A'), new Named('B'));
   }
 
-  #[@test]
+  #[Test]
   public function string_of() {
     $this->assertEquals('lang.partial.unittest.Named("A")', (new Named('A'))->toString());
   }
 
-  #[@test]
+  #[Test]
   public function value_can_be_accessed() {
     $named= new class('A') extends Named {
       public function rename($value) { $this->value= $value; }

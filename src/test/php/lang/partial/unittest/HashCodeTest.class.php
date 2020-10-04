@@ -1,10 +1,11 @@
 <?php namespace lang\partial\unittest;
 
+use unittest\Test;
 use util\Objects;
 
 class HashCodeTest extends PartialTest {
 
-  #[@test]
+  #[Test]
   public function without_members() {
     $fixture= $this->declareType([], '{
       use <T>\with\lang\partial\HashCode;
@@ -13,7 +14,7 @@ class HashCodeTest extends PartialTest {
     $this->assertEquals(spl_object_hash($instance), $instance->hashCode());
   }
 
-  #[@test]
+  #[Test]
   public function with_one_member() {
     $fixture= $this->declareType([], '{
       use <T>\with\lang\partial\HashCode;
@@ -29,7 +30,7 @@ class HashCodeTest extends PartialTest {
     );
   }
 
-  #[@test]
+  #[Test]
   public function with_multiple_members() {
     $fixture= $this->declareType([], '{
       use <T>\with\lang\partial\HashCode;

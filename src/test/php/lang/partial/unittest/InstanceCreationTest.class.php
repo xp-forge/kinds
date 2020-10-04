@@ -1,11 +1,12 @@
 <?php namespace lang\partial\unittest;
 
-use lang\{IllegalArgumentException, XPClass};
 use lang\partial\InstanceCreation;
+use lang\{IllegalArgumentException, XPClass};
+use unittest\{Expect, Test, Values};
 
 class InstanceCreationTest extends \unittest\TestCase {
 
-  #[@test]
+  #[Test]
   public function of_with_fqcn() {
     $this->assertInstanceOf(
       'lang.partial.InstanceCreation',
@@ -13,7 +14,7 @@ class InstanceCreationTest extends \unittest\TestCase {
     );
   }
 
-  #[@test]
+  #[Test]
   public function of_with_class() {
     $this->assertInstanceOf(
       'lang.partial.InstanceCreation',
@@ -21,7 +22,7 @@ class InstanceCreationTest extends \unittest\TestCase {
     );
   }
 
-  #[@test]
+  #[Test]
   public function typeOf_with_fqcn() {
     $this->assertInstanceOf(
       'lang.XPClass',
@@ -29,7 +30,7 @@ class InstanceCreationTest extends \unittest\TestCase {
     );
   }
 
-  #[@test]
+  #[Test]
   public function typeOf_with_class() {
     $this->assertInstanceOf(
       'lang.XPClass',
@@ -37,7 +38,7 @@ class InstanceCreationTest extends \unittest\TestCase {
     );
   }
 
-  #[@test]
+  #[Test]
   public function returned_creationtype_name_in_same_namespace_as_type() {
     $this->assertEquals(
       'lang.partial.unittest.AuthorCreation',
@@ -45,27 +46,17 @@ class InstanceCreationTest extends \unittest\TestCase {
     );
   }
 
-  #[@test, @expect(IllegalArgumentException::class), @values([
-  #  ['interfaces', 'lang.Generic'],
-  #  ['enums', 'lang.partial.unittest.Coin'],
-  #  ['abstract classes', 'lang.partial.unittest.Entity'],
-  #  ['without constructor', 'lang.partial.unittest.WithoutConstructor']
-  #])]
+  #[Test, Expect(IllegalArgumentException::class), Values([['interfaces', 'lang.Generic'], ['enums', 'lang.partial.unittest.Coin'], ['abstract classes', 'lang.partial.unittest.Entity'], ['without constructor', 'lang.partial.unittest.WithoutConstructor']])]
   public function of_does_not_accept($reason, $class) {
     InstanceCreation::of($class);
   }
 
-  #[@test, @expect(IllegalArgumentException::class), @values([
-  #  ['interfaces', 'lang.Generic'],
-  #  ['enums', 'lang.partial.unittest.Coin'],
-  #  ['abstract classes', 'lang.partial.unittest.Entity'],
-  #  ['without constructor', 'lang.partial.unittest.WithoutConstructor']
-  #])]
+  #[Test, Expect(IllegalArgumentException::class), Values([['interfaces', 'lang.Generic'], ['enums', 'lang.partial.unittest.Coin'], ['abstract classes', 'lang.partial.unittest.Entity'], ['without constructor', 'lang.partial.unittest.WithoutConstructor']])]
   public function typeOf_does_not_accept($reason, $class) {
     InstanceCreation::typeOf($class);
   }
 
-  #[@test]
+  #[Test]
   public function keywords() {
     $instance= InstanceCreation::of(XPClass::forName('lang.partial.unittest.Event'))
       ->name('Test')

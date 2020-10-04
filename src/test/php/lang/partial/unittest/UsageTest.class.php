@@ -1,8 +1,10 @@
 <?php namespace lang\partial\unittest;
 
-class UsageTest extends \unittest\TestCase {
+use unittest\{Test, TestCase};
 
-  #[@test]
+class UsageTest extends TestCase {
+
+  #[Test]
   public function create_author() {
     $this->assertEquals(
       new Author('Test'),
@@ -10,7 +12,7 @@ class UsageTest extends \unittest\TestCase {
     );
   }
 
-  #[@test]
+  #[Test]
   public function create_isbn() {
     $this->assertEquals(
       new Isbn('978-3-16-148410-0', Isbn::EAN13),
@@ -18,7 +20,7 @@ class UsageTest extends \unittest\TestCase {
     );
   }
 
-  #[@test]
+  #[Test]
   public function create_isbn_with_default_type() {
     $this->assertEquals(
       new Isbn('978-3-16-148410-0', Isbn::EAN13),
@@ -26,7 +28,7 @@ class UsageTest extends \unittest\TestCase {
     );
   }
 
-  #[@test]
+  #[Test]
   public function create_book() {
     $this->assertEquals(
       new Book('Example', new Author('Test'), new Isbn('978-3-16-148410-0')),
@@ -38,7 +40,7 @@ class UsageTest extends \unittest\TestCase {
     );
   }
 
-  #[@test]
+  #[Test]
   public function create_book_without_isbn() {
     $this->assertEquals(
       new Book('Example', new Author('Test')),

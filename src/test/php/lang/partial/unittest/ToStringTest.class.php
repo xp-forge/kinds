@@ -1,8 +1,10 @@
 <?php namespace lang\partial\unittest;
 
+use unittest\Test;
+
 class ToStringTest extends PartialTest {
 
-  #[@test]
+  #[Test]
   public function without_members() {
     $fixture= $this->declareType([], '{
       use <T>\with\lang\partial\ToString;
@@ -16,7 +18,7 @@ class ToStringTest extends PartialTest {
     );
   }
 
-  #[@test]
+  #[Test]
   public function with_one_member() {
     $fixture= $this->declareType([], '{
       use <T>\with\lang\partial\ToString;
@@ -32,7 +34,7 @@ class ToStringTest extends PartialTest {
     );
   }
 
-  #[@test]
+  #[Test]
   public function with_multiple_members() {
     $fixture= $this->declareType([], '{
       use <T>\with\lang\partial\ToString;

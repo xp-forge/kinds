@@ -1,56 +1,56 @@
 <?php namespace lang\partial\unittest;
 
 use lang\ElementNotFoundException;
-use unittest\TestCase;
+use unittest\{Expect, Test, TestCase};
 
 class ListIndexedByTest extends TestCase {
 
-  #[@test]
+  #[Test]
   public function named() {
     $this->assertEquals($this, (new Tests($this))->named($this->getName()));
   }
 
-  #[@test, @expect(ElementNotFoundException::class)]
+  #[Test, Expect(ElementNotFoundException::class)]
   public function named_raises_exceptions() {
     (new Tests())->named($this->getName());
   }
 
-  #[@test]
+  #[Test]
   public function first() {
     $this->assertEquals($this, (new Tests($this))->first());
   }
 
-  #[@test, @expect(ElementNotFoundException::class)]
+  #[Test, Expect(ElementNotFoundException::class)]
   public function first_raises_exception_when_empty() {
     (new Tests())->first();
   }
 
-  #[@test]
+  #[Test]
   public function provides_returns_true_for_existing_elements() {
     $this->assertTrue((new Tests($this))->provides($this->getName()));
   }
 
-  #[@test]
+  #[Test]
   public function provides_returns_false_when_element_does_not_exist() {
     $this->assertFalse((new Tests())->provides($this->getName()));
   }
 
-  #[@test]
+  #[Test]
   public function present_if_not_empty() {
     $this->assertTrue((new Tests($this))->present());
   }
 
-  #[@test]
+  #[Test]
   public function present_when_empty() {
     $this->assertFalse((new Tests())->present());
   }
 
-  #[@test]
+  #[Test]
   public function size() {
     $this->assertEquals(1, (new Tests($this))->size());
   }
 
-  #[@test]
+  #[Test]
   public function can_be_iterated() {
     $this->assertEquals(
       [$this->getName() => $this],
@@ -58,18 +58,18 @@ class ListIndexedByTest extends TestCase {
     );
   }
 
-  #[@test]
+  #[Test]
   public function is_equal_to_itself() {
     $fixture= new Tests($this);
     $this->assertEquals($fixture, $fixture);
   }
 
-  #[@test]
+  #[Test]
   public function is_equal_to_list_with_same_elements() {
     $this->assertEquals(new Tests($this), new Tests($this));
   }
 
-  #[@test]
+  #[Test]
   public function is_not_equal_to_list_of_different_length() {
     $this->assertNotEquals(
       new Tests(),
@@ -77,7 +77,7 @@ class ListIndexedByTest extends TestCase {
     );
   }
 
-  #[@test]
+  #[Test]
   public function is_not_equal_to_list_with_different_elements() {
     $this->assertNotEquals(
       new Tests($this),
@@ -87,7 +87,7 @@ class ListIndexedByTest extends TestCase {
     );
   }
 
-  #[@test]
+  #[Test]
   public function indexed_can_be_accessed() {
     $tests= new class(['this' => $this]) extends Tests {
       public function __construct($indexed) { $this->indexed= $indexed; }
